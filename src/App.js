@@ -1,8 +1,8 @@
 function App() {
-  const nam = 'Adrian Nieves Uribe';
   return (
-    <div className="container mx-auto p-3">
+    <div className="container mx-auto p-3 bg-white h-screen">
       <h1>Create react app - Spotify</h1>
+      <p>Test</p>
     </div>
   );
 }
