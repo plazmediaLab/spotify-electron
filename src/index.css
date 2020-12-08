@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.loading-page {
+    grid-template-rows: 1fr auto;
+}
