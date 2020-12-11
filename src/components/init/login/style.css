@@ -1,0 +1,9 @@
+.icon-field-form {
+    color: #494A4E;
+}
+input:focus ~ .icon-field-form {
+    color: #202125;
+}
+input:focus ~ .icon-field-form:hover {
+    color: #16171B;
+}

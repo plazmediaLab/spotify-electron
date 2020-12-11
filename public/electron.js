@@ -13,7 +13,7 @@ function createWindow() {
     height: 800,
     minWidth: 900,
     minHeight: 700,
-    title: 'Plazmedia | Spotify',
+    title: 'Platify v1.0.0',
     center: true,
     backgroundColor: '#181719',
     webPreferences: {

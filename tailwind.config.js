@@ -4,16 +4,20 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'background-dark': '#181719',
-        background: '#27242C',
-        'background-light': '#3D3A41',
+        'background-dark': '#16171B',
+        background: '#202125',
+        'background-light': '#494A4E',
         primary: '#fff',
-        secondary: '#F3F3F9'
+        secondary: '#F3F3F9',
+        'brand-primary': '#7000f8'
       }
     }
   },
   variants: {
-    extend: {}
+    extend: {
+      opacity: ['disabled'],
+      backgroundColor: ['active']
+    }
   },
   plugins: []
 };

@@ -5,3 +5,7 @@
 .loading-page {
     grid-template-rows: 1fr auto;
 }
+*:focus,
+*:active {
+    outline: none !important;
+}
