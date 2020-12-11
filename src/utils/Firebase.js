@@ -1,12 +1,12 @@
 import firebase from 'firebase/app';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyA4IRapNKCyEY_A4vEeO0BJPCZuc7zHMCc',
-  authDomain: 'electron-spotify.firebaseapp.com',
-  projectId: 'electron-spotify',
-  storageBucket: 'electron-spotify.appspot.com',
-  messagingSenderId: '1018206443212',
-  appId: '1:1018206443212:web:29c4538d65676732929469'
+  apiKey: 'AIzaSyCrK4d90TCnUByU91Txj0AhEBxxxvnEwSA',
+  authDomain: 'platify-electron-28b95.firebaseapp.com',
+  projectId: 'platify-electron-28b95',
+  storageBucket: 'platify-electron-28b95.appspot.com',
+  messagingSenderId: '653336074875',
+  appId: '1:653336074875:web:c1dcad40e4261f82b620de'
 };
 
 export default firebase.initializeApp(firebaseConfig);

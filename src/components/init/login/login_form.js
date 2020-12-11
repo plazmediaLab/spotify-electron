@@ -8,7 +8,7 @@ import './style.css';
 export default function LoginForm() {
   const [showPass, setShowPass] = useState(false);
 
-  const [formik, loading] = useLogin();
+  const [formik, loading, error] = useLogin();
 
   return (
     <form className="mt-7 grid grid-flow-row gap-y-3" onSubmit={formik.handleSubmit}>
@@ -41,6 +41,11 @@ export default function LoginForm() {
         onChange={formik.handleChange}>
         <LoginFormShowpass showPass={showPass} setShowPass={setShowPass} />
       </FormInput>
+      {error && (
+        <p className="bg-red-500 py-2 px-3 text-white text-xs tracking-wider text-center rounded">
+          {error}
+        </p>
+      )}
       <button
         disabled={loading}
         type="submit"

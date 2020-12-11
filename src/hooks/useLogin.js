@@ -1,6 +1,8 @@
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import * as Yup from 'yup';
+import firebase from 'utils/Firebase';
+import 'firebase/auth';
 
 function useLogin() {
   const [error, setError] = useState(null);
@@ -26,10 +28,18 @@ function useLogin() {
     onSubmit: async (values) => {
       setLoading(true);
 
-      setTimeout(() => {
-        console.log(values);
-        setLoading(false);
-      }, 3000);
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(values.email, values.pass)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          setError(err.message);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     }
   });
 
