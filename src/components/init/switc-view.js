@@ -15,13 +15,13 @@ export default function SwitchView({ show, setShow }) {
           </h1>
           <nav className="mt-10">
             <button
-              className="bg-brand-primary font-medium uppercase text-xs tracking-wider w-full block p-3 rounded-full mb-3"
+              className="bg-brand-500 hover:bg-brand-600 active:bg-brand-600 font-medium uppercase text-xs tracking-wider w-full block p-3 rounded-full mb-3"
               type="button"
               onClick={() => setShow('login')}>
               Registrate gratis
             </button>
             <button
-              className="bg-secondary text-background-dark font-medium uppercase text-xs tracking-wider w-full block p-3 rounded-full"
+              className="bg-secondary hover:bg-primary active:bg-primary text-background-dark font-medium uppercase text-xs tracking-wider w-full block p-3 rounded-full"
               type="button"
               onClick={() => setShow('signup')}>
               Iniciar sesión

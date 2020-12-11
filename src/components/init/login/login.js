@@ -10,7 +10,7 @@ export default function Login({ setShow }) {
       <button
         type="button"
         onClick={() => setShow(null)}
-        className="block mx-auto uppercase py-1 px-3 tracking-widest my-7">
+        className="block mx-auto uppercase py-1 px-3 tracking-widest my-4">
         Volver
       </button>
       <p className="uppercase text-background-light text-xs font-medium text-center">

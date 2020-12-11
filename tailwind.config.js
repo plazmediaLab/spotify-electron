@@ -9,7 +9,24 @@ module.exports = {
         'background-light': '#494A4E',
         primary: '#fff',
         secondary: '#F3F3F9',
-        'brand-primary': '#7000f8'
+        brand: {
+          50: '#f8f2ff',
+          100: '#f1e6fe',
+          200: '#dbbffd',
+          300: '#c699fc',
+          400: '#9b4dfa',
+          500: '#7000f8',
+          600: '#6500df',
+          700: '#5400ba',
+          800: '#430095',
+          900: '#37007a'
+        }
+      },
+      padding: {
+        small: '0.125rem'
+      },
+      margin: {
+        small: '0.125rem'
       }
     }
   },

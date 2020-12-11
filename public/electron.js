@@ -12,7 +12,7 @@ function createWindow() {
     width: 1100,
     height: 800,
     minWidth: 900,
-    minHeight: 700,
+    minHeight: 800,
     title: 'Platify v1.0.0',
     center: true,
     backgroundColor: '#181719',
