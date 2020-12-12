@@ -1,9 +1,12 @@
+const colors = require('tailwindcss/colors');
+
 module.exports = {
   purge: ['./src/**/*.js', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       colors: {
+        amber: colors.amber,
         'background-dark': '#16171B',
         background: '#202125',
         'background-light': '#494A4E',

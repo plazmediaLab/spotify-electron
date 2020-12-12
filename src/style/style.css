@@ -1,0 +1,52 @@
+.icon-field-form {
+    color: #494A4E;
+}
+input:focus ~ .icon-field-form {
+    color: #202125;
+}
+input:focus ~ .icon-field-form:hover {
+    color: #16171B;
+}
+.toast-class__success,
+.toast-class__warn,
+.toast-class__error,
+.toast-class__info {
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    background-color: #16171B;
+    font-weight: 300;
+    font-size: .85rem;
+    padding-top: 0.35rem;
+    padding-bottom: calc(0.35rem + 2px);
+    padding-right: 0.6rem;
+    padding-left: 0.6rem;
+    letter-spacing: 0.06rem;
+    line-height: 1.2rem;
+    border-radius: .3rem;
+    -webkit-box-shadow: 0px 3px 20px 1px rgba(0,0,0,1), 0px 3px 5px 0px rgba(0,0,0,0.35); 
+    box-shadow: 0px 3px 20px 1px rgba(0,0,0,1), 0px 3px 5px 0px rgba(0,0,0,0.35);
+    display: flex;
+    align-items: flex-start;
+}
+.toast__progress {
+    height: 3px;
+    background-color: #494A4E;
+}
+.toast-icon__class {
+    min-width: 2.3rem;
+    min-height: 2.3rem;
+}
+.toast__body{
+    padding-right: 1.2rem;
+}
+.toast-class__error {
+    border-left: 5px solid #EF4444;
+}
+.toast-class__success {
+    border-left: 5px solid #10B981;
+}
+.toast-class__warn {
+    border-left: 5px solid #D97706;
+}
+.toast-class__info {
+    border-left: 5px solid #6500df;
+}

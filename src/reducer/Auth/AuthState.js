@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { LOADING_PROCESS, AUTH_LOGIN, EMAIL_VERIFIED } from '../types';
+import { LOADING_PROCESS, AUTH_LOGIN, EMAIL_VERIFIED, TOAST_MESSAGE } from '../types';
 import AuthContext from './AuthContext';
 import AuthReducer from './AuthReducer';
 
@@ -8,7 +8,8 @@ const UserState = ({ children }) => {
   const initialState = {
     user: null,
     emailVerified: null,
-    loadingProcess: true
+    loadingProcess: true,
+    toastMessage: null
   };
 
   // Reducer
@@ -33,6 +34,12 @@ const UserState = ({ children }) => {
       payload: verifi
     });
   };
+  const toastMessageMethod = (body) => {
+    dispath({
+      type: TOAST_MESSAGE,
+      payload: body
+    });
+  };
 
   return (
     <AuthContext.Provider
@@ -40,9 +47,11 @@ const UserState = ({ children }) => {
         user: state.user,
         emailVerified: state.emailVerified,
         loadingProcess: state.loadingProcess,
+        toastMessage: state.toastMessage,
         loadingProcessMethod: loadingProcessMethod,
         loginMethod: loginMethod,
-        emailVerifiedMethod: emailVerifiedMethod
+        emailVerifiedMethod: emailVerifiedMethod,
+        toastMessageMethod: toastMessageMethod
       }}>
       {children}
     </AuthContext.Provider>

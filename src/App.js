@@ -5,6 +5,9 @@ import SplashScreen from 'components/resources/splash-screen';
 import InitPage from 'components/init/init-page';
 import AuthContext from 'reducer/Auth/AuthContext';
 import Home from 'components/home/home';
+import Layout from 'components/layout';
+import 'react-toastify/dist/ReactToastify.css';
+import 'style/style.css';
 
 function App() {
   const authContext = useContext(AuthContext);
@@ -35,7 +38,7 @@ function App() {
     return <SplashScreen />;
   }
 
-  return user && emailVerified ? <Home /> : <InitPage />;
+  return <Layout>{user && emailVerified ? <Home /> : <InitPage />}</Layout>;
 }
 
 export default App;

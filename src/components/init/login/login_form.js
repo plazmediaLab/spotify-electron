@@ -3,7 +3,6 @@ import LoadingIcon from 'components/resources/loading-icon';
 import useLogin from 'hooks/useLogin';
 import { useState } from 'react';
 import LoginFormShowpass from './login_form_showpass';
-import './style.css';
 
 export default function LoginForm() {
   const [showPass, setShowPass] = useState(false);
@@ -41,11 +40,6 @@ export default function LoginForm() {
         onChange={formik.handleChange}>
         <LoginFormShowpass showPass={showPass} setShowPass={setShowPass} />
       </FormInput>
-      {error && (
-        <p className="bg-red-500 py-2 px-3 text-white text-xs tracking-wider text-center rounded">
-          {error}
-        </p>
-      )}
       <button
         disabled={loading}
         type="submit"

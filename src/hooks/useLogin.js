@@ -1,12 +1,17 @@
 import { useFormik } from 'formik';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import * as Yup from 'yup';
 import firebase from 'utils/Firebase';
 import 'firebase/auth';
+import 'react-toastify/dist/ReactToastify.css';
+import AuthContext from 'reducer/Auth/AuthContext';
 
 function useLogin() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const authContext = useContext(AuthContext);
+  const { toastMessageMethod } = authContext;
 
   const formik = useFormik({
     initialValues: {
@@ -33,9 +38,14 @@ function useLogin() {
         .createUserWithEmailAndPassword(values.email, values.pass)
         .then((res) => {
           console.log(res);
+          setError(null);
         })
         .catch((err) => {
-          setError(err.message);
+          setError(true);
+          toastMessageMethod({
+            type: 'error',
+            message: err.message
+          });
         })
         .finally(() => {
           setLoading(false);
