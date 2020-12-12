@@ -3,7 +3,7 @@ import LoginForm from './login_form';
 export default function Login({ setShow }) {
   return (
     <div>
-      <h1 className="text-2xl font-medium text-center">
+      <h1 className="text-3xl font-medium text-center">
         Almacena y escucha tu música con una cuenta gratuita
       </h1>
       <LoginForm />
@@ -13,8 +13,8 @@ export default function Login({ setShow }) {
         className="block mx-auto uppercase py-1 px-3 tracking-widest my-4">
         Volver
       </button>
-      <p className="uppercase text-background-light text-xs font-medium text-center">
-        ¿Ya tienes platify?{' '}
+      <p className="uppercase text-background-light text-xs text-center font-medium">
+        ¿Ya tienes platify? &nbsp;
         <span
           className="underline text-secondary tracking-widest cursor-pointer"
           onClick={() => setShow('signup')}>

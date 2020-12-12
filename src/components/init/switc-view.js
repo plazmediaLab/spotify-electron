@@ -10,7 +10,7 @@ export default function SwitchView({ show, setShow }) {
     default:
       return (
         <div>
-          <h1 className="text-2xl font-medium text-center">
+          <h1 className="text-3xl font-medium text-center">
             Millones de canciones gratis en Platify
           </h1>
           <nav className="mt-10">

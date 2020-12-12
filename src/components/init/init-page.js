@@ -10,7 +10,7 @@ export default function InitPage() {
 
   return (
     <main className="h-screen grid place-items-center mx-auto bg-transparent">
-      <section className="bg-background-dark w-6/12 md:w-4/12 z-10 relative p-10 rounded-2xl shadow-2xl">
+      <section className="bg-background-dark w-6/12 md:w-4/12 z-10 relative p-8 rounded-2xl shadow-2xl">
         <img src={Platifylogo} alt="Platify logo" className="h-14 mx-auto mb-8" />
         <SwitchView show={show} setShow={setShow} />
         <button

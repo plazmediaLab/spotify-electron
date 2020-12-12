@@ -1,3 +1,79 @@
+@font-face {
+    font-family: "Cerebri Sans Pro";
+    src: url('../fonts/CerebriSansPro-Light.ttf'), url('../fonts/CerebriSansPro-Light.otf');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Cerebri Sans Pro";
+    src: url('../fonts/CerebriSansPro-LightItalic.ttf'), url('../fonts/CerebriSansPro-LightItalic.otf');
+    font-weight: 300;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Cerebri Sans Pro";
+    src: url('../fonts/CerebriSansPro-Regular.ttf'), url('../fonts/CerebriSansPro-Regular.otf');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Cerebri Sans Pro";
+    src: url('../fonts/CerebriSansPro-Italic.ttf'), url('../fonts/CerebriSansPro-Italic.otf');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Cerebri Sans Pro";
+    src: url('../fonts/CerebriSansPro-Medium.ttf'), url('../fonts/CerebriSansPro-Medium.otf');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Cerebri Sans Pro";
+    src: url('../fonts/CerebriSansPro-MediumItalic.ttf'), url('../fonts/CerebriSansPro-MediumItalic.otf');
+    font-weight: 500;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Cerebri Sans Pro";
+    src: url('../fonts/CerebriSansPro-SemiBold.ttf'), url('../fonts/CerebriSansPro-SemiBold.otf');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Cerebri Sans Pro";
+    src: url('../fonts/CerebriSansPro-SemiBoldItalic.ttf'), url('../fonts/CerebriSansPro-SemiBoldItalic.otf');
+    font-weight: 600;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Cerebri Sans Pro";
+    src: url('../fonts/CerebriSansPro-Bold.ttf'), url('../fonts/CerebriSansPro-Bold.otf');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Cerebri Sans Pro";
+    src: url('../fonts/CerebriSansPro-BoldItalic.ttf'), url('../fonts/CerebriSansPro-BoldItalic.otf');
+    font-weight: 700;
+    font-style: italic;
+}
+@font-face {
+    font-family: "Cerebri Sans Pro";
+    src: url('../fonts/CerebriSansPro-ExtraBold.ttf'), url('../fonts/CerebriSansPro-ExtraBold.otf');
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Cerebri Sans Pro";
+    src: url('../fonts/CerebriSansPro-ExtraBoldItalic.ttf'), url('../fonts/CerebriSansPro-ExtraBoldItalic.otf');
+    font-weight: 800;
+    font-style: italic;
+}
+body {
+    font-family: "Cerebri Sans Pro";
+}
+
 .icon-field-form {
     color: #494A4E;
 }
