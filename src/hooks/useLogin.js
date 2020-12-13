@@ -13,6 +13,22 @@ function useLogin(setShow) {
   const authContext = useContext(AuthContext);
   const { toastMessageMethod } = authContext;
 
+  const updateUserName = (newName) => {
+    firebase
+      .auth()
+      .currentUser.updateProfile({
+        displayName: newName
+      })
+      .catch((err) => {
+        toastMessageMethod({
+          type: 'error',
+          message:
+            'Error al guardar el nombre de USUARIO, esto lo podras solucionar una vez iniciado sesión con tu correo y contraseña.',
+          closeTime: 7000
+        });
+      });
+  };
+
   const formik = useFormik({
     initialValues: {
       name: 'Adrian Nieves',
@@ -44,6 +60,7 @@ function useLogin(setShow) {
               'Registro exitoso! - Al registrarte enviamos a tu correo electrónico el enlace para activar tu cuenta.',
             closeTime: 10000
           });
+          updateUserName(values.name);
           toastMessageMethod({
             type: 'static',
             message: 'Activa tu cuenta para poder iniciar sesión.'
