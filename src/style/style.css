@@ -83,6 +83,7 @@ input:focus ~ .icon-field-form {
 input:focus ~ .icon-field-form:hover {
     color: #16171B;
 }
+.toast-class__static,
 .toast-class__success,
 .toast-class__warn,
 .toast-class__error,
@@ -113,6 +114,9 @@ input:focus ~ .icon-field-form:hover {
 }
 .toast__body{
     padding-right: 1.2rem;
+}
+.toast-class__static {
+    border-left: 5px solid #494A4E;
 }
 .toast-class__error {
     border-left: 5px solid #EF4444;

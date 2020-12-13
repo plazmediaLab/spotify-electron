@@ -1,8 +1,19 @@
 import { toast, ToastContainer } from 'react-toastify';
+import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
 
 export const showToast = ({ type, message, closeTime = 3000 }) => {
   switch (type) {
-    case 'success':
+    case 'static':
+      toast.info(<BodyToastStatic>{message}</BodyToastStatic>, {
+        className: 'toast-class__static',
+        bodyClassName: "toast__body",
+        autoClose: false,
+        hideProgressBar: true,
+        delay: 1000,
+        transition: Flip
+      });
+      break;
+    case 'staticsuccess':
       toast.success(<BodyToastSuccess>{message}</BodyToastSuccess>, {
         className: 'toast-class__success',
         bodyClassName: "toast__body",
@@ -32,6 +43,14 @@ export const showToast = ({ type, message, closeTime = 3000 }) => {
   }
 };
 
+function BodyToastStatic({ children }){
+  return (
+    <article className="flex items-center">
+      <svg className="toast-icon__class block mr-3 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" /></svg>
+      {children}
+    </article>
+  );
+};
 function BodyToastSuccess({ children }){
   return (
     <article className="flex items-center">

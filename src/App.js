@@ -20,6 +20,8 @@ function App() {
     emailVerifiedMethod
   } = authContext;
 
+  console.log(user);
+
   useEffect(() => {
     firebase.auth().onAuthStateChanged((currentUser) => {
       if (!currentUser) {

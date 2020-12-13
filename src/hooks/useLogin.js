@@ -6,7 +6,7 @@ import 'firebase/auth';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthContext from 'reducer/Auth/AuthContext';
 
-function useLogin() {
+function useLogin(setShow) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -37,8 +37,18 @@ function useLogin() {
         .auth()
         .createUserWithEmailAndPassword(values.email, values.pass)
         .then((res) => {
-          console.log(res);
           setError(null);
+          toastMessageMethod({
+            type: 'success',
+            message:
+              'Registro exitoso! - Al registrarte enviamos a tu correo electrónico el enlace para activar tu cuenta.',
+            closeTime: 10000
+          });
+          toastMessageMethod({
+            type: 'static',
+            message: 'Activa tu cuenta para poder iniciar sesión.'
+          });
+          setShow(null);
         })
         .catch((err) => {
           setError(true);

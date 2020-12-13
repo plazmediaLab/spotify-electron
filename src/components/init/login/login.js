@@ -6,7 +6,7 @@ export default function Login({ setShow }) {
       <h1 className="text-3xl font-medium text-center">
         Almacena y escucha tu música con una cuenta gratuita
       </h1>
-      <LoginForm />
+      <LoginForm setShow={setShow} />
       <button
         type="button"
         onClick={() => setShow(null)}
