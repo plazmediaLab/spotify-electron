@@ -7,7 +7,7 @@ export default function AuthReducer(state, action) {
         ...state,
         user: action.payload
       };
-    case AUTH_LOGIN:
+    case AUTH_SIGNOUT:
       return {
         state: action.payload
       };

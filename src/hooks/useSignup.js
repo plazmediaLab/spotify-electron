@@ -37,7 +37,8 @@ function useSignUp(setShow) {
         });
         toastMessageMethod({
           type: 'static',
-          message: 'Activa tu cuenta para poder iniciar sesión.'
+          message: 'Activa tu cuenta para poder iniciar sesión.',
+          delay: 1500
         });
       })
       .catch(() => {

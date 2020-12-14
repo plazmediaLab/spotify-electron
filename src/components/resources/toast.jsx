@@ -1,7 +1,7 @@
 import { toast, ToastContainer } from 'react-toastify';
 import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
 
-export const showToast = ({ type, message, closeTime = 3000 }) => {
+export const showToast = ({ type, message, closeTime = 3000, delay = 0 }) => {
   switch (type) {
     case 'static':
       toast.info(<BodyToastStatic>{message}</BodyToastStatic>, {
@@ -9,7 +9,7 @@ export const showToast = ({ type, message, closeTime = 3000 }) => {
         bodyClassName: "toast__body",
         autoClose: false,
         hideProgressBar: true,
-        delay: 1500,
+        delay: delay,
         transition: Flip
       });
       break;
