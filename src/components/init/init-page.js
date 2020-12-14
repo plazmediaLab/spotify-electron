@@ -10,14 +10,9 @@ export default function InitPage() {
 
   return (
     <main className="h-screen grid place-items-center mx-auto bg-transparent">
-      <section className="bg-background-dark w-6/12 md:w-4/12 z-10 relative p-8 rounded-2xl shadow-2xl">
+      <section className="bg-background-dark w-10/12 sm:w-6/12 md:w-5/12 lg:w-4/12 xl:w-2/6 2xl:w-1/5 z-10 relative p-8 rounded-2xl shadow-container">
         <img src={Platifylogo} alt="Platify logo" className="h-14 mx-auto mb-8" />
         <SwitchView show={show} setShow={setShow} />
-        <button
-          onClick={() => firebase.auth().signOut()}
-          className="py-2 px-5 rounded-full bg-red-500 text-white text-xs mx-auto block mt-3">
-          Logout
-        </button>
       </section>
       <div
         className="w-full h-screen bg-opacity-50 absolute top-0 left-0"

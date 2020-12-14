@@ -22,19 +22,18 @@ function App() {
 
   console.log(user);
 
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged((currentUser) => {
-      if (!currentUser) {
-        loginMethod(null);
-      } else {
-        if (currentUser.emailVerified) {
-          emailVerifiedMethod(currentUser.emailVerified);
-        }
+  firebase.auth().onAuthStateChanged((currentUser) => {
+    if (currentUser) {
+      if (currentUser.emailVerified) {
+        emailVerifiedMethod(currentUser.emailVerified);
         loginMethod(currentUser);
+      } else {
+        loginMethod(null);
+        firebase.auth().signOut();
       }
-      loadingProcessMethod(false);
-    });
-  }, []);
+    }
+    loadingProcess && loadingProcessMethod(false);
+  });
 
   if (loadingProcess) {
     return <SplashScreen />;

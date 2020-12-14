@@ -2,9 +2,9 @@ import FormInput from 'components/resources/form-input';
 import LoadingIcon from 'components/resources/loading-icon';
 import useLogin from 'hooks/useLogin';
 import { useState } from 'react';
-import LoginFormShowpass from './login_form_showpass';
+import SignupFormShowpass from './signup_form_showpass';
 
-export default function LoginForm({ setShow }) {
+export default function SignupForm({ setShow }) {
   const [showPass, setShowPass] = useState(false);
 
   const [formik, loading, error] = useLogin(setShow);
@@ -38,7 +38,7 @@ export default function LoginForm({ setShow }) {
         placeholder="Escribe tu contraseña"
         value={formik.values.pass}
         onChange={formik.handleChange}>
-        <LoginFormShowpass showPass={showPass} setShowPass={setShowPass} />
+        <SignupFormShowpass showPass={showPass} setShowPass={setShowPass} />
       </FormInput>
       <button
         disabled={loading}

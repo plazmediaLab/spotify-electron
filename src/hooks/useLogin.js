@@ -7,19 +7,16 @@ import 'react-toastify/dist/ReactToastify.css';
 import AuthContext from 'reducer/Auth/AuthContext';
 
 function useLogin(setShow) {
-  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const authContext = useContext(AuthContext);
   const { toastMessageMethod } = authContext;
 
-  const updateUserName = (newName) => {
+  const updateUserName = (body) => {
     firebase
       .auth()
-      .currentUser.updateProfile({
-        displayName: newName
-      })
-      .catch((err) => {
+      .currentUser.updateProfile(body)
+      .catch(() => {
         toastMessageMethod({
           type: 'error',
           message:
@@ -29,10 +26,33 @@ function useLogin(setShow) {
       });
   };
 
+  const sendActivateAccountMail = () => {
+    firebase
+      .auth()
+      .currentUser.sendEmailVerification()
+      .then(() => {
+        toastMessageMethod({
+          type: 'info',
+          message: 'El link de verificación de cuenta ha sido enviado a tu correo electrónico.',
+          closeTime: 10000
+        });
+        toastMessageMethod({
+          type: 'static',
+          message: 'Activa tu cuenta para poder iniciar sesión.'
+        });
+      })
+      .catch(() => {
+        toastMessageMethod({
+          message: 'Ha ocurrido un error al enviar el correo de verificación de tu cuenta.',
+          closeTime: 4000
+        });
+      });
+  };
+
   const formik = useFormik({
     initialValues: {
       name: 'Adrian Nieves',
-      email: 'adriangd.1337@gmail.com',
+      email: 'hiwihed293@yektara.com',
       pass: '12345678'
     },
     validationSchema: Yup.object({
@@ -52,23 +72,16 @@ function useLogin(setShow) {
       firebase
         .auth()
         .createUserWithEmailAndPassword(values.email, values.pass)
-        .then((res) => {
-          setError(null);
+        .then(() => {
           toastMessageMethod({
             type: 'success',
-            message:
-              'Registro exitoso! - Al registrarte enviamos a tu correo electrónico el enlace para activar tu cuenta.',
-            closeTime: 10000
+            message: 'Registro exitoso!.'
           });
-          updateUserName(values.name);
-          toastMessageMethod({
-            type: 'static',
-            message: 'Activa tu cuenta para poder iniciar sesión.'
-          });
+          updateUserName({ displayName: values.name });
+          sendActivateAccountMail();
           setShow(null);
         })
         .catch((err) => {
-          setError(true);
           toastMessageMethod({
             type: 'error',
             message: err.message
@@ -80,7 +93,7 @@ function useLogin(setShow) {
     }
   });
 
-  return [formik, loading, error];
+  return [formik, loading];
 }
 
 export default useLogin;

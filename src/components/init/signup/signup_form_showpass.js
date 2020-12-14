@@ -1,4 +1,4 @@
-export default function LoginFormShowpass({ setShowPass, showPass }) {
+export default function SignupFormShowpass({ setShowPass, showPass }) {
   return (
     <button
       type="button"

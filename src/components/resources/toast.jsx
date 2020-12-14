@@ -9,11 +9,11 @@ export const showToast = ({ type, message, closeTime = 3000 }) => {
         bodyClassName: "toast__body",
         autoClose: false,
         hideProgressBar: true,
-        delay: 1000,
+        delay: 1500,
         transition: Flip
       });
       break;
-    case 'staticsuccess':
+    case 'success':
       toast.success(<BodyToastSuccess>{message}</BodyToastSuccess>, {
         className: 'toast-class__success',
         bodyClassName: "toast__body",
