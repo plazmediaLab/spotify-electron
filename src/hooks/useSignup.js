@@ -51,7 +51,7 @@ function useSignUp(setShow) {
   const formik = useFormik({
     initialValues: {
       name: 'Adrian Nieves',
-      email: 'hiwihed293@yektara.com',
+      email: 'yicata4962@febeks.com',
       pass: '12345678'
     },
     validationSchema: Yup.object({

@@ -12,7 +12,7 @@ function useLogin(setShow) {
 
   const formik = useFormik({
     initialValues: {
-      email: 'hiwihed293@yektara.com',
+      email: 'yicata4962@febeks.com',
       pass: '12345678'
     },
     validationSchema: Yup.object({
@@ -29,11 +29,18 @@ function useLogin(setShow) {
         .signInWithEmailAndPassword(values.email, values.pass)
         .then((currentUser) => {
           console.log(currentUser.user.displayName);
-          toastMessageMethod({
-            type: 'success',
-            message: `Hola ${currentUser.user.displayName.split(' ')[0]} - Bienvenido nuevamente`,
-            closeTime: 5000
-          });
+          if (currentUser.user.emailVerified) {
+            toastMessageMethod({
+              type: 'success',
+              message: `Hola ${currentUser.user.displayName.split(' ')[0]} - Bienvenido nuevamente`,
+              closeTime: 5000
+            });
+          } else {
+            toastMessageMethod({
+              type: 'static',
+              message: 'Activa tu cuenta para poder iniciar sesión.'
+            });
+          }
           setShow(null);
         })
         .catch((err) => {

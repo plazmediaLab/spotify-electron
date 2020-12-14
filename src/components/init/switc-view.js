@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import Login from './login/login';
 import Signup from './signup/signup';
 
-export default function SwitchView({ show, setShow }) {
+export default function SwitchView() {
+  const [show, setShow] = useState(null);
+
   switch (show) {
     case 'login':
       return <Signup setShow={setShow} />;

@@ -1,4 +1,4 @@
-import { LOADING_PROCESS, AUTH_LOGIN, EMAIL_VERIFIED, TOAST_MESSAGE } from '../types';
+import { LOADING_PROCESS, AUTH_LOGIN, EMAIL_VERIFIED, TOAST_MESSAGE, AUTH_SIGNOUT } from '../types';
 
 export default function AuthReducer(state, action) {
   switch (action.type) {
@@ -6,6 +6,10 @@ export default function AuthReducer(state, action) {
       return {
         ...state,
         user: action.payload
+      };
+    case AUTH_LOGIN:
+      return {
+        state: action.payload
       };
     case LOADING_PROCESS:
       return {

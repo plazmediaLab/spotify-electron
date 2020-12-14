@@ -4,10 +4,10 @@ import SignupFormShowpass from 'components/resources/signup_form_showpass';
 import useLogin from 'hooks/useLogin';
 import { useState } from 'react';
 
-export default function LoginForm() {
+export default function LoginForm({ setShow }) {
   const [showPass, setShowPass] = useState(false);
 
-  const [formik, loading] = useLogin();
+  const [formik, loading] = useLogin(setShow);
 
   return (
     <form className="mt-7 grid grid-flow-row gap-y-3" onSubmit={formik.handleSubmit}>

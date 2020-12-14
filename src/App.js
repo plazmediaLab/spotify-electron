@@ -1,6 +1,6 @@
 import firebase from 'utils/Firebase';
 import 'firebase/auth';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import SplashScreen from 'components/resources/splash-screen';
 import InitPage from 'components/init/init-page';
 import AuthContext from 'reducer/Auth/AuthContext';
