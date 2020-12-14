@@ -23,7 +23,7 @@ function App() {
   console.log(user);
 
   firebase.auth().onAuthStateChanged((currentUser) => {
-    if (currentUser) {
+    if (currentUser && !user) {
       if (currentUser.emailVerified) {
         emailVerifiedMethod(currentUser.emailVerified);
         loginMethod(currentUser);

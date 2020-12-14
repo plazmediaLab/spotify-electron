@@ -1,9 +1,7 @@
-import { useFormik } from 'formik';
 import { useContext, useState } from 'react';
+import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import firebase from 'utils/Firebase';
-import 'firebase/auth';
-import 'react-toastify/dist/ReactToastify.css';
 import AuthContext from 'reducer/Auth/AuthContext';
 
 function useLogin(setShow) {
@@ -12,80 +10,48 @@ function useLogin(setShow) {
   const authContext = useContext(AuthContext);
   const { toastMessageMethod } = authContext;
 
-  const updateUserName = (body) => {
-    firebase
-      .auth()
-      .currentUser.updateProfile(body)
-      .catch(() => {
-        toastMessageMethod({
-          type: 'error',
-          message:
-            'Error al guardar el nombre de USUARIO, esto lo podras solucionar una vez iniciado sesión con tu correo y contraseña.',
-          closeTime: 7000
-        });
-      });
-  };
-
-  const sendActivateAccountMail = () => {
-    firebase
-      .auth()
-      .currentUser.sendEmailVerification()
-      .then(() => {
-        toastMessageMethod({
-          type: 'info',
-          message: 'El link de verificación de cuenta ha sido enviado a tu correo electrónico.',
-          closeTime: 10000
-        });
-        toastMessageMethod({
-          type: 'static',
-          message: 'Activa tu cuenta para poder iniciar sesión.'
-        });
-      })
-      .catch(() => {
-        toastMessageMethod({
-          message: 'Ha ocurrido un error al enviar el correo de verificación de tu cuenta.',
-          closeTime: 4000
-        });
-      });
-  };
-
   const formik = useFormik({
     initialValues: {
-      name: 'Adrian Nieves',
       email: 'hiwihed293@yektara.com',
       pass: '12345678'
     },
     validationSchema: Yup.object({
-      name: Yup.string()
-        .min(10, 'Al menos 10 caracteres.')
-        .required('El campo NOMBRE es requerido.'),
       email: Yup.string()
-        .email('Introduce un CORREO valido.')
+        .email('Introduce un correo electrónico valido.')
         .required('El campo EMAIL es requerido.'),
-      pass: Yup.string()
-        .min(8, 'Al menos 8 caracteres.')
-        .required('El campo PASSWORD es requerido.')
+      pass: Yup.string().required('El campo PASSWORD es requerido')
     }),
     onSubmit: async (values) => {
       setLoading(true);
 
-      firebase
+      await firebase
         .auth()
-        .createUserWithEmailAndPassword(values.email, values.pass)
-        .then(() => {
+        .signInWithEmailAndPassword(values.email, values.pass)
+        .then((currentUser) => {
+          console.log(currentUser.user.displayName);
           toastMessageMethod({
             type: 'success',
-            message: 'Registro exitoso!.'
+            message: `Hola ${currentUser.user.displayName.split(' ')[0]} - Bienvenido nuevamente`,
+            closeTime: 5000
           });
-          updateUserName({ displayName: values.name });
-          sendActivateAccountMail();
           setShow(null);
         })
         .catch((err) => {
-          toastMessageMethod({
-            type: 'error',
-            message: err.message
-          });
+          console.log(err);
+          if (err.code === 'auth/user-not-found') {
+            toastMessageMethod({
+              type: 'error',
+              message: 'No hay USUARIO registrado con ese correo.',
+              closeTime: 4000
+            });
+          }
+          if (err.code === 'auth/wrong-password') {
+            toastMessageMethod({
+              type: 'error',
+              message: 'La CONTRASEÑA no coincide con esta cuenta.',
+              closeTime: 4000
+            });
+          }
         })
         .finally(() => {
           setLoading(false);
