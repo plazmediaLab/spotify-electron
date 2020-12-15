@@ -2,7 +2,7 @@ import ToastAnimated, { showToast } from 'components/resources/toast';
 import { useContext, useEffect } from 'react';
 import AuthContext from 'reducer/Auth/AuthContext';
 
-export default function Layout({ children }) {
+export default function LayoutToast({ children }) {
   const authContext = useContext(AuthContext);
   const { toastMessage } = authContext;
 
