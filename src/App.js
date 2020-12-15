@@ -18,7 +18,6 @@ function App() {
   const {
     loadingProcess,
     user,
-    emailVerified,
     loginMethod,
     loadingProcessMethod,
     emailVerifiedMethod

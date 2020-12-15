@@ -31,7 +31,6 @@ function useLogin() {
         .auth()
         .signInWithEmailAndPassword(values.email, values.pass)
         .then((currentUser) => {
-          console.log(currentUser.user.displayName);
           if (currentUser.user.emailVerified) {
             toastMessageMethod({
               type: 'success',

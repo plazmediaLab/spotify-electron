@@ -10,7 +10,7 @@ export default function SignUp() {
       </h1>
       <SignupForm />
       <div className="text-center">
-        <Link to="/" className="inline-block mx-auto uppercase py-1 px-3 tracking-widest mt-4">
+        <Link to="/" className="inline-block mx-auto uppercase mb-4 px-3 tracking-widest mt-4">
           Volver
         </Link>
       </div>
