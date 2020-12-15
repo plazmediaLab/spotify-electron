@@ -1,4 +1,5 @@
-import SignupForm from 'components/init/signup/signup_form';
+import { Link } from '@reach/router';
+import SignupForm from 'components/home/signup/signup_form';
 import { Fragment } from 'react';
 
 export default function SignUp() {
@@ -8,20 +9,18 @@ export default function SignUp() {
         Almacena y escucha tu música con una cuenta gratuita
       </h1>
       <SignupForm />
-      <button
-        type="button"
-        // onClick={() => setShow(null)}
-        className="block mx-auto uppercase py-1 px-3 tracking-widest my-4">
-        Volver
-      </button>
+      <div className="text-center">
+        <Link to="/" className="inline-block mx-auto uppercase py-1 px-3 tracking-widest mt-4">
+          Volver
+        </Link>
+      </div>
       <p className="uppercase text-background-light text-xs text-center font-medium">
         ¿Ya tienes platify? &nbsp;
-        <span
-          className="underline text-secondary tracking-widest cursor-pointer font-light"
-          // onClick={() => setShow('signup')}
-        >
+        <Link
+          to="/login"
+          className="underline text-secondary tracking-widest cursor-pointer font-light">
           Iniciar sesión
-        </span>
+        </Link>
       </p>
     </Fragment>
   );

@@ -3,12 +3,15 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import firebase from 'utils/Firebase';
 import AuthContext from 'reducer/Auth/AuthContext';
+import { useNavigate } from '@reach/router';
 
-function useLogin(setShow) {
+function useLogin() {
   const [loading, setLoading] = useState(false);
 
   const authContext = useContext(AuthContext);
   const { toastMessageMethod } = authContext;
+
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -35,13 +38,14 @@ function useLogin(setShow) {
               message: `Hola ${currentUser.user.displayName.split(' ')[0]} - Bienvenido nuevamente`,
               closeTime: 5000
             });
+            navigate('/dashboard');
           } else {
             toastMessageMethod({
               type: 'static',
               message: 'Activa tu cuenta para poder iniciar sesión.'
             });
+            navigate('/');
           }
-          setShow(null);
         })
         .catch((err) => {
           console.log(err);
@@ -51,11 +55,16 @@ function useLogin(setShow) {
               message: 'No hay USUARIO registrado con ese correo.',
               closeTime: 4000
             });
-          }
-          if (err.code === 'auth/wrong-password') {
+          } else if (err.code === 'auth/wrong-password') {
             toastMessageMethod({
               type: 'error',
               message: 'La CONTRASEÑA no coincide con esta cuenta.',
+              closeTime: 4000
+            });
+          } else {
+            toastMessageMethod({
+              type: 'error',
+              message: err.message,
               closeTime: 4000
             });
           }

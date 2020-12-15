@@ -4,12 +4,15 @@ import * as Yup from 'yup';
 import firebase from 'utils/Firebase';
 import 'firebase/auth';
 import AuthContext from 'reducer/Auth/AuthContext';
+import { useNavigate } from '@reach/router';
 
-function useSignUp(setShow) {
+function useSignUp() {
   const [loading, setLoading] = useState(false);
 
   const authContext = useContext(AuthContext);
   const { toastMessageMethod } = authContext;
+
+  const navigate = useNavigate();
 
   const updateUserName = (body) => {
     firebase
@@ -79,7 +82,7 @@ function useSignUp(setShow) {
           });
           updateUserName({ displayName: values.name });
           sendActivateAccountMail();
-          setShow(null);
+          navigate('/');
         })
         .catch((err) => {
           toastMessageMethod({

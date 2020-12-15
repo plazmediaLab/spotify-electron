@@ -1,4 +1,5 @@
-import LoginForm from 'components/init/login/login_form';
+import { Link } from '@reach/router';
+import LoginForm from 'components/home/login/login_form';
 import { Fragment } from 'react';
 
 export default function Login({ setShow }) {
@@ -6,12 +7,11 @@ export default function Login({ setShow }) {
     <Fragment>
       <h1 className="text-3xl font-medium text-center">Escucha toda tu música en un solo lugar.</h1>
       <LoginForm />
-      <button
-        type="button"
-        // onClick={() => setShow(null)}
-        className="block mx-auto uppercase py-1 px-3 tracking-widest mt-4">
-        Volver
-      </button>
+      <div className="text-center">
+        <Link to="/" className="inline-block mx-auto uppercase py-1 px-3 tracking-widest mt-4">
+          Volver
+        </Link>
+      </div>
     </Fragment>
   );
 }

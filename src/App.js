@@ -11,7 +11,7 @@ import Dashboard from 'pages/dashboard';
 import LayoutToast from 'components/layout/layout-toast';
 import Login from 'pages/login';
 import SignUp from 'pages/signup';
-import HomeMainNav from 'components/resources/home-main-nav';
+import HomeMainNav from 'components/home/home-main-nav';
 
 function App() {
   const authContext = useContext(AuthContext);
@@ -23,8 +23,6 @@ function App() {
     loadingProcessMethod,
     emailVerifiedMethod
   } = authContext;
-
-  console.log(user);
 
   firebase.auth().onAuthStateChanged((currentUser) => {
     if (currentUser && !user) {
