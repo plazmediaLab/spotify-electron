@@ -34,7 +34,9 @@ function useLogin() {
           if (currentUser.user.emailVerified) {
             toastMessageMethod({
               type: 'success',
-              message: `Hola ${currentUser.user.displayName.split(' ')[0]} - Bienvenido nuevamente`,
+              message: `Hola ${
+                currentUser.user.displayName.split(' ')[0]
+              } - Bienvenido de nuevo a Platify`,
               closeTime: 5000
             });
             navigate('/dashboard');

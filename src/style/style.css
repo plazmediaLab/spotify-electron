@@ -119,3 +119,20 @@ input:focus ~ .icon-field-form:hover {
 .toast-class__info {
     border-left: 5px solid #6500df;
 }
+
+/* ---------------------------- */
+/* Dashboard */
+/* --------ˇˇˇˇˇˇˇˇˇˇˇˇ-------- */
+@media (min-width: 640px) {
+    .dashboard-main__container {
+        grid-template-columns: 15rem 1fr;
+        grid-template-rows: 1fr 5rem;
+    }
+    .dashboard-main__content{
+        grid-template-rows: 3rem 1fr;
+    }
+}
+@media (min-width: 768px) {}
+@media (min-width: 1024px) {}
+@media (min-width: 1280px) {}
+@media (min-width: 1536px) {}

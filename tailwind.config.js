@@ -12,6 +12,7 @@ module.exports = {
         amber: colors.amber,
         'background-dark': '#16171B',
         background: '#202125',
+        'background-middlelight': '#2E2F32',
         'background-light': '#494A4E',
         primary: '#fff',
         secondary: '#F3F3F9',

@@ -1,4 +1,4 @@
-import { Redirect, useLocation, useNavigate, useParams } from '@reach/router';
+import { Redirect, useLocation, useNavigate } from '@reach/router';
 import coversWallpaper from 'img/albums-covers-wallpaper.jpg';
 import Platifylogo from 'img/SVG/platify-white.svg';
 import { useContext, useEffect } from 'react';
@@ -15,6 +15,7 @@ export default function Home({ children }) {
     if (location.pathname === '/' && location.search === '?auth=unauthorized') {
       navigate('/login');
     }
+    // eslint-disable-next-line
   }, []);
 
   return user && emailVerified ? (
