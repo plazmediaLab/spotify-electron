@@ -1,9 +1,9 @@
 import AsideNavLink from './aside-nav_link';
 
-export default function AsideNavbarMain() {
+export default function AsideNavbarMain({ isAdmin }) {
   return (
-    <aside>
-      <nav>
+    <aside className="text-secondary-dark flex flex-col pt-3">
+      <nav className="flex-1">
         <AsideNavLink to="/dashboard">
           <span>Inicio</span>
           <svg
@@ -25,6 +25,42 @@ export default function AsideNavbarMain() {
           </svg>
         </AsideNavLink>
       </nav>
+      {isAdmin && (
+        <section>
+          <p className="pl-5 pr-4 py-1 flex justify-between items-center hover:text-secondary cursor-pointer">
+            <span>Nueva Canción</span>
+            <svg
+              className="w-4 h-4"
+              viewBox="0 0 18 18"
+              fill="none"
+              stroke="currentColor"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M9 6v3m0 0v3m0-3h3M9 9H6M17 3v12a2 2 0 01-2 2H3a2 2 0 01-2-2V3a2 2 0 012-2h12a2 2 0 012 2z"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </p>
+          <p className="pl-5 pr-4 py-1 flex justify-between items-center hover:text-secondary cursor-pointer">
+            <span>Nueva Artista</span>
+            <svg
+              className="w-4 h-4"
+              viewBox="0 0 18 18"
+              fill="none"
+              stroke="currentColor"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M9 6v3m0 0v3m0-3h3M9 9H6M17 3v12a2 2 0 01-2 2H3a2 2 0 01-2-2V3a2 2 0 012-2h12a2 2 0 012 2z"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </p>
+        </section>
+      )}
     </aside>
   );
 }

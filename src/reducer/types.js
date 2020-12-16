@@ -1,5 +1,6 @@
 export const LOADING_PROCESS = 'LOADING_PROCESS';
 export const EMAIL_VERIFIED = 'EMAIL_VERIFIED';
+export const IS_ADMIN = 'IS_ADMIN';
 export const TOAST_MESSAGE = 'TOAST_MESSAGE';
 
 // Auth
