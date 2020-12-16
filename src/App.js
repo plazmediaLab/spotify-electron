@@ -5,7 +5,7 @@ import SplashScreen from 'components/resources/splash-screen';
 import AuthContext from 'reducer/Auth/AuthContext';
 import 'react-toastify/dist/ReactToastify.css';
 import 'style/style.css';
-import { Router, Link } from '@reach/router';
+import { Router } from '@reach/router';
 import Home from 'pages/home';
 import Dashboard from 'pages/dashboard';
 import LayoutToast from 'components/layout/layout-toast';
@@ -54,7 +54,7 @@ function App() {
             <Login path="login" />
             <SignUp path="signup" />
           </Home>
-          <Dashboard path="/dashboard"></Dashboard>
+          <Dashboard path="/dashboard/*" />
         </Router>
       </section>
     </LayoutToast>

@@ -1,39 +1,24 @@
-import { Redirect } from '@reach/router';
-import { useContext } from 'react';
-import AuthContext from 'reducer/Auth/AuthContext';
-import firebase from 'utils/Firebase';
+import { Redirect, useLocation } from '@reach/router';
 import 'firebase/auth';
 import HeaderMain from 'components/dashboard/header/header-main';
+import { useContext } from 'react';
+import AuthContext from 'reducer/Auth/AuthContext';
+import AsideNavbarMain from 'components/dashboard/aside-navbar/aside-navbar_main';
+import InitContentMain from 'components/dashboard/content/init-content_main';
 
 export default function Dashboard() {
   const authContext = useContext(AuthContext);
-  const { user, emailVerified, logOutMethod } = authContext;
+  const { user, emailVerified } = authContext;
 
-  const SignOut = async () => {
-    await firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        logOutMethod();
-      });
-  };
+  const location = useLocation();
+  console.log(location.pathname);
 
   return user && emailVerified ? (
     <main className="dashboard-main__container text-secondary grid w-full h-screen font-light">
-      <aside>
-        <h1 className="text-secondary">Aside Menu</h1>
-        <button
-          type="button"
-          className="py-1 px-3 rounded-full text-xs bg-red-500 text-white"
-          onClick={SignOut}>
-          Log Out
-        </button>
-      </aside>
+      <AsideNavbarMain />
       <section className="dashboard-main__content bg-background grid grid-flow-row">
         <HeaderMain />
-        <div>
-          <h1>Section Content</h1>
-        </div>
+        <InitContentMain />
       </section>
       <footer className="col-span-2 bg-background-middlelight">
         <h1>Section Play</h1>
