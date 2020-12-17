@@ -10,6 +10,7 @@ module.exports = {
       },
       colors: {
         amber: colors.amber,
+        'warm-gray': colors.warmGray,
         'background-dark': '#16171B',
         background: '#202125',
         'background-middlelight': '#2E2F32',

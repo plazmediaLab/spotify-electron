@@ -12,7 +12,7 @@ export default function LayoutToast({ children }) {
     }
   }, [toastMessage]);
   return (
-    <main className="h-screen w-full relative bg-background-dark text-secondary">
+    <main className="h-screen w-full relative bg-background-dark text-secondary" id="main-latout">
       <section className="absolute top-0 z-50">
         <ToastAnimated />
       </section>

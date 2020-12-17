@@ -1,4 +1,4 @@
-import { Redirect, useLocation } from '@reach/router';
+import { Redirect } from '@reach/router';
 import 'firebase/auth';
 import HeaderMain from 'components/dashboard/header/header-main';
 import { useContext, useEffect } from 'react';
@@ -13,10 +13,6 @@ export default function Dashboard() {
   const { user, isAdmin, emailVerified } = authContext;
 
   const [getUserData, loading] = useUserData();
-
-  // const location = useLocation();
-  // console.log(location.pathname);
-  console.log(isAdmin);
 
   useEffect(() => {
     getUserData();

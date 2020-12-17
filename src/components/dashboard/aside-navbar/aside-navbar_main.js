@@ -1,6 +1,10 @@
+import ModalContent from 'components/resources/modal-content';
+import { useState } from 'react';
 import AsideNavLink from './aside-nav_link';
 
 export default function AsideNavbarMain({ isAdmin }) {
+  const [show, setShow] = useState(false);
+
   return (
     <aside className="text-secondary-dark flex flex-col pt-3">
       <nav className="flex-1">
@@ -25,9 +29,12 @@ export default function AsideNavbarMain({ isAdmin }) {
           </svg>
         </AsideNavLink>
       </nav>
+      <ModalContent show={show} closeModal={() => setShow(!show)} />
       {isAdmin && (
         <section>
-          <p className="pl-5 pr-4 py-1 flex justify-between items-center hover:text-secondary cursor-pointer">
+          <button
+            className="pl-5 pr-4 py-1 flex justify-between items-center hover:text-secondary"
+            onClick={() => setShow(!show)}>
             <span>Nueva Canción</span>
             <svg
               className="w-4 h-4"
@@ -42,8 +49,10 @@ export default function AsideNavbarMain({ isAdmin }) {
                 strokeLinejoin="round"
               />
             </svg>
-          </p>
-          <p className="pl-5 pr-4 py-1 flex justify-between items-center hover:text-secondary cursor-pointer">
+          </button>
+          <button
+            className="pl-5 pr-4 py-1 flex justify-between items-center hover:text-secondary"
+            onClick={() => setShow(!show)}>
             <span>Nueva Artista</span>
             <svg
               className="w-4 h-4"
@@ -58,7 +67,7 @@ export default function AsideNavbarMain({ isAdmin }) {
                 strokeLinejoin="round"
               />
             </svg>
-          </p>
+          </button>
         </section>
       )}
     </aside>
