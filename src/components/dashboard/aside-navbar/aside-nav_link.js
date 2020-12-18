@@ -9,7 +9,7 @@ const AsideNavLink = (props) => (
       return {
         className: `${
           isCurrent ? 'border-brand-500 text-secondary' : ' border-transparent text-secondary-dark'
-        } block border-l-4 px-4 py-1 flex justify-between hover:text-secondary`
+        } block border-l-4 pl-4 pr-5 py-1 flex justify-between hover:text-secondary`
       };
     }}
   />

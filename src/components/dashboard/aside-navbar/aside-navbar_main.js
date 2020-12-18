@@ -1,10 +1,8 @@
-import ModalContent from 'components/resources/modal-content';
-import { useState } from 'react';
+import AddSong from './add-song';
+import AddArtist from './add-artist';
 import AsideNavLink from './aside-nav_link';
 
 export default function AsideNavbarMain({ isAdmin }) {
-  const [show, setShow] = useState(false);
-
   return (
     <aside className="text-secondary-dark flex flex-col pt-3">
       <nav className="flex-1">
@@ -29,45 +27,10 @@ export default function AsideNavbarMain({ isAdmin }) {
           </svg>
         </AsideNavLink>
       </nav>
-      <ModalContent show={show} closeModal={() => setShow(!show)} />
       {isAdmin && (
         <section>
-          <button
-            className="pl-5 pr-4 py-1 flex justify-between items-center hover:text-secondary"
-            onClick={() => setShow(!show)}>
-            <span>Nueva Canción</span>
-            <svg
-              className="w-4 h-4"
-              viewBox="0 0 18 18"
-              fill="none"
-              stroke="currentColor"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M9 6v3m0 0v3m0-3h3M9 9H6M17 3v12a2 2 0 01-2 2H3a2 2 0 01-2-2V3a2 2 0 012-2h12a2 2 0 012 2z"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-          <button
-            className="pl-5 pr-4 py-1 flex justify-between items-center hover:text-secondary"
-            onClick={() => setShow(!show)}>
-            <span>Nueva Artista</span>
-            <svg
-              className="w-4 h-4"
-              viewBox="0 0 18 18"
-              fill="none"
-              stroke="currentColor"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M9 6v3m0 0v3m0-3h3M9 9H6M17 3v12a2 2 0 01-2 2H3a2 2 0 01-2-2V3a2 2 0 012-2h12a2 2 0 012 2z"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
+          <AddSong />
+          <AddArtist />
         </section>
       )}
     </aside>
