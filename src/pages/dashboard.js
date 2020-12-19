@@ -16,6 +16,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     getUserData();
+    // eslint-disable-next-line
   }, []);
 
   if (loading) {

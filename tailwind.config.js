@@ -5,6 +5,10 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      gridTemplateColumns: {
+        'auto-1fr': 'auto 1fr',
+        '1fr-auto': '1fr auto '
+      },
       boxShadow: {
         container: '0px 3px 20px 1px rgba(0,0,0,1), 0px 3px 5px 0px rgba(0,0,0,0.35)'
       },

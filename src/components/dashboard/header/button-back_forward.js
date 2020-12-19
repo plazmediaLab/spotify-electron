@@ -1,10 +1,7 @@
-import { useLocation, useNavigate } from '@reach/router';
+import { useNavigate } from '@reach/router';
 
 export default function ButtonBackForward() {
   const navigate = useNavigate();
-
-  const location = useLocation();
-  console.log(navigate);
 
   return (
     <nav className="flex-1 flex items-center justify-start text-secondary-dark">
