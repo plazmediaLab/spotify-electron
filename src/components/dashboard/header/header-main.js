@@ -31,7 +31,9 @@ export default function HeaderMain() {
       <ButtonBackForward />
       <div className="flex space-x-2 items-center text-secondary">
         {photoURL ? (
-          <div className="w-7 h-7 rounded-full bg-background-dark"></div>
+          <div className="w-7 h-7 rounded-full bg-background-dark overflow-hidden">
+            <img src={photoURL} alt="User Avatar" className="w-full h-full rounded-full" />
+          </div>
         ) : (
           <svg
             className="w-7 h-7 rounded-full bg-background-dark"

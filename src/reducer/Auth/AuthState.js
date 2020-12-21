@@ -2,6 +2,7 @@ import { useReducer } from 'react';
 import {
   LOADING_PROCESS,
   AUTH_LOGIN,
+  AUTH_RELOAD,
   EMAIL_VERIFIED,
   TOAST_MESSAGE,
   IS_ADMIN,
@@ -16,6 +17,7 @@ const UserState = ({ children }) => {
     user: null,
     emailVerified: null,
     loadingProcess: true,
+    reloadData: false,
     isAdmin: null,
     toastMessage: null
   };
@@ -34,6 +36,12 @@ const UserState = ({ children }) => {
     dispath({
       type: AUTH_LOGIN,
       payload: data
+    });
+  };
+  const reloadDataMethod = (process) => {
+    dispath({
+      type: AUTH_RELOAD,
+      payload: process
     });
   };
   const logOutMethod = () => {
@@ -67,10 +75,12 @@ const UserState = ({ children }) => {
         user: state.user,
         emailVerified: state.emailVerified,
         loadingProcess: state.loadingProcess,
+        reloadData: state.reloadData,
         isAdmin: state.isAdmin,
         toastMessage: state.toastMessage,
         loadingProcessMethod: loadingProcessMethod,
         loginMethod: loginMethod,
+        reloadDataMethod: reloadDataMethod,
         emailVerifiedMethod: emailVerifiedMethod,
         isAdminMethod: isAdminMethod,
         toastMessageMethod: toastMessageMethod,

@@ -1,6 +1,6 @@
 import firebase from 'utils/Firebase';
 import 'firebase/auth';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import SplashScreen from 'components/resources/splash-screen';
 import AuthContext from 'reducer/Auth/AuthContext';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,22 +19,25 @@ function App() {
     loadingProcess,
     user,
     loginMethod,
+    reloadData,
     loadingProcessMethod,
     emailVerifiedMethod
   } = authContext;
 
-  firebase.auth().onAuthStateChanged((currentUser) => {
-    if (currentUser && !user) {
-      if (currentUser.emailVerified) {
-        emailVerifiedMethod(currentUser.emailVerified);
-        loginMethod(currentUser);
-      } else {
-        loginMethod(null);
-        firebase.auth().signOut();
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((currentUser) => {
+      if (currentUser) {
+        if (currentUser.emailVerified) {
+          emailVerifiedMethod(currentUser.emailVerified);
+          loginMethod(currentUser);
+        } else {
+          loginMethod(null);
+          firebase.auth().signOut();
+        }
       }
-    }
-    loadingProcess && loadingProcessMethod(false);
-  });
+      loadingProcess && loadingProcessMethod(false);
+    });
+  }, [reloadData]);
 
   if (loadingProcess) {
     return <SplashScreen />;

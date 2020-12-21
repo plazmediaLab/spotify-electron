@@ -1,15 +1,43 @@
 import firebase from 'utils/Firebase';
 import 'firebase/auth';
 import 'firebase/storage';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
+import useUserDataUpdate from 'hooks/useUserDataUpdate';
 
-export default function AvatarUpload() {
+export default function AvatarUpload({ uid, photoURL }) {
   const [avatarUrl, setAvatarUrl] = useState('');
 
+  const [userDataUpdate] = useUserDataUpdate();
+
+  useEffect(() => {
+    if (photoURL) {
+      setAvatarUrl(photoURL);
+    }
+  }, [photoURL]);
+
+  const uploadImage = (file) => {
+    const ref = firebase.storage().ref().child(`avatar/${uid}`);
+    return ref.put(file);
+  };
+
   const onDrop = useCallback((acceptedFile) => {
-    console.log(acceptedFile);
+    const file = acceptedFile[0];
+    setAvatarUrl(URL.createObjectURL(file));
+    uploadImage(file).then((res) => {
+      updateUserAvatar();
+    });
   });
+
+  const updateUserAvatar = () => {
+    firebase
+      .storage()
+      .ref(`avatar/${uid}`)
+      .getDownloadURL()
+      .then((res) => {
+        userDataUpdate({ photoURL: res });
+      });
+  };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: 'image/jpeg, image/png',
@@ -38,6 +66,8 @@ export default function AvatarUpload() {
             d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
           />
         </svg>
+      ) : avatarUrl ? (
+        <img src={avatarUrl} alt="Perfil Avatar" className="rounded-full" />
       ) : (
         <svg
           className="w-full h-full"

@@ -4,7 +4,8 @@ import {
   EMAIL_VERIFIED,
   TOAST_MESSAGE,
   AUTH_LOGOUT,
-  IS_ADMIN
+  IS_ADMIN,
+  AUTH_RELOAD
 } from '../types';
 
 export default function AuthReducer(state, action) {
@@ -22,6 +23,11 @@ export default function AuthReducer(state, action) {
       return {
         ...state,
         loadingProcess: action.payload
+      };
+    case AUTH_RELOAD:
+      return {
+        ...state,
+        reloadData: action.payload
       };
     case EMAIL_VERIFIED:
       return {
