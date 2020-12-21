@@ -1,20 +1,14 @@
 import firebase from 'utils/Firebase';
 import 'firebase/auth';
 import 'firebase/storage';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import useUserDataUpdate from 'hooks/useUserDataUpdate';
 
-export default function AvatarUpload({ uid, photoURL }) {
-  const [avatarUrl, setAvatarUrl] = useState('');
+export default function AvatarUpload({ uid, photoURL, reloadData }) {
+  const [avatarUrl, setAvatarUrl] = useState(photoURL);
 
   const [userDataUpdate] = useUserDataUpdate();
-
-  useEffect(() => {
-    if (photoURL) {
-      setAvatarUrl(photoURL);
-    }
-  }, [photoURL]);
 
   const uploadImage = (file) => {
     const ref = firebase.storage().ref().child(`avatar/${uid}`);
@@ -47,9 +41,9 @@ export default function AvatarUpload({ uid, photoURL }) {
 
   return (
     <div
-      className={`${
+      className={`mx-auto ${
         isDragActive ? 'border-solid border-brand-500' : 'border-dashed border-secondary-dark'
-      } rounded-full w-20 h-20 border-2 p-1 overflow-hidden cursor-pointer grid place-items-center`}
+      } rounded-full w-32 h-32 border-2 p-1 overflow-hidden cursor-pointer grid place-items-center`}
       {...getRootProps()}>
       <input {...getInputProps()} />
       {isDragActive ? (
@@ -78,7 +72,7 @@ export default function AvatarUpload({ uid, photoURL }) {
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
-            strokeWidth={1}
+            strokeWidth={0.5}
             d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>

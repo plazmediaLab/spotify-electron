@@ -1,4 +1,4 @@
-import { Link } from '@reach/router';
+import { Link, useLocation } from '@reach/router';
 import { useContext, useState } from 'react';
 import AuthContext from 'reducer/Auth/AuthContext';
 import firebase from 'utils/Firebase';
@@ -7,6 +7,9 @@ import './style.css';
 
 export default function HeaderMain() {
   const [showMenu, setShowMenu] = useState(false);
+
+  const location = useLocation();
+  console.log(location.pathname);
 
   const authContext = useContext(AuthContext);
   const { user, logOutMethod } = authContext;
@@ -27,7 +30,11 @@ export default function HeaderMain() {
   return (
     <header
       id="header-container"
-      className="relative bg-gradient-to-b from-background-light to-background flex justify-end space-x-4 items-center px-5">
+      className={`${
+        location.pathname === '/dashboard/options'
+          ? 'bg-background'
+          : 'bg-gradient-to-b from-background-light to-background'
+      } relative  flex justify-end space-x-4 items-center px-5`}>
       <ButtonBackForward />
       <div className="flex space-x-2 items-center text-secondary">
         {photoURL ? (
