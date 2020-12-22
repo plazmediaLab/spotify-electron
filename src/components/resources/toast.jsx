@@ -1,5 +1,6 @@
 import { toast, ToastContainer } from 'react-toastify';
-import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
+// import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
+import { Flip } from 'react-toastify';
 
 export const showToast = ({ type, message, closeTime = 3000, delay = 0 }) => {
   switch (type) {

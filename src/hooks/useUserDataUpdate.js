@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import firebase from 'utils/Firebase';
 import 'firebase/auth';
 import AuthContext from 'reducer/Auth/AuthContext';

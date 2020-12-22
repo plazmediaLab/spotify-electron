@@ -1,4 +1,3 @@
-import LoadingIcon from 'components/resources/loading-icon';
 import ModalContent from 'components/resources/modal-content';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -47,7 +46,7 @@ export default function UserInfoUpdate({ user, reloadData }) {
           onClick={() => setOpen(!open)}
           type="button"
           className="text-sm rounded-full py-1 px-3 bg-secondary text-background-dark hover:bg-secondary-dark">
-          Actualizar
+          Cambiar
         </button>
       </article>
       <ModalContent
@@ -67,14 +66,14 @@ export default function UserInfoUpdate({ user, reloadData }) {
             value={formik.values.name}
             onChange={formik.handleChange}
           />
-          {formik.touched.name && formik.errors.name && (
+          {formik.errors.name && (
             <p className="text-xs tracking-wider text-red-500 p-1 border-l-4 border-red-500 rounded px-2 mt-2">
               {formik.errors.name}
             </p>
           )}
 
           <div className="flex space-x-2">
-            {formik.touched.name && formik.errors.name && (
+            {formik.errors.name && (
               <button
                 onClick={() => setOpen(!open)}
                 className="disabled:opacity-50 w-full rounded-full py-2 px-3 bg-secondary text-background-dark font-normal border border-secobg-secondary mt-5">

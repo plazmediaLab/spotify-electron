@@ -9,12 +9,9 @@ export default function HeaderMain() {
   const [showMenu, setShowMenu] = useState(false);
 
   const location = useLocation();
-  console.log(location.pathname);
 
   const authContext = useContext(AuthContext);
   const { user, logOutMethod } = authContext;
-
-  // console.log(user);
 
   const { displayName, photoURL } = user;
 
