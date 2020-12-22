@@ -8,7 +8,7 @@ function useUserDataUpdate() {
   const { toastMessageMethod, reloadDataMethod } = authContext;
 
   const userDataUpdate = async (body) => {
-    reloadDataMethod(true);
+    await reloadDataMethod(true);
     firebase
       .auth()
       .currentUser.updateProfile(body)
