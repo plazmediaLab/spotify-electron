@@ -48,8 +48,7 @@ export default function AccountInfoUpdate({ user }) {
             console.log('Error: ' + err);
             toastMessageMethod({
               type: 'error',
-              // message: 'SIN ACCESO: La contraseña no coincide con la cuenta.',
-              message: err.message,
+              message: 'SIN ACCESO: La contraseña no coincide con la cuenta.',
               closeTime: 4000
             });
           })
@@ -66,9 +65,9 @@ export default function AccountInfoUpdate({ user }) {
     <>
       <h4 className="font-medium block">Información de cuenta</h4>
       <hr className="block border-background-middlelight my-2" />
-      <article className="my-5 grid grid-cols-1fr-auto relative p-3">
-        <div className="absolute top-0 left-0 w-full h-full bg-background-dark bg-opacity-50 rounded-md"></div>
-        <p className="col-span-2 text-green-500">Proximamente...</p>
+      <article className="my-5 grid grid-cols-1fr-auto relative">
+        {/* <div className="absolute top-0 left-0 w-full h-full bg-background-dark bg-opacity-50 rounded-md"></div>
+        <p className="col-span-2 text-green-500">Proximamente...</p> */}
         <p className="tracking-wider">{email}</p>
         <button
           onClick={() => setOpen(!open)}
