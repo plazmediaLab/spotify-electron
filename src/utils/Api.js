@@ -1,9 +1,17 @@
-import firebase from './Firebase';
-import 'firebase/firestore';
+import FirebaseApp, { auth, db } from './Firebase';
 
-export const db = firebase.firestore();
+// TODO · Checar todas las implementaciones de auth() para posibles errors 12/22/2020
 
 export async function isUserAdmin(uid) {
   const res = await db.collection('admin').doc(uid).get();
   return res.exists;
 }
+
+export const reauthenticate = (password) => {
+  const user = auth.currentUser;
+  console.log(user);
+
+  let cred = FirebaseApp.auth.EmailAuthProvider.credential('yicata4962@febeks.com', password);
+
+  return auth.reauthenticateWithCredential(cred);
+};

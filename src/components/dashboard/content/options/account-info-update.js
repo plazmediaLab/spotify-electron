@@ -1,8 +1,10 @@
 import ModalContent from 'components/resources/modal-content';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import SignupFormShowpass from 'components/resources/signup_form_showpass';
+import { reauthenticate } from 'utils/Api';
+import AuthContext from 'reducer/Auth/AuthContext';
 
 export default function AccountInfoUpdate({ user }) {
   const [showPass, setShowPass] = useState(false);
@@ -12,6 +14,9 @@ export default function AccountInfoUpdate({ user }) {
   const passRef = useRef(null);
 
   const { email } = user;
+
+  const authContext = useContext(AuthContext);
+  const { toastMessageMethod } = authContext;
 
   const formik = useFormik({
     initialValues: {
@@ -35,7 +40,22 @@ export default function AccountInfoUpdate({ user }) {
         }, 200);
       }
       if (step === 2) {
-        console.log(values);
+        reauthenticate(values.pass)
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            console.log('Error: ' + err);
+            toastMessageMethod({
+              type: 'error',
+              // message: 'SIN ACCESO: La contraseña no coincide con la cuenta.',
+              message: err.message,
+              closeTime: 4000
+            });
+          })
+          .finally(() => {
+            console.log('Finish...');
+          });
       }
       // await userDataUpdate({ displayName: values.name });
       // setOpen(!open);
@@ -46,7 +66,9 @@ export default function AccountInfoUpdate({ user }) {
     <>
       <h4 className="font-medium block">Información de cuenta</h4>
       <hr className="block border-background-middlelight my-2" />
-      <article className="my-5 grid grid-cols-1fr-auto">
+      <article className="my-5 grid grid-cols-1fr-auto relative p-3">
+        <div className="absolute top-0 left-0 w-full h-full bg-background-dark bg-opacity-50 rounded-md"></div>
+        <p className="col-span-2 text-green-500">Proximamente...</p>
         <p className="tracking-wider">{email}</p>
         <button
           onClick={() => setOpen(!open)}
