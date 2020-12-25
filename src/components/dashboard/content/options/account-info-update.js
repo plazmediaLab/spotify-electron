@@ -3,13 +3,17 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useContext, useRef, useState } from 'react';
 import SignupFormShowpass from 'components/resources/signup_form_showpass';
-import { reauthenticate } from 'utils/Api';
+import { errorManager, reauthenticate } from 'utils/Api';
 import AuthContext from 'reducer/Auth/AuthContext';
+import LoadingIcon from 'components/resources/loading-icon';
+import { auth } from 'utils/Firebase';
 
 export default function AccountInfoUpdate({ user }) {
   const [showPass, setShowPass] = useState(false);
   const [step, setStep] = useState(1);
   const [open, setOpen] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const passRef = useRef(null);
 
@@ -40,24 +44,63 @@ export default function AccountInfoUpdate({ user }) {
         }, 200);
       }
       if (step === 2) {
+        setLoading(true);
+
         reauthenticate(values.pass)
-          .then((res) => {
-            console.log(res);
+          .then(async () => {
+            setErrors({});
+            const currentUser = auth.currentUser;
+            await currentUser
+              .updateEmail(values.email)
+              .then(() => {
+                toastMessageMethod({
+                  type: 'success',
+                  message: 'EMAIL actualizado correctamente!.'
+                });
+                currentUser
+                  .sendEmailVerification()
+                  .then(() => {
+                    setOpen(!open);
+                    setStep(1);
+                    toastMessageMethod({
+                      type: 'info',
+                      message:
+                        'El link de verificación de cuenta ha sido enviado a tu correo electrónico.',
+                      closeTime: 4000
+                    });
+                    toastMessageMethod({
+                      type: 'static',
+                      message:
+                        'Al realizar actualización de EMAIL tienes que activar este con el enlace de verificación, esta acción será necesaria para iniciar sesión nuevamente.',
+                      delay: 1500
+                    });
+                  })
+                  .catch((err) => {
+                    toastMessageMethod({
+                      message: errorManager(err.code)
+                    });
+                  });
+              })
+              .catch((err) => {
+                toastMessageMethod({
+                  type: 'error',
+                  message: errorManager(err.code),
+                  closeTime: 7000
+                });
+              });
           })
           .catch((err) => {
-            console.log('Error: ' + err);
+            setErrors({ errorPass: true });
             toastMessageMethod({
-              type: 'error',
-              message: 'SIN ACCESO: La contraseña no coincide con la cuenta.',
+              type: 'warn',
+              message: errorManager(err.code),
               closeTime: 4000
             });
           })
           .finally(() => {
-            console.log('Finish...');
+            setLoading(false);
           });
       }
-      // await userDataUpdate({ displayName: values.name });
-      // setOpen(!open);
     }
   });
 
@@ -65,7 +108,7 @@ export default function AccountInfoUpdate({ user }) {
     <>
       <h4 className="font-medium block">Información de cuenta</h4>
       <hr className="block border-background-middlelight my-2" />
-      <article className="my-5 grid grid-cols-1fr-auto relative">
+      <article className="my-8 grid grid-cols-1fr-auto relative">
         {/* <div className="absolute top-0 left-0 w-full h-full bg-background-dark bg-opacity-50 rounded-md"></div>
         <p className="col-span-2 text-green-500">Proximamente...</p> */}
         <p className="tracking-wider">{email}</p>
@@ -85,7 +128,9 @@ export default function AccountInfoUpdate({ user }) {
             type="email"
             name="email"
             id="email"
-            className="mb-3 placeholder-background-light font-light tracking-wide disabled:opacity-50 focus:bg-background-light focus:border-background-light focus:placeholder-secondary w-full py-2 px-3 rounded border border-background-dark bg-background-dark overflow-hidden"
+            className={`${
+              formik.errors.email && 'ring-2 ring-red-500'
+            } mb-3 placeholder-background-light font-light tracking-wide disabled:opacity-50 focus:bg-background-light focus:border-background-light focus:placeholder-secondary w-full py-2 px-3 rounded border border-background-dark bg-background-dark overflow-hidden`}
             placeholder="Escribe tu nuevo correo"
             value={formik.values.email}
             onChange={formik.handleChange}
@@ -109,7 +154,9 @@ export default function AccountInfoUpdate({ user }) {
               type={!showPass ? 'password' : 'text'}
               name="pass"
               id="pass"
-              className="focus:outline-none focus:ring-2 focus:ring-green-600  placeholder-background-light font-light tracking-wide disabled:opacity-50 focus:bg-background-light focus:border-background-light focus:placeholder-secondary w-full py-2 px-3 rounded border border-background-dark bg-background-dark overflow-hidden"
+              className={`${
+                !errors.errorPass ? 'focus:ring-green-600' : 'ring-red-600 ring-2'
+              } focus:outline-none focus:ring-2 placeholder-background-light font-light tracking-wide disabled:opacity-50 focus:bg-background-light focus:border-background-light focus:placeholder-secondary w-full py-2 px-3 rounded border border-background-dark bg-background-dark overflow-hidden`}
               placeholder="Escribe tu contraseña"
               value={formik.values.pass}
               onChange={formik.handleChange}
@@ -121,6 +168,7 @@ export default function AccountInfoUpdate({ user }) {
               <button
                 type="button"
                 onClick={() => {
+                  setLoading(false);
                   setOpen(!open);
                   setStep(1);
                 }}
@@ -138,10 +186,10 @@ export default function AccountInfoUpdate({ user }) {
             )}
             {step === 2 && (
               <button
-                disabled={formik.errors.email}
+                disabled={formik.errors.email || loading}
                 type="submit"
                 className="disabled:opacity-50 w-full rounded-full py-2 px-3 bg-brand-500 border border-brand-500 font-light mt-5">
-                Guardar
+                {loading ? <LoadingIcon w="22" h="22" fill="#fff" classN="mx-auto" /> : 'Guardar'}
               </button>
             )}
           </div>

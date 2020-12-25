@@ -15,3 +15,19 @@ async function reauthenticate(password) {
 }
 
 export { reauthenticate };
+
+export const errorManager = (Code) => {
+  switch (Code) {
+    case 'auth/wrong-password':
+      return 'SIN ACCESO: La contraseña no coincide con la cuenta.';
+    case 'auth/user-not-found':
+      return 'USUARIO no encontrado, sin resultados para esa cuenta.';
+    case 'auth/email-already-in-use':
+      return 'El correo electrónico ya esta en uso con otra cuenta.';
+    case 'auth/too-many-requests':
+      return 'DESABILITADA temporalmente, el acceso a esta cuenta a sido limitado temporalmente por exeso de peticiones.';
+
+    default:
+      return 'ERROR en servidor, intentelo más tarde.';
+  }
+};

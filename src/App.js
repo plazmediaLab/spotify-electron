@@ -17,7 +17,6 @@ function App() {
   const authContext = useContext(AuthContext);
   const {
     loadingProcess,
-    user,
     loginMethod,
     reloadData,
     loadingProcessMethod,

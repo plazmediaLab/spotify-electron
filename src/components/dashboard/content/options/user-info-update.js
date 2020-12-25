@@ -36,8 +36,26 @@ export default function UserInfoUpdate({ user, reloadData }) {
     <>
       <h4 className="font-medium block">Información de usuario</h4>
       <hr className="block border-background-middlelight my-2" />
-      <article className="grid grid-cols-auto-1fr-auto w-full gap-x-3 items-center relative my-5">
-        <img src={photoURL} alt="Avatar perfil" className="w-20 h-20 rounded-full" />
+      <article className="grid grid-cols-auto-1fr-auto w-full gap-x-3 items-center relative my-8">
+        {photoURL ? (
+          <img src={photoURL} alt="Avatar perfil" className="w-20 h-20 rounded-full" />
+        ) : (
+          <div className="rounded-full bg-background-middlelight w-20 h-20 overflow-hidden grid place-items-center">
+            <svg
+              className="w-full h-full"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={0.5}
+                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </div>
+        )}
         <div>
           <h2 className="text-lg font-medium">{displayName}</h2>
           <p className="text-xs">PLATIFY FREE</p>

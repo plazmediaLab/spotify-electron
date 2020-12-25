@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import firebase from 'utils/Firebase';
 import AuthContext from 'reducer/Auth/AuthContext';
 import { useNavigate } from '@reach/router';
+import { errorManager } from 'utils/Api';
 
 function useLogin() {
   const [loading, setLoading] = useState(false);
@@ -15,7 +16,7 @@ function useLogin() {
 
   const formik = useFormik({
     initialValues: {
-      email: 'yicata4962@febeks.com',
+      email: 'adriangd.1337@gmail.com',
       pass: '12345678'
     },
     validationSchema: Yup.object({
@@ -49,26 +50,11 @@ function useLogin() {
           }
         })
         .catch((err) => {
-          console.log(err);
-          if (err.code === 'auth/user-not-found') {
-            toastMessageMethod({
-              type: 'error',
-              message: 'No hay USUARIO registrado con ese correo.',
-              closeTime: 4000
-            });
-          } else if (err.code === 'auth/wrong-password') {
-            toastMessageMethod({
-              type: 'error',
-              message: 'La CONTRASEÑA no coincide con esta cuenta.',
-              closeTime: 4000
-            });
-          } else {
-            toastMessageMethod({
-              type: 'error',
-              message: err.message,
-              closeTime: 4000
-            });
-          }
+          toastMessageMethod({
+            type: 'error',
+            message: errorManager(err.code),
+            closeTime: 4000
+          });
         })
         .finally(() => {
           setLoading(false);

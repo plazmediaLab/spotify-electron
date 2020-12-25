@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import AuthContext from 'reducer/Auth/AuthContext';
 import AccountInfoUpdate from './options/account-info-update';
+import PassUpdate from './options/pass-update';
 import UserInfoUpdate from './options/user-info-update';
 
 export default function UserOptions() {
@@ -12,6 +13,7 @@ export default function UserOptions() {
       <h4 className="text-3xl font-bold tracking-wide mb-5">Configuración</h4>
       <UserInfoUpdate user={user} reloadData={reloadData} />
       <AccountInfoUpdate user={user} />
+      <PassUpdate user={user} />
     </section>
   );
 }
