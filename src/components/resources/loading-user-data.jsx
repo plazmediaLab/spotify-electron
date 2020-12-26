@@ -8,10 +8,15 @@ export default function LoadingUserData(){
   const authContext = useContext(AuthContext);
   const { user } = authContext;
 
-  return (
+  return !user ? (
+    null
+  ) : (
     <main className="grid place-items-center h-screen text-center font-light tracking-wider text-secondary-dark">
-        <section>
-          <div className="w-28 h-28 mx-auto relative">
+      <section>
+        <div className="w-28 h-28 mx-auto relative">
+          {user.photoURL ? (
+            <img src={user.photoURL} alt="Perrfil avatar" className="rounded-full bg-cover bg-center absolute top-0 left-0"/>
+          ) : (
             <svg
               className="w-24 h-24 absolute top-2 left-2"
               fill="none"
@@ -25,11 +30,12 @@ export default function LoadingUserData(){
                 d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
-            <CircularProgressMaterialIcon />
-          </div>
-          <p className="text-secondary text-xl">{user.displayName}</p>
-          <p className="mt-3">Cargando...</p>
-        </section>
-      </main>
+          )}
+          <CircularProgressMaterialIcon />
+        </div>
+        <p className="text-secondary text-xl">{user.displayName}</p>
+        <p className="mt-3">Cargando...</p>
+      </section>
+    </main>
   );
 };

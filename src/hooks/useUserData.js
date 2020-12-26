@@ -10,13 +10,15 @@ function useUserData() {
   const { user, isAdminMethod } = authContext;
 
   const getUserData = async () => {
-    await isUserAdmin(user.uid)
-      .then((res) => {
-        isAdminMethod(res);
-      })
-      .then(() => {
-        setLoading(false);
-      });
+    if (user) {
+      await isUserAdmin(user.uid)
+        .then((res) => {
+          isAdminMethod(res);
+        })
+        .then(() => {
+          setLoading(false);
+        });
+    }
   };
 
   return [getUserData, loading, error];

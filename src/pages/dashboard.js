@@ -9,6 +9,8 @@ import useUserData from 'hooks/useUserData';
 import LoadingUserData from 'components/resources/loading-user-data';
 
 export default function Dashboard() {
+  // TODO · Verificar errores en login con datos de user 12/25/2020
+
   const authContext = useContext(AuthContext);
   const { user, isAdmin, emailVerified } = authContext;
 
