@@ -1,4 +1,4 @@
-import FirebaseApp, { auth, db } from './Firebase';
+import FirebaseApp, { db } from './Firebase';
 import firebase from 'firebase/app';
 
 // TODO · Checar todas las implementaciones de auth() para posibles errors 12/22/2020

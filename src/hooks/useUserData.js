@@ -3,7 +3,6 @@ import AuthContext from 'reducer/Auth/AuthContext';
 import { isUserAdmin } from 'utils/Api';
 
 function useUserData() {
-  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const authContext = useContext(AuthContext);
@@ -21,7 +20,7 @@ function useUserData() {
     }
   };
 
-  return [getUserData, loading, error];
+  return [getUserData, loading];
 }
 
 export default useUserData;

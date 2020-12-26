@@ -21,7 +21,8 @@ export default function AvatarUpload({ uid, photoURL, reloadData }) {
     uploadImage(file).then((res) => {
       updateUserAvatar();
     });
-  });
+    // eslint-disable-next-line
+  }, []);
 
   const updateUserAvatar = () => {
     firebase

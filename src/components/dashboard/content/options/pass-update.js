@@ -54,7 +54,7 @@ export default function PassUpdate({ user }) {
     validationSchema: Yup.object(validateSchema(step)),
     onSubmit: async (values) => {
       setLoading(true);
-      const { pass, newPass1, newPass2 } = values;
+      const { pass, newPass1 } = values;
 
       if (Object.keys(formik.errors).length > 1) {
         setErrors({});
@@ -62,7 +62,7 @@ export default function PassUpdate({ user }) {
 
       if (step === 1) {
         reauthenticate(pass)
-          .then((res) => {
+          .then(() => {
             setErrors({});
             setStep(2);
           })
@@ -86,7 +86,7 @@ export default function PassUpdate({ user }) {
       if (step === 2) {
         const currentUser = auth.currentUser;
         currentUser
-          .updatePassword(values.newPass1)
+          .updatePassword(newPass1)
           .then(() => {
             auth.signOut().then(() => {
               logOutMethod();
