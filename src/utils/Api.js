@@ -31,3 +31,15 @@ export const errorManager = (Code) => {
       return 'ERROR en servidor, intentelo más tarde.';
   }
 };
+
+export const errManagerUploadFile = (code) => {
+  switch (code) {
+    case 'file-too-large':
+      return 'El archivo excede el limite de 0.5 MB maximo para subir como portada.';
+    case 'file-invalid-type':
+      return 'El archivo es de un formato no valido, los formatos validos son [.jpeg, .jpg, .png].';
+
+    default:
+      return 'Error al procesar el archivo, intenta con otra imgen o formato.';
+  }
+};

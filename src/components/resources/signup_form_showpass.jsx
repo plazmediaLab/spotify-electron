@@ -1,6 +1,7 @@
 export default function SignupFormShowpass({ setShowPass, showPass }) {
   return (
     <button
+      tabIndex="-1"
       type="button"
       className={`absolute p-2 bg-transparent icon-field-form text-background-light`}
       style={{ top: '6px', right: '6px' }}

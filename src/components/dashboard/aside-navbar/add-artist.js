@@ -1,5 +1,6 @@
 import ModalContent from 'components/resources/modal-content';
 import { Fragment, useState } from 'react';
+import NewArtistForm from './artists/new-artist-form';
 
 export default function AddArtist() {
   const [show, setShow] = useState(false);
@@ -7,7 +8,7 @@ export default function AddArtist() {
   return (
     <Fragment>
       <ModalContent show={show} closeModal={() => setShow(!show)} title="Nuevo Artista">
-        <h1>Add new artis</h1>
+        <NewArtistForm setShow={setShow} />
       </ModalContent>
       <button
         className="pl-5 pr-5 py-1 flex w-full justify-between items-center hover:text-secondary"

@@ -43,14 +43,9 @@ function App() {
     return <SplashScreen />;
   }
 
-  // return <Layout>{user && emailVerified ? <Home /> : <InitPage />}</Layout>;
   return (
     <LayoutToast>
       <section className="w-fill">
-        {/* <nav className="absolute top-0 left-0 z-20 w-full bg-background-light bg-opacity-70 p-2 text-white text-center flex justify-center space-x-2">
-          <Link to="/">Home</Link>
-          <Link to="/dashboard">Dashboard</Link>
-        </nav> */}
         <Router>
           <Home path="/">
             <HomeMainNav path="*" />
