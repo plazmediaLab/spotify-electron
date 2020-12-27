@@ -5,12 +5,14 @@ import { errManagerUploadFile } from 'utils/Api';
 export default function ArtistAvatarUpload({
   coverUrl,
   setCoverUrl,
+  setFile,
   error,
   setUploadFileError,
   ...props
 }) {
   const onDrop = useCallback((acceptedFile) => {
     const file = acceptedFile[0];
+    setFile(file);
     setCoverUrl(URL.createObjectURL(file));
     // eslint-disable-next-line
   }, []);
