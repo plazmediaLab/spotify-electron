@@ -5,10 +5,11 @@ import { useContext, useState } from 'react';
 import ArtistAvatarUpload from './artits-avatar-upload';
 import * as Yup from 'yup';
 import { v4 as uuidv4 } from 'uuid';
-import { storage } from 'utils/Firebase';
+import { db, storage } from 'utils/Firebase';
 import AuthContext from 'reducer/Auth/AuthContext';
+import slug from 'slug';
 
-export default function NewArtistForm({ setShow }) {
+export default function NewArtistForm() {
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState(null);
   const [coverUrl, setCoverUrl] = useState(null);
@@ -28,34 +29,45 @@ export default function NewArtistForm({ setShow }) {
         .test('file-upload-error', 'Error en la carga del archivo', () => !uploadFileError),
       artistName: Yup.string().required('El NOMBRE del artista es requerido.').trim()
     }),
-    onSubmit: async (values) => {
+    onSubmit: async (values, { resetForm }) => {
       setLoading(true);
 
       const fileName = uuidv4();
+
+      const sluglify = slug(values.artistName, {
+        charmap: slug.charmap, // replace special characters
+        multicharmap: slug.multicharmap // replace multi-characters
+      });
+
       const ref = storage.ref().child(`artists/${fileName}`);
+      const existsArtist = await db.collection('artists').where('slug', '==', sluglify).get();
 
       try {
-        await ref.put(file);
-        setLoading(false);
+        if (!existsArtist.empty) {
+          toastMessageMethod({
+            type: 'error',
+            message: 'Ese artista ya existe.'
+          });
+        } else {
+          await ref.put(file);
+          await db
+            .collection('artists')
+            .add({ name: values.artistName, hero: fileName, slug: sluglify });
+          await toastMessageMethod({
+            type: 'success',
+            message: 'Artista agregado correctamente.'
+          });
+          resetForm(formik.initialValues);
+          setCoverUrl(null);
+        }
       } catch (error) {
-        console.log('Sucedio un error al subir la imagen, intentelo más tarde.');
+        toastMessageMethod({
+          type: 'error',
+          message: 'Sucedio un error al subir la imagen, intentelo más tarde.',
+          closeTime: 4000
+        });
       }
-      // ref
-      //   .put(file)
-      //   .then(() => {
-      //     toastMessageMethod({
-      //       type: 'success',
-      //       message: '.',
-      //       // closeTime: 4000
-      //     });
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   })
-      //   .finally(() => {
-      //     setLoading(false);
-      //   });
-      // setShow((prevState) => !prevState);
+      setLoading(false);
     }
   });
 
