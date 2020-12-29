@@ -17,7 +17,7 @@ export default function LayoutToast({ children }) {
       {reloadData && (
         <section className="text-center absolute top-0 left-0 w-full h-screen bg-background-dark bg-opacity-80 z-50 grid place-items-center">
           <div>
-            <div className="w-24 h-24">
+            <div className="w-24 h-24 text-brand-500">
               <CircularProgressMaterialIcon />
             </div>
             <p>Cargando...</p>

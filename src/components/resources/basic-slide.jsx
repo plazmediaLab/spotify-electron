@@ -5,6 +5,7 @@ import './slide-styles.css'
 
 import React, { useEffect, useState } from 'react';
 import { storage } from 'utils/Firebase';
+import { Link } from '@reach/router';
 
 function SlideItem({ item }){
   const [bannerHero, setBannerHero] = useState('');
@@ -17,13 +18,13 @@ function SlideItem({ item }){
   }, []);
 
   return (
-    <div className="bg-background-dark rounded-md cursor-pointer" onClick={() => console.log(item.slug)}>
+    <Link to={`/dashboard/artist/${item.id}`} className="bg-background-dark rounded-md cursor-pointer" onClick={() => console.log(item.slug)}>
       <div 
         style={{ backgroundImage: `url(${bannerHero})` }} 
         className="bg-cover bg-center h-20 w-full mb-1"
       ></div>
       <p className="text-xs truncate tracking-wider px-2 py-1 block hover:underline">{item.name}</p>
-    </div>
+    </Link>
   );
 };
 
@@ -45,7 +46,7 @@ export default function BasicSlide({ title, data }){
       <h2 className="uppercase font-light tracking-wider text-sm text-center mb-2">{title}</h2>
       <Slider {...settings} className="text-center">
         {data.map((item) => (
-          <SlideItem key={item.slug} item={item} />
+          <SlideItem key={item.id} item={item} />
         ))}
       </Slider>
     </div>

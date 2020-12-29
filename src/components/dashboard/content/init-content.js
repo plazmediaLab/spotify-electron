@@ -10,8 +10,11 @@ export default function InitContent() {
     () => {
       db.collection('artists').onSnapshot((querySnapshot) => {
         let queryData = [];
+        console.log(querySnapshot);
         querySnapshot.forEach((item) => {
-          queryData.push(item?.data());
+          const data = item?.data();
+          data.id = item.id;
+          queryData.push(data);
         });
         setArtists(queryData);
       });

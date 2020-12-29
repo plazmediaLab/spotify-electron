@@ -13,7 +13,7 @@ export default function LoadingUserData(){
   ) : (
     <main className="grid place-items-center h-screen text-center font-light tracking-wider text-secondary-dark">
       <section>
-        <div className="w-28 h-28 mx-auto relative">
+        <div className="w-28 h-28 mx-auto relative text-brand-500">
           {user.photoURL ? (
             <img src={user.photoURL} alt="Perrfil avatar" className="rounded-full bg-cover bg-center absolute top-0 left-0"/>
           ) : (
