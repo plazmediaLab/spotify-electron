@@ -5,7 +5,7 @@ import UserOptions from './user-options';
 
 export default function InitContentMain() {
   return (
-    <div>
+    <div className="overflow-y-auto overflow-x-hidden">
       <Router>
         <InitContent path="*" />
         <ArtistsContent path="artists" />

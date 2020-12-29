@@ -3,7 +3,6 @@ import { useContext, useState } from 'react';
 import AuthContext from 'reducer/Auth/AuthContext';
 import firebase from 'utils/Firebase';
 import ButtonBackForward from './button-back_forward';
-import './style.css';
 
 export default function HeaderMain() {
   const [showMenu, setShowMenu] = useState(false);

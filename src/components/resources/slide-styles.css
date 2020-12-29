@@ -1,0 +1,11 @@
+.slick-slider {
+    display: flex;
+}
+/* .slick-slider .slick-track{
+    display: flex;
+    width: 6rem;
+}
+ */
+.slick-slide {
+    padding: 0 2.5px;
+}
