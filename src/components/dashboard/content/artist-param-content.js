@@ -1,6 +1,7 @@
 import CircularProgressMaterialIcon from 'components/resources/circular-progress-material-icon';
 import { useEffect, useState } from 'react';
 import { db } from 'utils/Firebase';
+import Banner from './artist/banner';
 
 export default function ArtistParamContent(props) {
   const [artistInfo, setArtistInfo] = useState({});
@@ -30,10 +31,11 @@ export default function ArtistParamContent(props) {
   }
 
   return (
-    <section className="px-5 py-4">
-      <div>Artist: {artistInfo.name}</div>
-      <div>slug: {artistInfo.slug}</div>
-      <div>Cover: {artistInfo.hero}</div>
+    <section>
+      <Banner bannerURL={artistInfo.hero} name={artistInfo.name} />
+      <main className="px-5 py-4">
+        <div>slug: {artistInfo.slug}</div>
+      </main>
     </section>
   );
 }
