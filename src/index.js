@@ -5,11 +5,14 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AuthState from 'reducer/Auth/AuthState';
+import AppState from 'reducer/App/AppState';
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthState>
-      <App />
+      <AppState>
+        <App />
+      </AppState>
     </AuthState>
   </React.StrictMode>,
   document.getElementById('root')

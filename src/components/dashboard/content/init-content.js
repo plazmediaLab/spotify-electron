@@ -4,7 +4,7 @@ import { db } from 'utils/Firebase';
 import HeroBanner from './home/hero-banner';
 
 export default function InitContent() {
-  const [artists, setArtists] = useState([]);
+  const [artistss, setArtists] = useState([]);
 
   useEffect(
     () => {
@@ -30,8 +30,8 @@ export default function InitContent() {
     <>
       <HeroBanner />
       <section className="px-5 py-4">
-        {artists.length > 12 ? (
-          <BasicSlide title="Ultimos artistas agregados" data={artists} />
+        {artistss.length > 12 ? (
+          <BasicSlide title="Ultimos artistas agregados" data={artistss} />
         ) : null}
         <h1>Home main content</h1>
       </section>
