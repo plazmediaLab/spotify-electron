@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { db, storage } from 'utils/Firebase';
 import AuthContext from 'reducer/Auth/AuthContext';
 import slug from 'slug';
+import { createAt } from 'utils/Api';
 
 export default function NewArtistForm() {
   const [loading, setLoading] = useState(false);
@@ -52,7 +53,7 @@ export default function NewArtistForm() {
           await ref.put(file);
           await db
             .collection('artists')
-            .add({ name: values.artistName, hero: fileName, slug: sluglify });
+            .add({ name: values.artistName, hero: fileName, slug: sluglify, createAt: createAt() });
           await toastMessageMethod({
             type: 'success',
             message: 'Artista agregado correctamente.'

@@ -8,16 +8,18 @@ export default function InitContent() {
 
   useEffect(
     () => {
-      db.collection('artists').onSnapshot((querySnapshot) => {
-        let queryData = [];
-        console.log(querySnapshot);
-        querySnapshot.forEach((item) => {
-          const data = item?.data();
-          data.id = item.id;
-          queryData.push(data);
+      db.collection('artists')
+        .limit(20)
+        .orderBy('createAt')
+        .onSnapshot((querySnapshot) => {
+          let queryData = [];
+          querySnapshot.forEach((item) => {
+            const data = item?.data();
+            data.id = item.id;
+            queryData.push(data);
+          });
+          setArtists(queryData);
         });
-        setArtists(queryData);
-      });
     },
     [
       /* dependencia */
@@ -28,7 +30,9 @@ export default function InitContent() {
     <>
       <HeroBanner />
       <section className="px-5 py-4">
-        <BasicSlide title="Ultimos artistas agregados" data={artists} />
+        {artists.length > 12 ? (
+          <BasicSlide title="Ultimos artistas agregados" data={artists} />
+        ) : null}
         <h1>Home main content</h1>
       </section>
     </>

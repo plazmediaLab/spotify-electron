@@ -3,6 +3,10 @@ import firebase from 'firebase/app';
 
 // TODO · Checar todas las implementaciones de auth() para posibles errors 12/22/2020
 
+export const createAt = () => {
+  return firebase.firestore.Timestamp.fromDate(new Date());
+};
+
 export async function isUserAdmin(uid) {
   const res = await db.collection('admin').doc(uid).get();
   return res.exists;

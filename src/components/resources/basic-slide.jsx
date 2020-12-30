@@ -18,12 +18,12 @@ function SlideItem({ item }){
   }, []);
 
   return (
-    <Link to={`/dashboard/artist/${item.id}`} className="bg-background-dark rounded-md cursor-pointer" onClick={() => console.log(item.slug)}>
+    <Link to={`/dashboard/artist/${item.id}`} className="hover:text-green-500">
       <div 
         style={{ backgroundImage: `url(${bannerHero})` }} 
-        className="bg-cover bg-center h-20 w-full mb-1"
+        className="bg-cover bg-center h-20 w-full rounded-t-md"
       ></div>
-      <p className="text-xs truncate tracking-wider px-2 py-1 block hover:underline">{item.name}</p>
+      <p className="text-xs truncate bg-transparent tracking-wider px-2 pb-1 pt-2 block hover:underline bg-background-dark rounded-b-md">{item.name}</p>
     </Link>
   );
 };
@@ -33,12 +33,26 @@ export default function BasicSlide({ title, data }){
     speed: 250,
     dots: false,
     infinite: true,
-    slidesToShow: 4,
+    slidesToShow: 10,
     slidesToScroll: 1,
     centerMode: true,
     className: 'basic-slide-items',
     nextArrow: <SlideNextButton />,
-    prevArrow: <SlidePrevButton />
+    prevArrow: <SlidePrevButton />,
+    responsive: [
+      {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 5,
+        }
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+        }
+      },
+    ]
   }
 
   return (
