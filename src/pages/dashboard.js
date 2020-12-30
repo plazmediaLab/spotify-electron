@@ -7,6 +7,7 @@ import AsideNavbarMain from 'components/dashboard/aside-navbar/aside-navbar_main
 import InitContentMain from 'components/dashboard/content/init-content_main';
 import useUserData from 'hooks/useUserData';
 import LoadingUserData from 'components/resources/loading-user-data';
+import useArtistsData from 'hooks/useArtistsData';
 
 export default function Dashboard() {
   // TODO · Verificar errores en login con datos de user 12/25/2020
@@ -15,9 +16,11 @@ export default function Dashboard() {
   const { user, isAdmin, emailVerified } = authContext;
 
   const [getUserData, loading] = useUserData();
+  const [getArtistsData] = useArtistsData();
 
   useEffect(() => {
     getUserData();
+    getArtistsData();
     // eslint-disable-next-line
   }, []);
 
