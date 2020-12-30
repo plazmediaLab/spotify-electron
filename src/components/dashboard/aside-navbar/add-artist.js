@@ -1,12 +1,12 @@
 import ModalContent from 'components/resources/modal-content';
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import NewArtistForm from './artists/new-artist-form';
 
 export default function AddArtist() {
   const [show, setShow] = useState(false);
 
   return (
-    <Fragment>
+    <>
       <ModalContent show={show} closeModal={() => setShow(!show)} title="Nuevo Artista">
         <NewArtistForm setShow={setShow} />
       </ModalContent>
@@ -28,6 +28,6 @@ export default function AddArtist() {
           />
         </svg>
       </button>
-    </Fragment>
+    </>
   );
 }

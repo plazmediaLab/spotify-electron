@@ -1,18 +1,19 @@
 import ModalContent from 'components/resources/modal-content';
 import { useState } from 'react';
+import NewAlbumForm from './artists/new-album-form';
 
-export default function AddSong() {
+export default function AddAlbum() {
   const [show, setShow] = useState(false);
 
   return (
     <>
-      <ModalContent show={show} closeModal={() => setShow(!show)} title="Nueva Canción">
-        <h1>Add new song</h1>
+      <ModalContent show={show} closeModal={() => setShow(!show)} title="Nuevo Album">
+        <NewAlbumForm setShow={setShow} />
       </ModalContent>
       <button
         className="pl-5 pr-5 py-1 flex w-full justify-between items-center hover:text-secondary"
         onClick={() => setShow(!show)}>
-        <span>Nueva Canción</span>
+        <span>Nuevo Album</span>
         <svg
           className="w-4 h-4"
           viewBox="0 0 18 18"

@@ -1,6 +1,7 @@
 import AddSong from './add-song';
 import AddArtist from './add-artist';
 import AsideNavLink from './aside-nav_link';
+import AddAlbum from './add-album';
 
 export default function AsideNavbarMain({ isAdmin }) {
   return (
@@ -29,8 +30,9 @@ export default function AsideNavbarMain({ isAdmin }) {
       </nav>
       {isAdmin && (
         <section>
-          <AddSong />
           <AddArtist />
+          <AddAlbum />
+          <AddSong />
         </section>
       )}
     </aside>
