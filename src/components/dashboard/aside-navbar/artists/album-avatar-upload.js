@@ -2,11 +2,12 @@ import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { errManagerUploadFile } from 'utils/Api';
 
-export default function AlbumAvatarUpload({ coverUrl, setCoverUrl }) {
+export default function AlbumAvatarUpload({ coverUrl, setCoverUrl, setFileUpload }) {
   const [error] = useState(!false);
 
   const onDrop = useCallback((acceptedFile) => {
     const file = acceptedFile[0];
+    setFileUpload(file);
     setCoverUrl(URL.createObjectURL(file));
     // eslint-disable-next-line
   }, []);
