@@ -1,22 +1,30 @@
 import FormButton from 'components/resources/form-button';
 import FormInputModal from 'components/resources/form-input-modal';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useState } from 'react';
 import AppContext from 'reducer/App/AppContext';
 import AlbumAvatarUpload from './album-avatar-upload';
 import Select from 'react-select';
 import customStyles from './custom-styles-select';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { errManagerUploadFile } from 'utils/Api';
+import { createAt, errManagerUploadFile } from 'utils/Api';
+import { v4 as uuidv4 } from 'uuid';
+import { db, storage } from 'utils/Firebase';
+import AuthContext from 'reducer/Auth/AuthContext';
+import slug from 'slug';
 
 export default function NewAlbumForm({ setShow }) {
   const [errorFileSettings, setErrorFileSettings] = useState({});
-  const [loading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [fileUpload, setFileUpload] = useState(null);
   const [coverUrl, setCoverUrl] = useState(null);
+  const [selectValue, setSelectValue] = useState(null);
 
   const appContext = useContext(AppContext);
   const { artists } = appContext;
+
+  const authContext = useContext(AuthContext);
+  const { toastMessageMethod } = authContext;
 
   const formik = useFormik({
     initialValues: {
@@ -33,9 +41,65 @@ export default function NewAlbumForm({ setShow }) {
         () => fileUpload
       )
     }),
-    onSubmit: async (values) => {
-      console.log(values);
-      console.log(fileUpload);
+    onSubmit: async (values, { resetForm }) => {
+      setLoading(true);
+
+      const fileName = uuidv4();
+      const sluglify = slug(values.albumName, {
+        charmap: slug.charmap, // replace special characters
+        multicharmap: slug.multicharmap // replace multi-characters
+      });
+
+      const ref = storage.ref().child(`albums/${fileName}`);
+      const albumExist = await db.collection('albums').where('slug', '==', sluglify).get();
+
+      if (albumExist.empty) {
+        console.log('Guardado');
+        ref
+          .put(fileUpload)
+          .then(() => {
+            db.collection('albums')
+              .add({
+                name: values.albumName,
+                artist: values.artist,
+                cover: fileName,
+                slug: sluglify,
+                createAt: createAt()
+              })
+              .then(() => {
+                toastMessageMethod({
+                  type: 'success',
+                  message: 'Album creado exitosamente!.'
+                });
+                resetForm(formik.initialValues);
+                setFileUpload(null);
+                setCoverUrl(null);
+                setSelectValue(null);
+              })
+              .catch(() => {
+                toastMessageMethod({
+                  type: 'error',
+                  message: 'Error al gusrdar los datos, intentelo más tarde.',
+                  closeTime: 4000
+                });
+              });
+          })
+          .catch((err) => {
+            toastMessageMethod({
+              type: 'error',
+              message: errManagerUploadFile(err.code)
+            });
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      } else {
+        toastMessageMethod({
+          type: 'error',
+          message: 'El album ya esta agregado.'
+        });
+        setLoading(false);
+      }
     }
   });
 
@@ -50,6 +114,7 @@ export default function NewAlbumForm({ setShow }) {
           setErrorFileSettings={setErrorFileSettings}
         />
         <FormInputModal
+          disabled={loading}
           autoFocus
           name="albumName"
           placeholder="Nombre del album"
@@ -58,20 +123,27 @@ export default function NewAlbumForm({ setShow }) {
           onChange={formik.handleChange}
           // errmessage="Test of error message"
         />
-        <Select
-          value={formik.values.artists}
-          styles={customStyles}
-          options={artists}
-          className={`text-background ${formik.errors.artist ? 'ring-red-600 ring-2 rounded' : ''}`}
-          isLoading={false}
-          isDisabled={false}
-          placeholder="Artistas..."
-          name=""
-          onChange={(artistSelected) => (formik.values.artist = artistSelected.id)}
-          getOptionValue={(artist) => artist.id}
-          getOptionLabel={(artist) => artist.name}
-          noOptionsMessage={() => 'No se encontro resultados'}
-        />
+        <div className="">
+          <Select
+            isDisabled={loading}
+            value={selectValue}
+            styles={customStyles}
+            options={artists}
+            className={`text-background ${
+              formik.errors.artist ? 'ring-red-600 ring-2 rounded' : ''
+            }`}
+            isLoading={false}
+            placeholder="Artistas..."
+            name=""
+            onChange={(artistSelected) => {
+              setSelectValue(artistSelected);
+              formik.values.artist = artistSelected.id;
+            }}
+            getOptionValue={(artist) => artist.id}
+            getOptionLabel={(artist) => artist.name}
+            noOptionsMessage={() => 'No se encontro resultados'}
+          />
+        </div>
       </section>
       {formik.errors.albumName && (
         <p className="trun mt-2 text-xs tracking-wider text-red-500 p-1 border-l-4 border-red-500 rounded px-2 font-light">
