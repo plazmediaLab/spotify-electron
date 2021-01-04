@@ -14,7 +14,8 @@ module.exports = {
         '1fr-auto': '1fr auto '
       },
       boxShadow: {
-        container: '0px 3px 20px 1px rgba(0,0,0,1), 0px 3px 5px 0px rgba(0,0,0,0.35)'
+        container: '0px 3px 20px 1px rgba(0,0,0,1), 0px 3px 5px 0px rgba(0,0,0,0.35)',
+        card: '0px 3px 20px 1px rgba(0,0,0,0.65), 0px 3px 5px 0px rgba(0,0,0,0.20)'
       },
       colors: {
         amber: colors.amber,
