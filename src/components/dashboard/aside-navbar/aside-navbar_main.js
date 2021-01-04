@@ -45,7 +45,7 @@ export default function AsideNavbarMain({ isAdmin }) {
         </AsideNavLink>
       </nav>
       {isAdmin && (
-        <section>
+        <section className="mb-2">
           <AddArtist />
           <AddAlbum />
           <AddSong />

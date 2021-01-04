@@ -9,6 +9,7 @@ import useUserData from 'hooks/useUserData';
 import LoadingUserData from 'components/resources/loading-user-data';
 import useArtistsData from 'hooks/useArtistsData';
 import useAlbumsData from 'hooks/useAlbumsData';
+import PlayerSectionMain from 'components/dashboard/player/player-section-main';
 
 export default function Dashboard() {
   // TODO · Verificar errores en login con datos de user 12/25/2020
@@ -39,7 +40,7 @@ export default function Dashboard() {
         <InitContentMain />
       </section>
       <footer className="col-span-2 bg-background-middlelight">
-        <h1>Section Play</h1>
+        <PlayerSectionMain />
       </footer>
     </main>
   ) : (
