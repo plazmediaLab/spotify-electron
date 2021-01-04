@@ -32,7 +32,7 @@ export default function ArtistParamContent(props) {
 
   return (
     <section>
-      <Banner bannerURL={artistInfo.hero} name={artistInfo.name} />
+      <Banner bannerURL={artistInfo.cover} name={artistInfo.name} />
       <main className="px-5 py-4">
         <div>slug: {artistInfo.slug}</div>
       </main>

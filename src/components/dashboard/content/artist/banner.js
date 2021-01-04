@@ -17,8 +17,6 @@ export default function Banner({ bannerURL, name }) {
     // eslint-disable-next-line
   }, []);
 
-  console.log(banner);
-
   return (
     <header
       className="relative tracking-wider bg-cover bg-center h-48 lg:h-72 w-full flex flex-col justify-end items-start px-5 py-4"

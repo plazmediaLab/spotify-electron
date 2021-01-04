@@ -11,9 +11,10 @@ export default function InitContent() {
     db.collection('artists')
       .limit(20)
       .orderBy('createAt')
-      .onSnapshot((querySnapshot) => {
+      .get()
+      .then((res) => {
         let queryData = [];
-        querySnapshot.forEach((item) => {
+        res.forEach((item) => {
           const data = item?.data();
           data.id = item.id;
           queryData.push(data);
@@ -25,9 +26,10 @@ export default function InitContent() {
     db.collection('albums')
       .limit(20)
       .orderBy('createAt')
-      .onSnapshot((querySnapshot) => {
+      .get()
+      .then((res) => {
         let queryData = [];
-        querySnapshot.forEach((item) => {
+        res.forEach((item) => {
           const data = item?.data();
           data.id = item.id;
           queryData.push(data);
@@ -36,16 +38,25 @@ export default function InitContent() {
       });
   }, []);
 
-  console.log(albums);
-
   return (
     <>
       <HeroBanner />
       <section className="px-5 py-4">
-        {artists.length > 12 ? (
-          <BasicSlide title="Ultimos artistas agregados" data={artists} />
-        ) : null}
-        <h1>Home main content</h1>
+        <BasicSlide
+          title="Ultimos artistas agregados"
+          data={artists}
+          folderPath="artists"
+          linkPath="artist"
+        />
+        <div className="mt-6">
+          <BasicSlide
+            title="Ultimos albums agregados"
+            data={albums}
+            folderPath="albums"
+            linkPath="album"
+          />
+        </div>
+        <h1 className="mt-5">Home main content</h1>
       </section>
     </>
   );

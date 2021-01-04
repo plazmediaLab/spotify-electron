@@ -12,8 +12,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { db, storage } from 'utils/Firebase';
 import AuthContext from 'reducer/Auth/AuthContext';
 import slug from 'slug';
+import ResizeCropImage from 'components/resources/resize-crop-image';
 
-export default function NewAlbumForm({ setShow }) {
+export default function NewAlbumForm() {
   const [errorFileSettings, setErrorFileSettings] = useState({});
   const [loading, setLoading] = useState(false);
   const [fileUpload, setFileUpload] = useState(null);
@@ -54,7 +55,6 @@ export default function NewAlbumForm({ setShow }) {
       const albumExist = await db.collection('albums').where('slug', '==', sluglify).get();
 
       if (albumExist.empty) {
-        console.log('Guardado');
         ref
           .put(fileUpload)
           .then(() => {
@@ -105,25 +105,48 @@ export default function NewAlbumForm({ setShow }) {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <section className="grid grid-cols-auto-1fr gap-x-3 gap-y-4 out">
-        <AlbumAvatarUpload
-          coverUrl={coverUrl}
-          setCoverUrl={setCoverUrl}
-          setFileUpload={setFileUpload}
-          formikError={formik.errors.avatarCover}
-          setErrorFileSettings={setErrorFileSettings}
-        />
-        <FormInputModal
-          disabled={loading}
-          autoFocus
-          name="albumName"
-          placeholder="Nombre del album"
-          error={formik.touched.albumName && formik.errors.albumName}
-          value={formik.values.albumName}
-          onChange={formik.handleChange}
-          // errmessage="Test of error message"
-        />
-        <div className="">
+      <section className="flex flex-col gap-3">
+        <div>
+          <AlbumAvatarUpload
+            coverUrl={coverUrl}
+            setCoverUrl={setCoverUrl}
+            // setFileUpload={setFileUpload}
+            formikError={formik.errors.avatarCover}
+            setErrorFileSettings={setErrorFileSettings}
+          />
+          {formik.errors.avatarCover && (
+            <p className="trun mt-2 text-xs tracking-wider text-red-500 p-1 border-l-4 border-red-500 rounded px-2 font-light">
+              {formik.errors.avatarCover}
+            </p>
+          )}
+          {errorFileSettings.length > 0 &&
+            errorFileSettings[0].errors.map((err, index) => (
+              <p
+                key={index}
+                className="trun mt-2 text-xs tracking-wider text-red-500 p-1 border-l-4 border-red-500 rounded px-2 font-light">
+                {errManagerUploadFile(err.code)}
+              </p>
+            ))}
+          {coverUrl && <ResizeCropImage imagePath={coverUrl} setFileUpload={setFileUpload} />}
+        </div>
+        <div>
+          <FormInputModal
+            disabled={loading}
+            autoFocus
+            name="albumName"
+            placeholder="Nombre del album"
+            error={formik.touched.albumName && formik.errors.albumName}
+            value={formik.values.albumName}
+            onChange={formik.handleChange}
+            // errmessage="Test of error message"
+          />
+          {formik.errors.albumName && (
+            <p className="trun mt-2 text-xs tracking-wider text-red-500 p-1 border-l-4 border-red-500 rounded px-2 font-light">
+              {formik.errors.albumName}
+            </p>
+          )}
+        </div>
+        <div>
           <Select
             isDisabled={loading}
             value={selectValue}
@@ -143,31 +166,14 @@ export default function NewAlbumForm({ setShow }) {
             getOptionLabel={(artist) => artist.name}
             noOptionsMessage={() => 'No se encontro resultados'}
           />
+          {formik.errors.artist && (
+            <p className="trun mt-2 text-xs tracking-wider text-red-500 p-1 border-l-4 border-red-500 rounded px-2 font-light">
+              {formik.errors.artist}
+            </p>
+          )}
         </div>
       </section>
-      {formik.errors.albumName && (
-        <p className="trun mt-2 text-xs tracking-wider text-red-500 p-1 border-l-4 border-red-500 rounded px-2 font-light">
-          {formik.errors.albumName}
-        </p>
-      )}
-      {formik.errors.artist && (
-        <p className="trun mt-2 text-xs tracking-wider text-red-500 p-1 border-l-4 border-red-500 rounded px-2 font-light">
-          {formik.errors.artist}
-        </p>
-      )}
-      {formik.errors.avatarCover && (
-        <p className="trun mt-2 text-xs tracking-wider text-red-500 p-1 border-l-4 border-red-500 rounded px-2 font-light">
-          {formik.errors.avatarCover}
-        </p>
-      )}
-      {errorFileSettings.length > 0 &&
-        errorFileSettings[0].errors.map((err, index) => (
-          <p
-            key={index}
-            className="trun mt-2 text-xs tracking-wider text-red-500 p-1 border-l-4 border-red-500 rounded px-2 font-light">
-            {errManagerUploadFile(err.code)}
-          </p>
-        ))}
+
       <FormButton loading={loading} disabled={loading}>
         Agregar
       </FormButton>

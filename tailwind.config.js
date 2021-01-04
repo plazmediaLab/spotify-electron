@@ -5,6 +5,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      minHeight: {
+        40: '10rem'
+      },
       gridTemplateColumns: {
         'auto-1fr-auto': 'auto 1fr auto',
         'auto-1fr': 'auto 1fr',

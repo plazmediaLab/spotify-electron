@@ -1,12 +1,13 @@
 import { useReducer } from 'react';
-import { GET_ARTITS } from '../types';
+import { GET_ARTITS, GET_ALBUMS } from '../types';
 import AppContext from './AppContext';
 import AppReducer from './AppReducer';
 
 const UserState = ({ children }) => {
   // Initial State
   const initialState = {
-    artists: []
+    artists: [],
+    albums: []
   };
 
   // Reducer
@@ -19,12 +20,20 @@ const UserState = ({ children }) => {
       payload: data
     });
   };
+  const getAlbumsMethod = (data) => {
+    dispath({
+      type: GET_ALBUMS,
+      payload: data
+    });
+  };
 
   return (
     <AppContext.Provider
       value={{
         artists: state.artists,
-        getArtistMethod
+        albums: state.albums,
+        getArtistMethod,
+        getAlbumsMethod
       }}>
       {children}
     </AppContext.Provider>

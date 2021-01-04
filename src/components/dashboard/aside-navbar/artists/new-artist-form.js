@@ -53,7 +53,12 @@ export default function NewArtistForm() {
           await ref.put(file);
           await db
             .collection('artists')
-            .add({ name: values.artistName, hero: fileName, slug: sluglify, createAt: createAt() });
+            .add({
+              name: values.artistName,
+              cover: fileName,
+              slug: sluglify,
+              createAt: createAt()
+            });
           await toastMessageMethod({
             type: 'success',
             message: 'Artista agregado correctamente.'

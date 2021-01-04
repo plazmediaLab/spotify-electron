@@ -8,7 +8,7 @@ function ArtistItem({ item }) {
 
   useEffect(() => {
     storage
-      .ref(`artists/${item.hero}`)
+      .ref(`artists/${item.cover}`)
       .getDownloadURL()
       .then((res) => {
         setBanner(res);

@@ -7,18 +7,18 @@ import React, { useEffect, useState } from 'react';
 import { storage } from 'utils/Firebase';
 import { Link } from '@reach/router';
 
-function SlideItem({ item }){
+function SlideItem({ item, folderPath, linkPath }){
   const [bannerHero, setBannerHero] = useState('');
 
   useEffect(() => {
-    storage.ref(`artists/${item.hero}`).getDownloadURL().then((res) => {
+    storage.ref(`${folderPath}/${item.cover}`).getDownloadURL().then((res) => {
       setBannerHero(res);
     })
     // eslint-disable-next-line
   }, []);
 
   return (
-    <Link to={`/dashboard/artist/${item.id}`} className="hover:text-green-500">
+    <Link to={`/dashboard/${linkPath}/${item.id}`} className="hover:text-green-500">
       <div 
         style={{ backgroundImage: `url(${bannerHero})` }} 
         className="bg-cover bg-center h-20 w-full rounded-t-md"
@@ -28,7 +28,7 @@ function SlideItem({ item }){
   );
 };
 
-export default function BasicSlide({ title, data }){
+export default function BasicSlide({ title, data, folderPath, linkPath }){
   const settings = {
     speed: 250,
     dots: false,
@@ -55,12 +55,16 @@ export default function BasicSlide({ title, data }){
     ]
   }
 
+  if (data?.length < 12) {
+    return null
+  };
+
   return (
     <div className="">
-      <h2 className="uppercase font-light tracking-wider text-sm text-center mb-2">{title}</h2>
+      <h2 className="uppercase font-light tracking-wider text-sm text-center mb-3">{title}</h2>
       <Slider {...settings} className="text-center">
         {data.map((item) => (
-          <SlideItem key={item.id} item={item} />
+          <SlideItem key={item.id} item={item} folderPath={folderPath} linkPath={linkPath} />
         ))}
       </Slider>
     </div>

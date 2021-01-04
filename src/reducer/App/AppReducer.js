@@ -1,4 +1,4 @@
-import { GET_ARTITS } from '../types';
+import { GET_ALBUMS, GET_ARTITS } from '../types';
 
 export default function AppReducer(state, action) {
   switch (action.type) {
@@ -6,6 +6,11 @@ export default function AppReducer(state, action) {
       return {
         ...state,
         artists: action.payload
+      };
+    case GET_ALBUMS:
+      return {
+        ...state,
+        albums: action.payload
       };
 
     default:

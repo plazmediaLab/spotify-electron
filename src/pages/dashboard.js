@@ -8,6 +8,7 @@ import InitContentMain from 'components/dashboard/content/init-content_main';
 import useUserData from 'hooks/useUserData';
 import LoadingUserData from 'components/resources/loading-user-data';
 import useArtistsData from 'hooks/useArtistsData';
+import useAlbumsData from 'hooks/useAlbumsData';
 
 export default function Dashboard() {
   // TODO · Verificar errores en login con datos de user 12/25/2020
@@ -17,10 +18,12 @@ export default function Dashboard() {
 
   const [getUserData, loading] = useUserData();
   const [getArtistsData] = useArtistsData();
+  const [getAlbumsData] = useAlbumsData();
 
   useEffect(() => {
     getUserData();
     getArtistsData();
+    getAlbumsData();
     // eslint-disable-next-line
   }, []);
 
