@@ -8,7 +8,7 @@ import AlbumsContent from './albums-content';
 
 export default function InitContentMain() {
   return (
-    <div className="overflow-y-auto overflow-x-hidden">
+    <div className="overflow-y-auto overflow-x-hidden custom-scroll">
       <Router>
         <InitContent path="*" />
         <ArtistsContent path="artists" />
