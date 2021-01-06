@@ -5,6 +5,22 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      height: {
+        18: '4.5rem',
+        2.5: '0.625rem',
+        3.5: '0.825rem'
+      },
+      width: {
+        18: '4.5rem',
+        2.5: '0.625rem',
+        3.5: '0.825rem'
+      },
+      minWidth: {
+        18: '4.5rem'
+      },
+      maxWidth: {
+        '18x3': '13.5rem'
+      },
       minHeight: {
         40: '10rem'
       },
@@ -64,7 +80,9 @@ module.exports = {
     extend: {
       cursor: ['disabled'],
       opacity: ['disabled'],
-      backgroundColor: ['active']
+      backgroundColor: ['active'],
+      visibility: ['hover', 'focus'],
+      textColor: ['active']
     }
   },
   plugins: []

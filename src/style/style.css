@@ -123,52 +123,71 @@ input:focus ~ .icon-field-form:hover {
 /* ---------------------------- */
 /* Dashboard */
 /* --------ˇˇˇˇˇˇˇˇˇˇˇˇ-------- */
+@media (min-height: 721px) {
+    .dashboard-main__container {
+        grid-template-rows: 88vh 12vh;
+    }
+}
+@media (min-height: 800px) {
+    .dashboard-main__container {
+        grid-template-rows: 89vh 11vh;
+    }
+}
+@media (min-height: 900px) {
+    .dashboard-main__container {
+        grid-template-rows: 90vh 10vh;
+    }
+}
+@media (min-height: 1280px) {
+    .dashboard-main__container {
+        grid-template-rows: 93vh 7vh;
+    }
+}
 @media (min-width: 520px) {
     .dashboard-main__container {
         grid-template-columns: 30vw 70vw;
-        grid-template-rows: 86vh 14vh;
-    }
+}
     .dashboard-main__content{
         grid-template-rows: 3rem 1fr;
-    }
+}
 }
 @media (min-width: 640px) {
     .dashboard-main__container {
         grid-template-columns: 25vw 75vw;
         /* background-color: #6500df; */
-    }
+}
     .dashboard-main__content{
         grid-template-rows: 3rem 1fr;
-    }
+}
 }
 @media (min-width: 768px) {}
 @media (min-width: 1024px) {
     .dashboard-main__container {
         grid-template-columns: 20vw 80vw;
         /* background-color: #10B981; */
-    }
+}
     .dashboard-main__content{
         grid-template-rows: 3rem 1fr;
-    }
+}
 }
 @media (min-width: 1280px) {
     .dashboard-main__container {
         grid-template-columns: 18vw 82vw;
-        grid-template-rows: 91vh 9vh;
-        /* background-color: #D97706; */
-    }
+        /* grid-template-rows: 91vh 9vh; */
+        background-color: #D97706;
+}
     .dashboard-main__content{
         grid-template-rows: 3rem 1fr;
-    }
+}
 }
 @media (min-width: 1536px) {
     .dashboard-main__container {
         grid-template-columns: 15vw 85vw;
-        /* background-color: #EF4444; */
-    }
+        background-color: #EF4444;
+}
     .dashboard-main__content{
         grid-template-rows: 3rem 1fr;
-    }
+}
 }
 
 /* ---------------------------- */
@@ -204,4 +223,16 @@ input:focus ~ .icon-field-form:hover {
 .custom-scroll::-webkit-scrollbar-track:hover,
 .custom-scroll::-webkit-scrollbar-track:active {
   background: #2E2F32;
+}
+
+/* ---------------------------- */
+/* Custom Range Component */
+/* --------ˇˇˇˇˇˇˇˇˇˇˇˇ-------- */
+.render-thumb-range{
+    visibility: hidden;
+}
+.render-track-range:hover .render-thumb-range,
+.render-thumb-range:hover,
+.render-thumb-range:active {
+    visibility: visible;
 }
