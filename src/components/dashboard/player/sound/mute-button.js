@@ -1,8 +1,11 @@
-export default function MuteButton({ mute, setMute, setVolume, lastVolume }) {
+export default function MuteButton({ mute, setMuteMethod, setVolumeMethod, lastVolume }) {
   const handleMute = () => {
-    setMute(!mute);
-    if (mute) {
-      setVolume(lastVolume);
+    if (!mute) {
+      setMuteMethod(true);
+    }
+    if (mute && lastVolume > 0) {
+      setMuteMethod(false);
+      setVolumeMethod(lastVolume);
     }
   };
 

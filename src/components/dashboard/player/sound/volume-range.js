@@ -1,17 +1,17 @@
 import { Range, getTrackBackground } from 'react-range';
 
 const MIN = 0;
-const MAX = 100;
+const MAX = 1;
 
-export default function VolumeRange({ volume, setVolume, setLastVolume }) {
+export default function VolumeRange({ volume, setVolumeMethod, setLastVolumeMethod }) {
   const handleVolume = (val) => {
-    setVolume(val);
-    setLastVolume(val);
+    setVolumeMethod(val);
+    setLastVolumeMethod(val);
   };
 
   return (
     <Range
-      step={1}
+      step={0.01}
       min={MIN}
       max={MAX}
       values={[volume]}

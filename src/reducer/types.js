@@ -14,3 +14,6 @@ export const GET_ALBUMS = 'GET_ALBUMS';
 
 // Player
 export const SET_PLAYING = 'SET_PLAYING';
+export const SET_VOLUME = 'SET_VOLUME';
+export const SET_LASTVOLUME = 'SET_LASTVOLUME';
+export const SET_MUTE = 'SET_MUTE';
