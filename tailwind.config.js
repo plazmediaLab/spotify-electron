@@ -13,7 +13,8 @@ module.exports = {
       width: {
         18: '4.5rem',
         2.5: '0.625rem',
-        3.5: '0.825rem'
+        3.5: '0.825rem',
+        22: '5.5rem'
       },
       minWidth: {
         18: '4.5rem'

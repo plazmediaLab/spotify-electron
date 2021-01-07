@@ -1,3 +1,4 @@
+import timeFormat from 'helpers/timeFormat';
 import { useState } from 'react';
 import { Range, getTrackBackground } from 'react-range';
 
@@ -8,9 +9,16 @@ export default function PlayerStatusRange({
   handleSeekTo,
   ...props
 }) {
+  const digits = timeFormat(totalTime);
+
   return (
     <section {...props}>
-      <p className="text-xs tracking-wider text-secondary-dark">{time}</p>
+      <p
+        className={`text-xs tracking-wider text-secondary-dark ${
+          digits.length > 5 ? 'w-22' : 'w-14'
+        } grid place-items-center`}>
+        {timeFormat(time)}
+      </p>
       <Range
         step={1}
         min={0}
@@ -51,7 +59,12 @@ export default function PlayerStatusRange({
           );
         }}
       />
-      <p className="text-xs tracking-wider text-secondary-dark">{totalTime}</p>
+      <p
+        className={`text-xs tracking-wider text-secondary-dark ${
+          digits.length > 5 ? 'w-22' : 'w-14'
+        } grid place-items-center`}>
+        {timeFormat(totalTime)}
+      </p>
     </section>
   );
 }
