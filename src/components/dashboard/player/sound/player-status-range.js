@@ -1,25 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Range, getTrackBackground } from 'react-range';
 
-export default function PlayerStatusRange({ ...props }) {
-  const [time, setTime] = useState(0);
-  const [totalTime, setTotalTime] = useState(1);
-
-  useEffect(() => {
-    setTotalTime(185);
-  }, []);
-
-  console.log(time);
-
+export default function PlayerStatusRange({
+  time,
+  totalTime,
+  setTimeMethod,
+  handleSeekTo,
+  ...props
+}) {
   return (
     <section {...props}>
-      <p className="text-xs tracking-wider text-secondary-dark">0:00</p>
+      <p className="text-xs tracking-wider text-secondary-dark">{time}</p>
       <Range
         step={1}
         min={0}
         max={totalTime}
         values={[time]}
-        onChange={(values) => setTime(values)}
+        onChange={(values) => handleSeekTo(Number(values))}
         renderTrack={({ props, children }) => {
           return (
             <div
@@ -54,7 +51,7 @@ export default function PlayerStatusRange({ ...props }) {
           );
         }}
       />
-      <p className="text-xs tracking-wider text-secondary-dark">3:05</p>
+      <p className="text-xs tracking-wider text-secondary-dark">{totalTime}</p>
     </section>
   );
 }

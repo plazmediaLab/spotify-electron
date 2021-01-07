@@ -1,5 +1,13 @@
 import { useReducer } from 'react';
-import { SET_PLAYING, SET_VOLUME, SET_LASTVOLUME, SET_MUTE } from '../types';
+import {
+  SET_PLAYING,
+  SET_VOLUME,
+  SET_LASTVOLUME,
+  SET_MUTE,
+  SET_TIME,
+  SET_TOTALTIME,
+  SET_LOOP
+} from '../types';
 import PlayerContext from './PlayerContext';
 import PlayerReducer from './PlayerReducer';
 
@@ -11,8 +19,8 @@ const PlayerState = ({ children }) => {
     lastVolume: undefined,
     mute: false,
     time: 0,
-    lastTime: undefined,
     totalTime: undefined,
+    loop: false,
     actualSong: null
   };
 
@@ -43,6 +51,23 @@ const PlayerState = ({ children }) => {
       payload: state
     });
   };
+  const setTimeMethod = (time) => {
+    dispath({
+      type: SET_TIME,
+      payload: time
+    });
+  };
+  const setTotalTimeMethod = (time) => {
+    dispath({
+      type: SET_TOTALTIME,
+      payload: time
+    });
+  };
+  const setLoopMethod = () => {
+    dispath({
+      type: SET_LOOP
+    });
+  };
 
   return (
     <PlayerContext.Provider
@@ -51,10 +76,16 @@ const PlayerState = ({ children }) => {
         volume: state.volume,
         lastVolume: state.lastVolume,
         mute: state.mute,
+        time: state.time,
+        totalTime: state.totalTime,
+        loop: state.loop,
         setPlayingMethod,
         setVolumeMethod,
         setLastVolumeMethod,
-        setMuteMethod
+        setMuteMethod,
+        setTimeMethod,
+        setTotalTimeMethod,
+        setLoopMethod
       }}>
       {children}
     </PlayerContext.Provider>

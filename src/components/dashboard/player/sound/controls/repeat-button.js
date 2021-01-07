@@ -1,19 +1,11 @@
-import { useState } from 'react';
-
-export default function RepeatButton() {
-  const [repeat, setRepeat] = useState(false);
-
-  const handleRepeat = () => {
-    setRepeat(!repeat);
-  };
-
+export default function RepeatButton({ loop, setLoopMethod }) {
   return (
     <button
       type="button"
       className={`${
-        repeat ? 'text-brand-400 hover:text-brand-300' : 'hover:text-secondary'
+        loop ? 'text-brand-400 hover:text-brand-300' : 'hover:text-secondary'
       } w-8 h-8 grid place-items-center relative`}
-      onClick={handleRepeat}>
+      onClick={() => setLoopMethod()}>
       <svg
         className="w-3.5 h-3.5"
         fill="currentColor"
@@ -26,7 +18,7 @@ export default function RepeatButton() {
           </g>
         </g>
       </svg>
-      {repeat && <div className="absolute w-1 h-1 rounded-full bg-brand-400 bottom-0"></div>}
+      {loop && <div className="absolute w-1 h-1 rounded-full bg-brand-400 bottom-0"></div>}
     </button>
   );
 }

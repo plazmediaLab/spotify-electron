@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import PlayerContext from 'reducer/Player/PlayerContext';
 import NextButton from './sound/controls/next-button';
 import PlayButton from './sound/controls/play-button';
@@ -10,10 +10,29 @@ import ReactPlayer from 'react-player';
 
 export default function PlayerSection({ ...props }) {
   const playerContext = useContext(PlayerContext);
-  const { play, volume, setPlayingMethod } = playerContext;
+  const {
+    play,
+    volume,
+    time,
+    totalTime,
+    loop,
+    setPlayingMethod,
+    setTimeMethod,
+    setTotalTimeMethod,
+    setLoopMethod
+  } = playerContext;
 
   const handleProgress = (e) => {
     const { playedSeconds, loadedSeconds } = e;
+
+    setTimeMethod(playedSeconds);
+    setTotalTimeMethod(loadedSeconds);
+  };
+
+  const player = useRef();
+
+  const handleSeekTo = (time) => {
+    player.current.seekTo(time, 'seconds');
   };
 
   return (
@@ -23,10 +42,17 @@ export default function PlayerSection({ ...props }) {
         <PrevButton />
         <PlayButton play={play} setPlayingMethod={setPlayingMethod} />
         <NextButton />
-        <RepeatButton />
+        <RepeatButton setLoopMethod={setLoopMethod} loop={loop} />
       </div>
-      <PlayerStatusRange className="flex items-center gap-x-3 w-full  md:max-w-3xl lg:max-w-4xl" />
+      <PlayerStatusRange
+        className="flex items-center gap-x-3 w-full  md:max-w-3xl lg:max-w-4xl"
+        time={time}
+        totalTime={totalTime}
+        setTimeMethod={setTimeMethod}
+        handleSeekTo={handleSeekTo}
+      />
       <ReactPlayer
+        ref={player}
         url="https://firebasestorage.googleapis.com/v0/b/platify-electron-28b95.appspot.com/o/music%2FQuisiera%20Saber%20-%20Los%20Daniels%20ft.%20Natalia%20Lafourcade.mp3?alt=media&token=cbf2840d-f098-40b5-bf46-31005ae51e20"
         playing={play}
         volume={volume}
@@ -34,6 +60,8 @@ export default function PlayerSection({ ...props }) {
         width={0}
         height={0}
         onProgress={(e) => handleProgress(e)}
+        loop={loop}
+        // onSeek={(e) => console.log(e)}
       />
     </section>
   );
