@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import PlayerContext from 'reducer/Player/PlayerContext';
 import NextButton from './sound/controls/next-button';
 import PlayButton from './sound/controls/play-button';
 import PrevButton from './sound/controls/prev-button';
@@ -6,12 +8,15 @@ import ShuffleButton from './sound/controls/shuffle-button';
 import PlayerStatusRange from './sound/player-status-range';
 
 export default function PlayerSection({ ...props }) {
+  const playerContext = useContext(PlayerContext);
+  const { play, setPlayingMethod } = playerContext;
+
   return (
     <section {...props}>
       <div className="flex gap-x-2 items-center justify-center text-secondary-dark">
         <ShuffleButton />
         <PrevButton />
-        <PlayButton />
+        <PlayButton play={play} setPlayingMethod={setPlayingMethod} />
         <NextButton />
         <RepeatButton />
       </div>

@@ -11,3 +11,6 @@ export const AUTH_LOGIN = 'AUTH_LOGIN';
 // App
 export const GET_ARTITS = 'GET_ARTITS';
 export const GET_ALBUMS = 'GET_ALBUMS';
+
+// Player
+export const SET_PLAYING = 'SET_PLAYING';

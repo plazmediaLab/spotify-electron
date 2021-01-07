@@ -174,7 +174,7 @@ input:focus ~ .icon-field-form:hover {
     .dashboard-main__container {
         grid-template-columns: 18vw 82vw;
         /* grid-template-rows: 91vh 9vh; */
-        background-color: #D97706;
+        /* background-color: #D97706; */
 }
     .dashboard-main__content{
         grid-template-rows: 3rem 1fr;
@@ -183,7 +183,7 @@ input:focus ~ .icon-field-form:hover {
 @media (min-width: 1536px) {
     .dashboard-main__container {
         grid-template-columns: 15vw 85vw;
-        background-color: #EF4444;
+        /* background-color: #EF4444; */
 }
     .dashboard-main__content{
         grid-template-rows: 3rem 1fr;

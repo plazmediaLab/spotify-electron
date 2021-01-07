@@ -1,18 +1,12 @@
 import { useState } from 'react';
 
-export default function PlayButton() {
-  const [played, setPlayed] = useState(false);
-
-  const handlePlayed = () => {
-    setPlayed(!played);
-  };
-
+export default function PlayButton({ play, setPlayingMethod }) {
   return (
     <>
-      {played ? (
+      {play ? (
         <button
           type="button"
-          onClick={handlePlayed}
+          onClick={setPlayingMethod}
           className="cursor-auto w-10 h-10 grid place-items-center transform hover:scale-105 duration-200 motion-reduce:transform-none hover:text-secondary">
           <svg
             className="w-9 h-9"
@@ -31,7 +25,7 @@ export default function PlayButton() {
       ) : (
         <button
           type="button"
-          onClick={handlePlayed}
+          onClick={setPlayingMethod}
           className="cursor-auto w-10 h-10 grid place-items-center transform hover:scale-105 duration-200 motion-reduce:transform-none hover:text-secondary">
           <svg
             className="w-9 h-9"

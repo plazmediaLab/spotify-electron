@@ -6,12 +6,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AuthState from 'reducer/Auth/AuthState';
 import AppState from 'reducer/App/AppState';
+import PlayerState from 'reducer/Player/PlayerState';
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthState>
       <AppState>
-        <App />
+        <PlayerState>
+          <App />
+        </PlayerState>
       </AppState>
     </AuthState>
   </React.StrictMode>,

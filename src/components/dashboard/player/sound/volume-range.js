@@ -20,7 +20,7 @@ export default function VolumeRange({ volume, setVolume, setLastVolume }) {
         return (
           <div
             {...props}
-            className="render-track-range w-20 rounded-full"
+            className="render-track-range w-20 lg:w-28 rounded-full"
             style={{
               ...props.style,
               height: '4px',
