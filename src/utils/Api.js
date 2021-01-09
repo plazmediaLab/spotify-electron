@@ -47,7 +47,7 @@ export const errManagerUploadFile = (code) => {
 export const errManagerUploadFileMp3 = (code) => {
   switch (code) {
     case 'file-too-large':
-      return 'El archivo excede el limite de 0.5 MB maximo para subir como portada.';
+      return 'El archivo excede el limite de 6.5 MB maximo para subir como portada.';
     case 'file-invalid-type':
       return `El archivo es de un formato no valido, el formato valido es [.mp3].`;
 

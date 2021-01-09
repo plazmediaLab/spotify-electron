@@ -13,6 +13,7 @@ import createAt from 'helpers/createAt';
 import { db, storage } from 'utils/Firebase';
 import firebase from 'firebase';
 import AuthContext from 'reducer/Auth/AuthContext';
+import PlayerContext from 'reducer/Player/PlayerContext';
 
 export default function NewSongForm() {
   const [loading, setLoading] = useState(false);
@@ -26,6 +27,9 @@ export default function NewSongForm() {
   const authContext = useContext(AuthContext);
   const { toastMessageMethod } = authContext;
 
+  const playerContext = useContext(PlayerContext);
+  const { uploadProgressMethod } = playerContext;
+
   const formik = useFormik({
     initialValues: {
       songName: '',
@@ -37,7 +41,7 @@ export default function NewSongForm() {
       file: Yup.mixed().test('file-song', 'El archivo MP3 es requerido.', () => fileSong),
       album: Yup.mixed().test('album-select', 'El album es requerido.', () => albumSelect)
     }),
-    onSubmit: async (values) => {
+    onSubmit: async (values, { resetForm }) => {
       setLoading(true);
 
       const fileID = uuidGenerate();
@@ -65,9 +69,8 @@ export default function NewSongForm() {
       uploadTask.on(
         firebase.storage.TaskEvent.STATE_CHANGED,
         function (snapshot) {
-          // TODO · Hacer una progress bar para señalar que el archivo se esta subiendo 01/08/2021
           var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log('Upload is ' + Math.floor(progress) + '% done');
+          uploadProgressMethod(progress);
         },
         function (error) {
           console.log('Sucedio un error al subir el archivo.');
@@ -84,14 +87,16 @@ export default function NewSongForm() {
                   type: 'success',
                   message: 'Canción agregada correctamente.'
                 });
+                uploadProgressMethod(0);
+                resetForm(formik.initialValues);
+                setAlbumSelect(null);
+                setFileSong(null);
               });
           });
         }
       );
     }
   });
-
-  console.log(albumSelect);
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -102,6 +107,7 @@ export default function NewSongForm() {
         disabled={loading}
         autoFocus
         name="songName"
+        value={formik.values.songName}
         onChange={formik.handleChange}
       />
       <div className="mt-3 relative">

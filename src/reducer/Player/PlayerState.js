@@ -6,7 +6,8 @@ import {
   SET_MUTE,
   SET_TIME,
   SET_TOTALTIME,
-  SET_LOOP
+  SET_LOOP,
+  SET_UPLOADPROGRESS
 } from '../types';
 import PlayerContext from './PlayerContext';
 import PlayerReducer from './PlayerReducer';
@@ -21,7 +22,8 @@ const PlayerState = ({ children }) => {
     time: 0,
     totalTime: undefined,
     loop: false,
-    actualSong: null
+    actualSong: null,
+    uploadProgress: 0
   };
 
   //Reducer
@@ -68,6 +70,12 @@ const PlayerState = ({ children }) => {
       type: SET_LOOP
     });
   };
+  const uploadProgressMethod = (progress) => {
+    dispath({
+      type: SET_UPLOADPROGRESS,
+      payload: progress
+    });
+  };
 
   return (
     <PlayerContext.Provider
@@ -79,13 +87,15 @@ const PlayerState = ({ children }) => {
         time: state.time,
         totalTime: state.totalTime,
         loop: state.loop,
+        uploadProgress: state.uploadProgress,
         setPlayingMethod,
         setVolumeMethod,
         setLastVolumeMethod,
         setMuteMethod,
         setTimeMethod,
         setTotalTimeMethod,
-        setLoopMethod
+        setLoopMethod,
+        uploadProgressMethod
       }}>
       {children}
     </PlayerContext.Provider>

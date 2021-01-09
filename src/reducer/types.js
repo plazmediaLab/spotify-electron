@@ -20,3 +20,4 @@ export const SET_MUTE = 'SET_MUTE';
 export const SET_TIME = 'SET_TIME';
 export const SET_TOTALTIME = 'SET_TOTALTIME';
 export const SET_LOOP = 'SET_LOOP';
+export const SET_UPLOADPROGRESS = 'SET_UPLOADPROGRESS';

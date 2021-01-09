@@ -5,7 +5,8 @@ import {
   SET_TIME,
   SET_VOLUME,
   SET_TOTALTIME,
-  SET_LOOP
+  SET_LOOP,
+  SET_UPLOADPROGRESS
 } from '../types';
 
 export default function PlayerReducer(state, action) {
@@ -44,6 +45,11 @@ export default function PlayerReducer(state, action) {
       return {
         ...state,
         loop: !state.loop
+      };
+    case SET_UPLOADPROGRESS:
+      return {
+        ...state,
+        uploadProgress: action.payload
       };
 
     default:

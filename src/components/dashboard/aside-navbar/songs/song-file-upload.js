@@ -16,7 +16,7 @@ export default function SongFileUpload({ fileSong, setFileSong, formikError, ...
     accept: 'audio/mp3, audio/mpeg',
     noKeyboard: true,
     multiple: false,
-    maxSize: 6291456,
+    maxSize: 6815744,
     onDrop
   });
 
