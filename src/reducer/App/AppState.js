@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { GET_ARTITS, GET_ALBUMS } from '../types';
+import { GET_ARTITS, GET_ALBUMS, GET_SONGS } from '../types';
 import AppContext from './AppContext';
 import AppReducer from './AppReducer';
 
@@ -7,7 +7,8 @@ const UserState = ({ children }) => {
   // Initial State
   const initialState = {
     artists: [],
-    albums: []
+    albums: [],
+    songs: []
   };
 
   // Reducer
@@ -26,14 +27,23 @@ const UserState = ({ children }) => {
       payload: data
     });
   };
+  const getSongsMethod = (data) => {
+    console.log(data);
+    dispath({
+      type: GET_SONGS,
+      payload: data
+    });
+  };
 
   return (
     <AppContext.Provider
       value={{
         artists: state.artists,
         albums: state.albums,
+        songs: state.songs,
         getArtistMethod,
-        getAlbumsMethod
+        getAlbumsMethod,
+        getSongsMethod
       }}>
       {children}
     </AppContext.Provider>

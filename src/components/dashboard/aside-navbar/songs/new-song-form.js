@@ -61,7 +61,8 @@ export default function NewSongForm() {
         createAt: createAt(),
         file: '',
         slug: slug,
-        songName: values.songName
+        songName: values.songName,
+        like: false
       };
 
       var uploadTask = storage.ref('music').child(fileID).put(fileSong);

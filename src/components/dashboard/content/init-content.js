@@ -2,6 +2,7 @@ import BasicSlide from 'components/resources/basic-slide';
 import { useEffect, useState } from 'react';
 import { db } from 'utils/Firebase';
 import HeroBanner from './home/hero-banner';
+import MusicList from './home/music-list';
 
 export default function InitContent() {
   const [artists, setArtists] = useState([]);
@@ -56,7 +57,7 @@ export default function InitContent() {
             linkPath="album"
           />
         </div>
-        <h1 className="mt-5">Home main content</h1>
+        <MusicList className="mt-5" />
       </section>
     </>
   );

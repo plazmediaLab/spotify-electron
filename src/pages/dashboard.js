@@ -10,6 +10,7 @@ import LoadingUserData from 'components/resources/loading-user-data';
 import useArtistsData from 'hooks/useArtistsData';
 import useAlbumsData from 'hooks/useAlbumsData';
 import PlayerSectionMain from 'components/dashboard/player/player-section-main';
+import useSongsData from 'hooks/useSongsData';
 
 export default function Dashboard() {
   // TODO · Verificar errores en login con datos de user 12/25/2020
@@ -20,11 +21,14 @@ export default function Dashboard() {
   const [getUserData, loading] = useUserData();
   const [getArtistsData] = useArtistsData();
   const [getAlbumsData] = useAlbumsData();
+  const [getSongsData] = useSongsData();
 
   useEffect(() => {
     getUserData();
+    // onSnapShot sistem
     getArtistsData();
     getAlbumsData();
+    getSongsData();
     // eslint-disable-next-line
   }, []);
 
