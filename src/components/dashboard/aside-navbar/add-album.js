@@ -1,6 +1,6 @@
 import ModalContent from 'components/resources/modal-content';
 import { useState } from 'react';
-import NewAlbumForm from './artists/new-album-form';
+import NewAlbumForm from './albums/new-album-form';
 
 export default function AddAlbum() {
   const [show, setShow] = useState(false);

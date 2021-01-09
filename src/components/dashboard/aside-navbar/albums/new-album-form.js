@@ -4,15 +4,16 @@ import { useContext, useState } from 'react';
 import AppContext from 'reducer/App/AppContext';
 import AlbumAvatarUpload from './album-avatar-upload';
 import Select from 'react-select';
-import customStyles from './custom-styles-select';
+import customStyles from '../artists/custom-styles-select';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { createAt, errManagerUploadFile } from 'utils/Api';
-import { v4 as uuidv4 } from 'uuid';
+import { errManagerUploadFile } from 'utils/Api';
+import createAt from 'helpers/createAt';
 import { db, storage } from 'utils/Firebase';
 import AuthContext from 'reducer/Auth/AuthContext';
-import slug from 'slug';
 import ResizeCropImage from 'components/resources/resize-crop-image';
+import sluglify from 'helpers/sluglify';
+import uuidGenerate from 'helpers/uuidGenerate';
 
 export default function NewAlbumForm() {
   const [errorFileSettings, setErrorFileSettings] = useState({});
@@ -45,14 +46,11 @@ export default function NewAlbumForm() {
     onSubmit: async (values, { resetForm }) => {
       setLoading(true);
 
-      const fileName = uuidv4();
-      const sluglify = slug(values.albumName, {
-        charmap: slug.charmap, // replace special characters
-        multicharmap: slug.multicharmap // replace multi-characters
-      });
+      const fileName = uuidGenerate();
+      const slug = sluglify(values.albumName);
 
       const ref = storage.ref().child(`albums/${fileName}`);
-      const albumExist = await db.collection('albums').where('slug', '==', sluglify).get();
+      const albumExist = await db.collection('albums').where('slug', '==', slug).get();
 
       if (albumExist.empty) {
         ref
@@ -63,7 +61,7 @@ export default function NewAlbumForm() {
                 name: values.albumName,
                 artist: values.artist,
                 cover: fileName,
-                slug: sluglify,
+                slug: slug,
                 createAt: createAt()
               })
               .then(() => {

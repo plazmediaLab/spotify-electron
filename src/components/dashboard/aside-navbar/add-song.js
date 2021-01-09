@@ -1,5 +1,6 @@
 import ModalContent from 'components/resources/modal-content';
 import { useState } from 'react';
+import NewSongForm from './songs/new-song-form';
 
 export default function AddSong() {
   const [show, setShow] = useState(false);
@@ -7,7 +8,7 @@ export default function AddSong() {
   return (
     <>
       <ModalContent show={show} closeModal={() => setShow(!show)} title="Nueva Canción">
-        <h1>Add new song</h1>
+        <NewSongForm setShow={setShow} />
       </ModalContent>
       <button
         className="pl-5 pr-5 py-1 flex w-full justify-between items-center hover:text-secondary"

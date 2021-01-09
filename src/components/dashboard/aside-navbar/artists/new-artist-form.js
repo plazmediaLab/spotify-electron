@@ -4,11 +4,11 @@ import { useFormik } from 'formik';
 import { useContext, useState } from 'react';
 import ArtistAvatarUpload from './artits-avatar-upload';
 import * as Yup from 'yup';
-import { v4 as uuidv4 } from 'uuid';
 import { db, storage } from 'utils/Firebase';
 import AuthContext from 'reducer/Auth/AuthContext';
-import slug from 'slug';
-import { createAt } from 'utils/Api';
+import createAt from 'helpers/createAt';
+import sluglify from 'helpers/sluglify';
+import uuidGenerate from 'helpers/uuidGenerate';
 
 export default function NewArtistForm() {
   const [loading, setLoading] = useState(false);
@@ -33,15 +33,11 @@ export default function NewArtistForm() {
     onSubmit: async (values, { resetForm }) => {
       setLoading(true);
 
-      const fileName = uuidv4();
-
-      const sluglify = slug(values.artistName, {
-        charmap: slug.charmap, // replace special characters
-        multicharmap: slug.multicharmap // replace multi-characters
-      });
+      const fileName = uuidGenerate();
+      const slug = sluglify(values.artistName);
 
       const ref = storage.ref().child(`artists/${fileName}`);
-      const existsArtist = await db.collection('artists').where('slug', '==', sluglify).get();
+      const existsArtist = await db.collection('artists').where('slug', '==', slug).get();
 
       try {
         if (!existsArtist.empty) {
@@ -51,14 +47,12 @@ export default function NewArtistForm() {
           });
         } else {
           await ref.put(file);
-          await db
-            .collection('artists')
-            .add({
-              name: values.artistName,
-              cover: fileName,
-              slug: sluglify,
-              createAt: createAt()
-            });
+          await db.collection('artists').add({
+            name: values.artistName,
+            cover: fileName,
+            slug: slug,
+            createAt: createAt()
+          });
           await toastMessageMethod({
             type: 'success',
             message: 'Artista agregado correctamente.'

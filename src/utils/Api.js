@@ -3,10 +3,6 @@ import firebase from 'firebase/app';
 
 // TODO · Checar todas las implementaciones de auth() para posibles errors 12/22/2020
 
-export const createAt = () => {
-  return firebase.firestore.Timestamp.fromDate(new Date());
-};
-
 export async function isUserAdmin(uid) {
   const res = await db.collection('admin').doc(uid).get();
   return res.exists;
@@ -41,7 +37,19 @@ export const errManagerUploadFile = (code) => {
     case 'file-too-large':
       return 'El archivo excede el limite de 0.5 MB maximo para subir como portada.';
     case 'file-invalid-type':
-      return 'El archivo es de un formato no valido, los formatos validos son [.jpeg, .jpg, .png].';
+      return `El archivo es de un formato no valido, los formatos validos son [.jpeg, .jpg, .png].`;
+
+    default:
+      return 'Error al procesar el archivo, intenta con otra imgen o formato.';
+  }
+};
+
+export const errManagerUploadFileMp3 = (code) => {
+  switch (code) {
+    case 'file-too-large':
+      return 'El archivo excede el limite de 0.5 MB maximo para subir como portada.';
+    case 'file-invalid-type':
+      return `El archivo es de un formato no valido, el formato valido es [.mp3].`;
 
     default:
       return 'Error al procesar el archivo, intenta con otra imgen o formato.';
