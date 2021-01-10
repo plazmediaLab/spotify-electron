@@ -5,6 +5,7 @@ import UserOptions from './user-options';
 import ArtistParamContent from './artist-param-content';
 import AlbumParamContent from './album-param-content';
 import AlbumsContent from './albums-content';
+import LibrarySongsLike from './library/songs-like/library-songs-like';
 
 export default function InitContentMain() {
   return (
@@ -16,6 +17,7 @@ export default function InitContentMain() {
         <ArtistParamContent path="artist/:artistID" />
         <AlbumParamContent path="album/:albumID" />
         <UserOptions path="options" />
+        <LibrarySongsLike path="user-library/songs-like" />
       </Router>
     </div>
   );

@@ -7,7 +7,8 @@ import {
   SET_TOTALTIME,
   SET_LOOP,
   SET_UPLOADPROGRESS,
-  SET_SONGONPLAY
+  SET_SONGONPLAY,
+  SET_SHUFFLE
 } from '../types';
 
 export default function PlayerReducer(state, action) {
@@ -41,6 +42,11 @@ export default function PlayerReducer(state, action) {
       return {
         ...state,
         totalTime: action.payload
+      };
+    case SET_SHUFFLE:
+      return {
+        ...state,
+        shuffle: !state.shuffle
       };
     case SET_LOOP:
       return {

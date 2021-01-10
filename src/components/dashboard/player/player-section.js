@@ -7,6 +7,7 @@ import RepeatButton from './sound/controls/repeat-button';
 import ShuffleButton from './sound/controls/shuffle-button';
 import PlayerStatusRange from './sound/player-status-range';
 import ReactPlayer from 'react-player';
+import AppContext from 'reducer/App/AppContext';
 
 export default function PlayerSection({ ...props }) {
   const playerContext = useContext(PlayerContext);
@@ -15,13 +16,48 @@ export default function PlayerSection({ ...props }) {
     volume,
     time,
     totalTime,
+    shuffle,
     loop,
     songOnPlay,
     setPlayingMethod,
     setTimeMethod,
     setTotalTimeMethod,
-    setLoopMethod
+    setShuffleMethod,
+    setLoopMethod,
+    setSongOnPlayMethod
   } = playerContext;
+
+  const appContext = useContext(AppContext);
+  const { songs } = appContext;
+
+  const lengthListSongs = songs.length;
+  const currentSongPos = songs.indexOf(songOnPlay);
+
+  const handlePrevSong = () => {
+    let songOnSet;
+    if (currentSongPos === 0) {
+      songOnSet = songs[lengthListSongs - 1];
+    } else {
+      songOnSet = songs[currentSongPos - 1];
+    }
+    setSongOnPlayMethod(songOnSet);
+    setPlayingMethod(true);
+  };
+  const handleNextSong = () => {
+    console.log(shuffle);
+    let songOnSet;
+    if (shuffle) {
+      songOnSet = songs[Math.floor(Math.random() * songs.length)];
+    } else {
+      if (currentSongPos === lengthListSongs - 1) {
+        songOnSet = songs[0];
+      } else {
+        songOnSet = songs[currentSongPos + 1];
+      }
+    }
+    setSongOnPlayMethod(songOnSet);
+    setPlayingMethod(true);
+  };
 
   const handleProgress = (e) => {
     const { playedSeconds, loadedSeconds } = e;
@@ -39,10 +75,10 @@ export default function PlayerSection({ ...props }) {
   return (
     <section {...props}>
       <div className="flex gap-x-2 items-center justify-center text-secondary-dark">
-        <ShuffleButton />
-        <PrevButton />
+        <ShuffleButton shuffle={shuffle} setShuffleMethod={setShuffleMethod} />
+        <PrevButton handlePrevSong={handlePrevSong} />
         <PlayButton play={play} setPlayingMethod={setPlayingMethod} />
-        <NextButton />
+        <NextButton handleNextSong={handleNextSong} />
         <RepeatButton setLoopMethod={setLoopMethod} loop={loop} />
       </div>
       <PlayerStatusRange
@@ -61,6 +97,7 @@ export default function PlayerSection({ ...props }) {
         width={0}
         height={0}
         onProgress={(e) => handleProgress(e)}
+        onEnded={handleNextSong}
         loop={loop}
         // onSeek={(e) => console.log(e)}
       />

@@ -1,19 +1,11 @@
-import { useState } from 'react';
-
-export default function ShuffleButton() {
-  const [shuffle, setShuffle] = useState(false);
-
-  const handleShuffle = () => {
-    setShuffle(!shuffle);
-  };
-
+export default function ShuffleButton({ shuffle, setShuffleMethod }) {
   return (
     <button
       type="button"
       className={`${
         shuffle ? 'text-brand-400 hover:text-brand-300' : 'hover:text-secondary'
       } w-8 h-8 grid place-items-center relative`}
-      onClick={handleShuffle}>
+      onClick={setShuffleMethod}>
       <svg
         className="w-3.5 h-3.5"
         fill="currentColor"

@@ -1,6 +1,7 @@
-export default function PrevButton() {
+export default function PrevButton({ handlePrevSong }) {
   return (
     <button
+      onClick={handlePrevSong}
       type="button"
       className="w-8 h-8 grid place-items-center hover:text-secondary active:text-secondary-dark cursor-auto">
       <svg

@@ -1,14 +1,23 @@
-import { useContext } from 'react';
+import MusicListItem from 'components/dashboard/content/home/music-list-item';
+import { useContext, useEffect, useState } from 'react';
 import AppContext from 'reducer/App/AppContext';
-import MusicListItem from './music-list-item';
 
-export default function MusicList({ ...props }) {
+export default function SongsListTable() {
+  const [songsLikeList, setSongsLikeList] = useState([]);
+
   const appContext = useContext(AppContext);
   const { songs } = appContext;
 
+  useEffect(() => {
+    if (songs) {
+      const newList = songs.filter((item) => item.like);
+      setSongsLikeList(newList);
+    }
+  }, [songs]);
+
   return (
     <table className="mt-5 w-full bg-opacity-50 tracking-widest uppercase text-xs">
-      <tr className="border-b border-background-middlelight text-left">
+      <thead className="border-b border-background-middlelight text-left">
         <th className="py-2 font-light mt-small w-8"></th>
         <th className="py-2 font-light mt-small w-8"></th>
         <th className="py-2 font-light mt-small">Titulo</th>
@@ -29,10 +38,12 @@ export default function MusicList({ ...props }) {
             />
           </svg>
         </th>
-      </tr>
-      {songs?.map((item) => (
-        <MusicListItem key={item.id} item={item} />
-      ))}
+      </thead>
+      <tbody>
+        {songsLikeList?.map((item) => (
+          <MusicListItem key={item.id} item={item} />
+        ))}
+      </tbody>
     </table>
   );
 }

@@ -1,6 +1,7 @@
-export default function NextButton() {
+export default function NextButton({ handleNextSong }) {
   return (
     <button
+      onClick={handleNextSong}
       type="button"
       className="w-8 h-8 grid place-items-center hover:text-secondary active:text-secondary-dark cursor-auto">
       <svg

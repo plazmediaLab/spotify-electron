@@ -2,11 +2,12 @@ import AddSong from './add-song';
 import AddArtist from './add-artist';
 import AsideNavLink from './aside-nav_link';
 import AddAlbum from './add-album';
+import LibrarySection from './library-section';
 
 export default function AsideNavbarMain({ isAdmin }) {
   return (
     <aside className="text-secondary-dark flex flex-col pt-3">
-      <nav className="flex-1">
+      <nav>
         <AsideNavLink to="/dashboard">
           <span>Inicio</span>
           <svg
@@ -44,6 +45,7 @@ export default function AsideNavbarMain({ isAdmin }) {
           </svg>
         </AsideNavLink>
       </nav>
+      <LibrarySection className="flex-1 overflow-y-auto overflow-x-hidden tracking-wider mt-6" />
       {isAdmin && (
         <section className="mb-2">
           <AddArtist />

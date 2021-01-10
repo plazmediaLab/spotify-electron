@@ -1,0 +1,24 @@
+import { Link } from '@reach/router';
+
+const AsideNavLink = (props) => (
+  <Link
+    {...props}
+    getProps={({ isCurrent }) => {
+      // the object returned here is passed to the
+      // anchor element's props
+      return {
+        className: `${
+          isCurrent ? 'border-brand-500 text-secondary' : ' border-transparent text-secondary-dark'
+        } block border-l-4 pl-4 pr-5 py-1 flex justify-between hover:text-secondary`
+      };
+    }}
+  />
+);
+
+export default function LinkLibrary({ children, ...props }) {
+  return (
+    <AsideNavLink {...props}>
+      <p className="truncate">{children}</p>
+    </AsideNavLink>
+  );
+}

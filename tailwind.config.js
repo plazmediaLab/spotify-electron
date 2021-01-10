@@ -17,7 +17,8 @@ module.exports = {
         22: '5.5rem'
       },
       minWidth: {
-        18: '4.5rem'
+        18: '4.5rem',
+        56: '14rem'
       },
       maxWidth: {
         '18x3': '13.5rem'

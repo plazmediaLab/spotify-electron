@@ -1,5 +1,4 @@
 import useUpdateDoc from "hooks/useUpdateDoc";
-import { useState } from "react";
 
 export default function LikeMusicButton({ id, like }){
   const [updateDocFirebase] = useUpdateDoc();

@@ -5,7 +5,7 @@ export default function RepeatButton({ loop, setLoopMethod }) {
       className={`${
         loop ? 'text-brand-400 hover:text-brand-300' : 'hover:text-secondary'
       } w-8 h-8 grid place-items-center relative`}
-      onClick={() => setLoopMethod()}>
+      onClick={setLoopMethod}>
       <svg
         className="w-3.5 h-3.5"
         fill="currentColor"

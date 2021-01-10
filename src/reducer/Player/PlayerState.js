@@ -6,6 +6,7 @@ import {
   SET_MUTE,
   SET_TIME,
   SET_TOTALTIME,
+  SET_SHUFFLE,
   SET_LOOP,
   SET_UPLOADPROGRESS,
   SET_SONGONPLAY
@@ -22,6 +23,7 @@ const PlayerState = ({ children }) => {
     mute: false,
     time: 0,
     totalTime: undefined,
+    shuffle: false,
     loop: false,
     actualSong: null,
     uploadProgress: 0,
@@ -68,6 +70,11 @@ const PlayerState = ({ children }) => {
       payload: time
     });
   };
+  const setShuffleMethod = () => {
+    dispath({
+      type: SET_SHUFFLE
+    });
+  };
   const setLoopMethod = () => {
     dispath({
       type: SET_LOOP
@@ -95,6 +102,7 @@ const PlayerState = ({ children }) => {
         mute: state.mute,
         time: state.time,
         totalTime: state.totalTime,
+        shuffle: state.shuffle,
         loop: state.loop,
         uploadProgress: state.uploadProgress,
         songOnPlay: state.songOnPlay,
@@ -104,6 +112,7 @@ const PlayerState = ({ children }) => {
         setMuteMethod,
         setTimeMethod,
         setTotalTimeMethod,
+        setShuffleMethod,
         setLoopMethod,
         uploadProgressMethod,
         setSongOnPlayMethod
