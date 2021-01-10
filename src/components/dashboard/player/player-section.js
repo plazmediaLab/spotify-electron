@@ -36,8 +36,6 @@ export default function PlayerSection({ ...props }) {
     player.current.seekTo(time, 'seconds');
   };
 
-  console.log(songOnPlay);
-
   return (
     <section {...props}>
       <div className="flex gap-x-2 items-center justify-center text-secondary-dark">
@@ -56,7 +54,7 @@ export default function PlayerSection({ ...props }) {
       />
       <ReactPlayer
         ref={player}
-        url="https://firebasestorage.googleapis.com/v0/b/platify-electron-28b95.appspot.com/o/music%2FQuisiera%20Saber%20-%20Los%20Daniels%20ft.%20Natalia%20Lafourcade.mp3?alt=media&token=cbf2840d-f098-40b5-bf46-31005ae51e20"
+        url={songOnPlay?.file}
         playing={play}
         volume={volume}
         muted={false}

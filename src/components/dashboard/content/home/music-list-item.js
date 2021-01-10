@@ -14,11 +14,7 @@ export default function MusicListItem({ item }) {
 
   const setPlaySong = () => {
     setSongOnPlayMethod(item);
-    setPlayingMethod();
-  };
-
-  const setPauseSong = () => {
-    setPlayingMethod();
+    setPlayingMethod(true);
   };
 
   useEffect(() => {
@@ -31,18 +27,17 @@ export default function MusicListItem({ item }) {
   }, [songOnPlay]);
 
   return (
-    <tr className="group normal-case text-sm tracking-wider hover:bg-background-middlelight">
-      <td>
+    <tr className="group normal-case text-sm tracking-wider hover:bg-background-middlelight border-b border-background-middlelight">
+      <td className="py-small">
         <ButtonPlayMusicOnList
           play={play}
           setPlaySong={setPlaySong}
-          setPauseSong={setPauseSong}
           onPlay={onPlay}
           setPlayingMethod={setPlayingMethod}
         />
       </td>
       <td className="truncate">
-        <LikeMusicButton state={like} />
+        <LikeMusicButton like={like} id={id} />
       </td>
       <td className={`truncate" ${onPlay ? 'text-brand-400' : ''}`}>{songName}</td>
       <td className={`truncate ${onPlay ? 'text-brand-400' : ''}`}>{artistName}</td>

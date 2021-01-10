@@ -15,7 +15,7 @@ export default function PlayerReducer(state, action) {
     case SET_PLAYING:
       return {
         ...state,
-        play: !state.play
+        play: action.payload
       };
     case SET_VOLUME:
       return {

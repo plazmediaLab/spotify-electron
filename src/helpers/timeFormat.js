@@ -1,4 +1,8 @@
 export default function timeFormat(seconds) {
+  if (seconds === undefined) {
+    seconds = 0;
+  }
+
   var sec_num = parseInt(seconds, 10);
   var hours = Math.floor(sec_num / 3600);
   var minutes = Math.floor(sec_num / 60) % 60;

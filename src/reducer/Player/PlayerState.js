@@ -32,9 +32,10 @@ const PlayerState = ({ children }) => {
   const [state, dispath] = useReducer(PlayerReducer, initialState);
 
   // Methods
-  const setPlayingMethod = () => {
+  const setPlayingMethod = (state) => {
     dispath({
-      type: SET_PLAYING
+      type: SET_PLAYING,
+      payload: state
     });
   };
   const setVolumeMethod = (volume) => {

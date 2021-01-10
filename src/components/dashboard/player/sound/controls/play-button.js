@@ -4,7 +4,7 @@ export default function PlayButton({ play, setPlayingMethod }) {
       {play ? (
         <button
           type="button"
-          onClick={setPlayingMethod}
+          onClick={() => setPlayingMethod(false)}
           className="cursor-auto w-10 h-10 grid place-items-center transform hover:scale-105 duration-200 motion-reduce:transform-none hover:text-secondary">
           <svg
             className="w-9 h-9"
@@ -23,7 +23,7 @@ export default function PlayButton({ play, setPlayingMethod }) {
       ) : (
         <button
           type="button"
-          onClick={setPlayingMethod}
+          onClick={() => setPlayingMethod(true)}
           className="cursor-auto w-10 h-10 grid place-items-center transform hover:scale-105 duration-200 motion-reduce:transform-none hover:text-secondary">
           <svg
             className="w-9 h-9"

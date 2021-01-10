@@ -1,15 +1,9 @@
-export default function ButtonPlayMusicOnList({
-  play,
-  setPlaySong,
-  setPauseSong,
-  onPlay,
-  setPlayingMethod
-}) {
+export default function ButtonPlayMusicOnList({ play, setPlaySong, onPlay, setPlayingMethod }) {
   if (onPlay && play) {
     return (
       <button
         type="button"
-        onClick={setPauseSong}
+        onClick={() => setPlayingMethod(false)}
         className="group w-10 h-10 cursor-auto grid place-items-center transform hover:scale-105 duration-200 transition-transform motion-reduce:transform-none hover:text-secondary">
         <svg
           className="w-8 h-8 p-1.5 bg-background-dark rounded-full group-hover:hidden"
@@ -44,7 +38,7 @@ export default function ButtonPlayMusicOnList({
     return (
       <button
         type="button"
-        onClick={() => setPlayingMethod()}
+        onClick={() => setPlayingMethod(true)}
         className="w-10 h-10 cursor-auto grid place-items-center transform hover:scale-105 duration-200 transition-transform motion-reduce:transform-none hover:text-secondary">
         <svg
           className="w-8 h-8 p-1.5 bg-background-dark rounded-full"
