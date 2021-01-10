@@ -9,7 +9,8 @@ export default function MusicList({ ...props }) {
   return (
     <>
       <table className="mt-5 w-full bg-opacity-50 tracking-widest uppercase text-xs">
-        <tr className="border-b border-background-middlelight">
+        <tr className="border-b border-background-middlelight text-left">
+          <th className="py-2 font-light mt-small"></th>
           <th className="py-2 font-light mt-small"></th>
           <th className="py-2 font-light mt-small">Titulo</th>
           <th className="py-2 font-light mt-small">Artista</th>

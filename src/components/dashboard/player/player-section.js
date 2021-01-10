@@ -16,6 +16,7 @@ export default function PlayerSection({ ...props }) {
     time,
     totalTime,
     loop,
+    songOnPlay,
     setPlayingMethod,
     setTimeMethod,
     setTotalTimeMethod,
@@ -34,6 +35,8 @@ export default function PlayerSection({ ...props }) {
   const handleSeekTo = (time) => {
     player.current.seekTo(time, 'seconds');
   };
+
+  console.log(songOnPlay);
 
   return (
     <section {...props}>

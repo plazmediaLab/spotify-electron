@@ -228,7 +228,7 @@ input:focus ~ .icon-field-form:hover {
 /* ---------------------------- */
 /* Custom Range Component */
 /* --------ˇˇˇˇˇˇˇˇˇˇˇˇ-------- */
-.render-thumb-range{
+.render-thumb-range {
     visibility: hidden;
 }
 .render-track-range:hover .render-thumb-range,

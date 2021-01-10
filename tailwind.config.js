@@ -70,7 +70,8 @@ module.exports = {
         }
       },
       padding: {
-        small: '0.125rem'
+        small: '0.125rem',
+        1.5: '0.4rem'
       },
       margin: {
         small: '0.125rem'
@@ -82,8 +83,9 @@ module.exports = {
       cursor: ['disabled'],
       opacity: ['disabled'],
       backgroundColor: ['active'],
-      visibility: ['hover', 'focus'],
-      textColor: ['active']
+      visibility: ['hover', 'focus', 'group-hover'],
+      textColor: ['active'],
+      display: ['group-hover', 'hover']
     }
   },
   plugins: []
