@@ -9,6 +9,7 @@ export default function SongFileUpload({ fileSong, setFileSong, formikError, ...
   const onDrop = useCallback((acceptedFile) => {
     const file = acceptedFile[0];
     setFileSong(file);
+    console.log(acceptedFile[0]);
     // eslint-disable-next-line
   }, []);
 

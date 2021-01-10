@@ -44,7 +44,6 @@ export default function PlayerSection({ ...props }) {
     setPlayingMethod(true);
   };
   const handleNextSong = () => {
-    console.log(shuffle);
     let songOnSet;
     if (shuffle) {
       songOnSet = songs[Math.floor(Math.random() * songs.length)];

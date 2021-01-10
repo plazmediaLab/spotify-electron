@@ -1,6 +1,7 @@
 import { Link } from '@reach/router';
 import { useEffect, useState } from 'react';
 import { db, storage } from 'utils/Firebase';
+import AlbumContent from './abum/album-content';
 
 export default function AlbumParamContent(props) {
   const [loadingArtist, setLoadingArtist] = useState(true);
@@ -67,8 +68,7 @@ export default function AlbumParamContent(props) {
         </div>
       </header>
       <main className="mt-4">
-        <h2 className="text-secondary-dark">Lista de canciones</h2>
-        <hr className="block border-background-middlelight my-2" />
+        <AlbumContent albumID={albumID} />
       </main>
     </section>
   );
