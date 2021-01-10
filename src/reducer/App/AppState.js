@@ -28,7 +28,6 @@ const UserState = ({ children }) => {
     });
   };
   const getSongsMethod = (data) => {
-    console.log(data);
     dispath({
       type: GET_SONGS,
       payload: data
