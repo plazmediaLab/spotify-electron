@@ -4,7 +4,7 @@ export default function ButtonPlayMusicOnList({ play, setPlaySong, onPlay, setPl
       <button
         type="button"
         onClick={() => setPlayingMethod(false)}
-        className="group w-10 h-10 cursor-auto grid place-items-center transform hover:scale-105 duration-200 transition-transform motion-reduce:transform-none hover:text-secondary">
+        className="group w-8 h-10 cursor-auto grid place-items-center transform hover:scale-105 duration-200 transition-transform motion-reduce:transform-none hover:text-secondary">
         <svg
           className="w-8 h-8 p-1.5 bg-background-dark rounded-full group-hover:hidden"
           fill="none"
@@ -39,7 +39,7 @@ export default function ButtonPlayMusicOnList({ play, setPlaySong, onPlay, setPl
       <button
         type="button"
         onClick={() => setPlayingMethod(true)}
-        className="w-10 h-10 cursor-auto grid place-items-center transform hover:scale-105 duration-200 transition-transform motion-reduce:transform-none hover:text-secondary">
+        className="w-8 h-10 cursor-auto grid place-items-center transform hover:scale-105 duration-200 transition-transform motion-reduce:transform-none hover:text-secondary">
         <svg
           className="w-8 h-8 p-1.5 bg-background-dark rounded-full"
           fill="currentColor"
@@ -60,7 +60,7 @@ export default function ButtonPlayMusicOnList({ play, setPlaySong, onPlay, setPl
     <button
       type="button"
       onClick={setPlaySong}
-      className="invisible group-hover:visible grid cursor-auto w-10 h-10 place-items-center transform hover:scale-110 duration-200 transition-transform motion-reduce:transform-none text-secondary-dark hover:text-secondary">
+      className="invisible group-hover:visible grid cursor-auto w-8 h-10 place-items-center transform hover:scale-110 duration-200 transition-transform motion-reduce:transform-none text-secondary-dark hover:text-secondary">
       <svg
         className="w-6 h-6"
         fill="currentColor"

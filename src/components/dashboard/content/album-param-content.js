@@ -9,6 +9,7 @@ export default function AlbumParamContent(props) {
   const [albumInfo, setAlbumInfo] = useState(null);
   const [artistInfo, setArtistInfo] = useState(null);
   const [albumCover, setAlbumCover] = useState(null);
+  const [albumSongsCount, setAlbumSongsCount] = useState(0);
 
   const { albumID } = props;
 
@@ -64,11 +65,13 @@ export default function AlbumParamContent(props) {
               {artistInfo?.name}
             </Link>
           </p>
-          <p className="font-light text-secondary-dark tracking-wider text-sm">0 canciones</p>
+          <p className="font-light text-secondary-dark tracking-wider text-sm">
+            {albumSongsCount === 1 ? `${albumSongsCount} canción` : `${albumSongsCount} canciones`}
+          </p>
         </div>
       </header>
       <main className="mt-4">
-        <AlbumContent albumID={albumID} />
+        <AlbumContent albumID={albumID} setAlbumSongsCount={setAlbumSongsCount} />
       </main>
     </section>
   );

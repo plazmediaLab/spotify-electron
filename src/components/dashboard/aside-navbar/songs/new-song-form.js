@@ -22,12 +22,9 @@ export default function NewSongForm() {
   const [albumSelect, setAlbumSelect] = useState(null);
   const [fileSong, setFileSong] = useState(null);
   const [fileUrl, setFileUrl] = useState(null);
-  const [duration, setDuration] = useState(0);
 
   const appContext = useContext(AppContext);
   const { albums } = appContext;
-
-  console.log(albums);
 
   const authContext = useContext(AuthContext);
   const { toastMessageMethod } = authContext;
