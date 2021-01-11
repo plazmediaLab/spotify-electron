@@ -7,15 +7,17 @@ function useAlbumsData() {
   const { getAlbumsMethod } = appContext;
 
   const getAlbumsData = async () => {
-    db.collection('albums').onSnapshot((querySnapshot) => {
-      let queryData = [];
-      querySnapshot?.forEach((item) => {
-        const queryItem = item?.data();
-        queryItem.id = item?.id;
-        queryData.push(queryItem);
+    db.collection('albums')
+      .orderBy('name')
+      .onSnapshot((querySnapshot) => {
+        let queryData = [];
+        querySnapshot?.forEach((item) => {
+          const queryItem = item?.data();
+          queryItem.id = item?.id;
+          queryData.push(queryItem);
+        });
+        getAlbumsMethod(queryData);
       });
-      getAlbumsMethod(queryData);
-    });
   };
 
   return [getAlbumsData];

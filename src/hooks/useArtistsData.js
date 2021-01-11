@@ -7,15 +7,17 @@ function useArtistsData() {
   const { getArtistMethod } = appContext;
 
   const getArtistsData = async () => {
-    db.collection('artists').onSnapshot((querySnapshot) => {
-      let queryData = [];
-      querySnapshot?.forEach((item) => {
-        const queryItem = item?.data();
-        queryItem.id = item?.id;
-        queryData.push(queryItem);
+    db.collection('artists')
+      .orderBy('name')
+      .onSnapshot((querySnapshot) => {
+        let queryData = [];
+        querySnapshot?.forEach((item) => {
+          const queryItem = item?.data();
+          queryItem.id = item?.id;
+          queryData.push(queryItem);
+        });
+        getArtistMethod(queryData);
       });
-      getArtistMethod(queryData);
-    });
   };
 
   return [getArtistsData];

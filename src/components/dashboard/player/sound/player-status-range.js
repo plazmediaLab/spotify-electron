@@ -1,5 +1,4 @@
 import timeFormat from 'helpers/timeFormat';
-import { useState } from 'react';
 import { Range, getTrackBackground } from 'react-range';
 
 export default function PlayerStatusRange({

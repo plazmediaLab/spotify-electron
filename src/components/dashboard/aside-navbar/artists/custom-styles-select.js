@@ -36,7 +36,7 @@ const customStyles = {
     // const color = chroma(data.color);
     return {
       ...styles,
-      backgroundColor: isSelected ? '#7000f8' : '',
+      backgroundColor: isSelected ? '#7000f8' : isFocused ? '#dbbffd' : '',
       cursor: isDisabled ? 'not-allowed' : 'default',
       ':hover': {
         backgroundColor: '#dbbffd'

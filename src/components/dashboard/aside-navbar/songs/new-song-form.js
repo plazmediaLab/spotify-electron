@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import sluglify from 'helpers/sluglify';
 import uuidGenerate from 'helpers/uuidGenerate';
-import { useContext, useState, useRef, useEffect } from 'react';
+import { useContext, useState, useRef } from 'react';
 import Select from 'react-select';
 import AppContext from 'reducer/App/AppContext';
 import customStyles from '../artists/custom-styles-select';
@@ -26,6 +26,8 @@ export default function NewSongForm() {
 
   const appContext = useContext(AppContext);
   const { albums } = appContext;
+
+  console.log(albums);
 
   const authContext = useContext(AuthContext);
   const { toastMessageMethod } = authContext;
@@ -105,9 +107,9 @@ export default function NewSongForm() {
 
   const playerAlt = useRef();
 
-  const handleDuration = () => {
-    const duration = playerAlt.current.getDuration();
-    setDuration(String(duration));
+  const handleDuration = async () => {
+    const duration = await playerAlt.current.getDuration();
+    return String(duration);
   };
 
   return (
@@ -129,6 +131,7 @@ export default function NewSongForm() {
             style={{ zIndex: 1 }}></div>
         )}
         <Select
+          isClearable={true}
           isDisabled={loading}
           value={albumSelect}
           styles={customStyles}
@@ -137,7 +140,7 @@ export default function NewSongForm() {
             error ? 'ring-red-600 ring-2 rounded' : ''
           } disabled:bg-opacity-50`}
           isLoading={false}
-          placeholder="Album"
+          placeholder="Album de la canción..."
           name="Album"
           onChange={(itemSelect) => setAlbumSelect(itemSelect)}
           getOptionValue={(album) => album.id}

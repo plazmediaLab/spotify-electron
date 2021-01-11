@@ -11,7 +11,7 @@ export default function ModalContent({ children, title, show, closeModal }){
   return show && ReactDOM.createPortal(
       <section className="absolute z-30 top-0 left-0 w-full h-screen bg-background-dark bg-opacity-60 grid place-items-center">
         <button className="absolute top-0 left-0 w-full h-screen bg-transparent cursor-default" onClick={closeModal}></button>
-        <div className="overflow-hidden w-1/2 lg:w-1/3 xl:w-3/12 bg-background shadow-container relative z-10 rounded-lg font-light tracking-wide">
+        <div className="w-1/2 lg:w-1/3 xl:w-3/12 bg-background shadow-container relative z-10 rounded-lg font-light tracking-wide">
           <div className="p-5">
             <h1 className="text-xl w-full text-center px-7 mb-5">{title}</h1>
             <button onClick={closeModal} className="absolute top-5 right-4 text-background-middlelight hover:text-background-light active:bg-background-light">
@@ -19,7 +19,9 @@ export default function ModalContent({ children, title, show, closeModal }){
             </button>
             {children}
           </div>
-          <UploadProgressBar progress={uploadProgress} />
+          <div className="rounded-b-lg overflow-hidden">
+            <UploadProgressBar progress={uploadProgress} />
+          </div>
         </div>
       </section>
     , document.getElementById('main-layout'))

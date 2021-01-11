@@ -146,6 +146,7 @@ export default function NewAlbumForm() {
         </div>
         <div>
           <Select
+            isClearable={true}
             isDisabled={loading}
             value={selectValue}
             styles={customStyles}
@@ -154,8 +155,8 @@ export default function NewAlbumForm() {
               formik.errors.artist ? 'ring-red-600 ring-2 rounded' : ''
             }`}
             isLoading={false}
-            placeholder="Artistas..."
-            name=""
+            placeholder="Artista de la canción..."
+            name="Artist"
             onChange={(artistSelected) => {
               setSelectValue(artistSelected);
               formik.values.artist = artistSelected.id;
