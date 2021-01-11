@@ -2,14 +2,20 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { errManagerUploadFileMp3 } from 'utils/Api';
 
-export default function SongFileUpload({ fileSong, setFileSong, formikError, ...props }) {
+export default function SongFileUpload({
+  fileSong,
+  setFileSong,
+  formikError,
+  handleDuration,
+  setFileUrl,
+  ...props
+}) {
   const [uploadFileError, setUploadFileError] = useState(null);
-  const [coverUrl] = useState(false);
 
   const onDrop = useCallback((acceptedFile) => {
     const file = acceptedFile[0];
     setFileSong(file);
-    console.log(acceptedFile[0]);
+    setFileUrl(URL.createObjectURL(file));
     // eslint-disable-next-line
   }, []);
 
@@ -26,6 +32,7 @@ export default function SongFileUpload({ fileSong, setFileSong, formikError, ...
       setUploadFileError(fileRejections[0]?.errors);
     } else {
       setUploadFileError(null);
+      handleDuration();
     }
     // eslint-disable-next-line
   }, [fileRejections]);

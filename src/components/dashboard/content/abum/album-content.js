@@ -1,3 +1,4 @@
+import timeFormat from 'helpers/timeFormat';
 import { useContext, useEffect, useState } from 'react';
 import AppContext from 'reducer/App/AppContext';
 
@@ -21,6 +22,9 @@ export default function AlbumContent({ albumID }) {
     <>
       <h2 className="text-secondary-dark">Lista de canciones</h2>
       <hr className="block border-background-middlelight my-2" />
+      {songsOfAlbum.map((item) => (
+        <p key={item.id}>{timeFormat(Number(item.duration))}</p>
+      ))}
     </>
   );
 }

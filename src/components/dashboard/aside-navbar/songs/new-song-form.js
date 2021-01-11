@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import sluglify from 'helpers/sluglify';
 import uuidGenerate from 'helpers/uuidGenerate';
-import { useContext, useState } from 'react';
+import { useContext, useState, useRef, useEffect } from 'react';
 import Select from 'react-select';
 import AppContext from 'reducer/App/AppContext';
 import customStyles from '../artists/custom-styles-select';
@@ -14,12 +14,15 @@ import { db, storage } from 'utils/Firebase';
 import firebase from 'firebase';
 import AuthContext from 'reducer/Auth/AuthContext';
 import PlayerContext from 'reducer/Player/PlayerContext';
+import ReactPlayer from 'react-player';
 
 export default function NewSongForm() {
   const [loading, setLoading] = useState(false);
   const [error] = useState(false);
   const [albumSelect, setAlbumSelect] = useState(null);
   const [fileSong, setFileSong] = useState(null);
+  const [fileUrl, setFileUrl] = useState(null);
+  const [duration, setDuration] = useState(0);
 
   const appContext = useContext(AppContext);
   const { albums } = appContext;
@@ -80,6 +83,7 @@ export default function NewSongForm() {
         function () {
           uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
             setLoading(false);
+            data.duration = handleDuration();
             data.file = downloadURL;
             db.collection('music')
               .add(data)
@@ -98,6 +102,13 @@ export default function NewSongForm() {
       );
     }
   });
+
+  const playerAlt = useRef();
+
+  const handleDuration = () => {
+    const duration = playerAlt.current.getDuration();
+    setDuration(String(duration));
+  };
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -150,11 +161,26 @@ export default function NewSongForm() {
           setFileSong={setFileSong}
           fileSong={fileSong}
           formikError={formik.errors.file}
+          handleDuration={handleDuration}
+          setFileUrl={setFileUrl}
         />
       </div>
       <FormButton type="submit" loading={loading} disabled={loading}>
         Agregar Canción
       </FormButton>
+      <ReactPlayer
+        ref={playerAlt}
+        url={fileUrl}
+        playing={false}
+        volume={0}
+        muted={true}
+        width={0}
+        height={0}
+        // onProgress={(e) => handleProgress(e)}
+        // onEnded={handleNextSong}
+        // loop={loop}
+        // onSeek={(e) => console.log(e)}
+      />
     </form>
   );
 }
