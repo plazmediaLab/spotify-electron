@@ -22,6 +22,7 @@ export default function NewSongForm() {
   const [albumSelect, setAlbumSelect] = useState(null);
   const [fileSong, setFileSong] = useState(null);
   const [fileUrl, setFileUrl] = useState(null);
+  const [songDuration, setSongDuration] = useState('0');
 
   const appContext = useContext(AppContext);
   const { albums } = appContext;
@@ -82,8 +83,8 @@ export default function NewSongForm() {
         function () {
           uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
             setLoading(false);
-            data.duration = handleDuration();
             data.file = downloadURL;
+            data.duration = songDuration;
             db.collection('music')
               .add(data)
               .then(() => {
@@ -106,7 +107,9 @@ export default function NewSongForm() {
 
   const handleDuration = async () => {
     const duration = await playerAlt.current.getDuration();
-    return String(duration);
+    if (duration !== null) {
+      setSongDuration(String(duration));
+    }
   };
 
   return (
@@ -176,6 +179,7 @@ export default function NewSongForm() {
         muted={true}
         width={0}
         height={0}
+        onReady={handleDuration}
         // onProgress={(e) => handleProgress(e)}
         // onEnded={handleNextSong}
         // loop={loop}
