@@ -11,6 +11,7 @@ import useArtistsData from 'hooks/useArtistsData';
 import useAlbumsData from 'hooks/useAlbumsData';
 import PlayerSectionMain from 'components/dashboard/player/player-section-main';
 import useSongsData from 'hooks/useSongsData';
+import ActionWindowsButtons from 'components/resources/action-windows-buttons';
 
 export default function Dashboard() {
   // TODO · Verificar errores en login con datos de user 12/25/2020
@@ -38,6 +39,14 @@ export default function Dashboard() {
 
   return user && emailVerified ? (
     <main className="dashboard-main__container text-secondary grid w-full h-screen font-light">
+      <div
+        className="col-span-2 grid place-items-center text-secondary-dark text-xs tracking-wider"
+        style={{ height: '30px', width: '100%' }}>
+        <h1 className="text-center w-full" style={{ WebkitAppRegion: 'drag' }}>
+          Platify v1.0.0
+        </h1>
+        <ActionWindowsButtons />
+      </div>
       <AsideNavbarMain isAdmin={isAdmin} />
       <section className="dashboard-main__content bg-background grid grid-flow-row">
         <HeaderMain />

@@ -7,7 +7,6 @@ function useSongsData() {
   const { getSongsMethod } = appContext;
 
   const getSongsData = async () => {
-    console.log('Get Songs...');
     db.collection('music').onSnapshot((querySnapshot) => {
       let queryData = [];
       querySnapshot?.forEach((item) => {

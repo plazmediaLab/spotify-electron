@@ -125,22 +125,22 @@ input:focus ~ .icon-field-form:hover {
 /* --------ˇˇˇˇˇˇˇˇˇˇˇˇ-------- */
 @media (min-height: 721px) {
     .dashboard-main__container {
-        grid-template-rows: 88vh 12vh;
+        grid-template-rows: 30px calc(88vh - 30px) 12vh;
     }
 }
 @media (min-height: 800px) {
     .dashboard-main__container {
-        grid-template-rows: 89vh 11vh;
+        grid-template-rows: 30px calc(89vh - 30px) 11vh;
     }
 }
 @media (min-height: 900px) {
     .dashboard-main__container {
-        grid-template-rows: 90vh 10vh;
+        grid-template-rows: 30px calc(90vh - 30px) 10vh;
     }
 }
 @media (min-height: 1280px) {
     .dashboard-main__container {
-        grid-template-rows: 93vh 7vh;
+        grid-template-rows: 30px calc(93vh - 30px) 7vh;
     }
 }
 @media (min-width: 520px) {
