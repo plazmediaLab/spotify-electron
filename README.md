@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+# **React, TailwindCSS + Electron**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## **Platify v1.0.0**
 
-## Available Scripts
+_Spotify Clon_
 
-In the project directory, you can run:
+---
 
-### `yarn start`
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/plazmediaLab)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![Screenshot App](https://firebasestorage.googleapis.com/v0/b/platify-electron-28b95.appspot.com/o/screenshots%2Fscreenshot-1.jpg?alt=media&token=9dface4a-bfaa-4d16-b657-19771137619f)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1- Proyecto clon de Spotify.
 
-### `yarn test`
+- Registro de usuarios
+- Administración de roles
+- Inicio
+- Artistas
+- Albums
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2- Biblioteca
 
-### `yarn build`
+- Canciones que te gustan
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3- Agregar
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Nuevos Artistas
+- Nuevos Album
+- Nuevos Canción
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4- Canción en reproducción
 
-### `yarn eject`
+5- Reproductor de musica
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Aleatorio
+- Anterio
+- Play - Pause
+- Siguiente
+- Repetir pista
+- Tiempo de reproducción
+- Barra de progreso de la pista
+- Tiempo total de la pista
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+6- Control de volumen
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Mute
+- Nivel de volumen
+- Nivel de volumen almacenado al activar mute
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+7- Seccion de configuración de datos de usuario
 
-## Learn More
+![](https://firebasestorage.googleapis.com/v0/b/platify-electron-28b95.appspot.com/o/screenshots%2Fscreenshot-2.jpg?alt=media&token=57c1bf26-f17d-4d98-a0fc-8d336b7a0b42)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Clonar repositorio:
 
-### Code Splitting
+```
+$ git clone https://github.com/plazmediaLab/spotify-electron.git
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Yanr - administrador de paquetes
 
-### Analyzing the Bundle Size
+```
+$ cd spotify-electron
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+$ yarn add
+```
 
-### Making a Progressive Web App
+Ejecutar App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+$ yarn electron-dev
+```
 
-### Advanced Configuration
+### Instalable
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[Descargar Platify v1.0.0]()
