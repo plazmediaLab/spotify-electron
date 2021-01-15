@@ -87,8 +87,9 @@ export default function HeaderMain() {
       )}
       {showMenu && (
         <button
-          className="w-screen h-screen bg-transparent-0 absolute top-0 right-0 z-0"
-          onClick={() => setShowMenu(!showMenu)}></button>
+          className="w-screen h-screen bg-transparent-0 absolute right-0 z-0"
+          onClick={() => setShowMenu(!showMenu)}
+          style={{ top: '-30px' }}></button>
       )}
     </header>
   );

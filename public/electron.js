@@ -1,4 +1,5 @@
 const electron = require('electron');
+const url = require('url');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
@@ -13,11 +14,18 @@ function createWindow() {
     height: 800,
     minWidth: 900,
     minHeight: 800,
+    icon: path.join(__dirname, '../icon.ico'),
     title: 'Platify v1.0.0',
     center: true,
     backgroundColor: '#181719',
     webPreferences: {
-      contextIsolation: true
+      preload: __dirname + '/preload.js',
+      contextIsolation: true,
+      // webSecurity: false,
+      nodeIntegrationInWorker: true,
+      nodeIntegration: true
+      // enableRemoteModule: true
+      // allowRunningInsecureContent: (serve) ? true : false,
     }
   });
   mainWindow.loadURL(
@@ -32,6 +40,13 @@ function createWindow() {
 }
 
 app.on('ready', createWindow);
+
+// app.whenReady().then(() => {
+// Register a 'CommandOrControl+Y' shortcut listener.
+// globalShortcut.register('CommandOrControl+Y', () => {
+//   // Do stuff when Y and either Command/Control is pressed.
+// })
+// });
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {

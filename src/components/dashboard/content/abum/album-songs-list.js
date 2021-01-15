@@ -15,6 +15,7 @@ export default function AlbumSongsList({ albumID, setAlbumSongsCount }) {
       setAlbumSongsCount(newList?.length);
       setSongsOfAlbum(newList);
     }
+    // eslint-disable-next-line
   }, [songs, albumID]);
 
   return (

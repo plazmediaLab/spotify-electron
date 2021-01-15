@@ -1,5 +1,5 @@
 export default function SlideNextButton(props){
-  const { className, style, onClick } = props;
+  const { onClick } = props;
 
   return (
     <button 
