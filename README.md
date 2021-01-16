@@ -1,4 +1,4 @@
-# **React, TailwindCSS + Electron**
+﻿# **React, TailwindCSS + Electron**
 
 ## **Platify v1.0.0**
 
@@ -88,4 +88,4 @@ $ yarn electron-dev
 
 ### Instalable
 
-[Descargar Platify v1.0.0]()
+[Descargar Platify v1.0.0](https://www.mediafire.com/file/0rvfhhb4ho06byf/platify_Setup_1.0.0.exe/file)
