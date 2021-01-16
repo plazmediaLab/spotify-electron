@@ -1,6 +1,8 @@
 const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
+const { globalShortcut } = require('electron');
+const { Menu } = require('electron');
 
 const path = require('path');
 const isDev = require('electron-is-dev');
@@ -18,13 +20,11 @@ function createWindow() {
     center: true,
     backgroundColor: '#181719',
     webPreferences: {
-      // preload: __dirname + '/preload.js',
+      devTools: false,
+      preload: __dirname + '/preload.js',
       contextIsolation: true,
-      // webSecurity: false,
       nodeIntegrationInWorker: true,
-      nodeIntegration: true
-      // enableRemoteModule: true
-      // allowRunningInsecureContent: (serve) ? true : false,
+      nodeIntegration: false
     }
   });
   mainWindow.loadURL(
@@ -39,14 +39,43 @@ function createWindow() {
   mainWindow.on('closed', () => (mainWindow = null));
 }
 
+var menu = Menu.buildFromTemplate([
+  {
+    label: 'Menu',
+    submenu: [
+      {
+        label: 'Recargar',
+        role: 'reload',
+        accelerator: 'CommandOrControl+r'
+      },
+      {
+        label: 'Minimizar',
+        role: 'minimize'
+        // accelerator: 'CommandOrControl+r'
+      },
+      {
+        label: 'Exit',
+        click() {
+          app.quit();
+        },
+        accelerator: 'CommandOrControl+q'
+      }
+    ]
+  }
+]);
+Menu.setApplicationMenu(menu);
+
 app.on('ready', createWindow);
 
-// app.whenReady().then(() => {
-// Register a 'CommandOrControl+Y' shortcut listener.
-// globalShortcut.register('CommandOrControl+Y', () => {
-//   // Do stuff when Y and either Command/Control is pressed.
-// })
-// });
+app.whenReady().then(() => {
+  // Register a 'CommandOrControl+Y' shortcut listener.
+  globalShortcut.register('CommandOrControl+q', () => {
+    app.quit();
+  });
+  globalShortcut.register('CommandOrControl+r', () => {
+    mainWindow.reload();
+  });
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {

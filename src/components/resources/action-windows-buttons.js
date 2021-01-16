@@ -1,4 +1,8 @@
 export default function ActionWindowsButtons() {
+  function minimize() {
+    console.log('Minimize...');
+  }
+
   return (
     <section className="absolute top-0 right-0 flex items-center" style={{ zIndex: 10 }}>
       <p>
@@ -18,8 +22,9 @@ export default function ActionWindowsButtons() {
         </svg>
       </p>
       <button
+        onClick={minimize}
         id="minimize"
-        disabled={true}
+        // disabled={true}
         type="button"
         style={{ width: '30px', height: '30px' }}
         className="disabled:opacity-50 disabled:cursor-not-allowed grid place-items-center text-secondary bg-background-dark hover:bg-background-light">

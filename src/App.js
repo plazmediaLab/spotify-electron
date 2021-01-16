@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './style/style.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { Router, createMemorySource, createHistory, LocationProvider } from '@reach/router';
+import { Router } from '@reach/router';
 import Home from './pages/home';
 import Dashboard from './pages/dashboard';
 import LayoutToast from './components/layout/layout-toast';

@@ -4,6 +4,10 @@
 
 _Spotify Clon_
 
+### Instalable
+
+[Descargar Platify v1.0.0](https://www.mediafire.com/file/zhjkflz47w9u5i6/platify_Setup_1.0.0.exe/file)
+
 ---
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/plazmediaLab)
@@ -85,7 +89,3 @@ Ejecutar App
 ```
 $ yarn electron-dev
 ```
-
-### Instalable
-
-[Descargar Platify v1.0.0](https://www.mediafire.com/file/0rvfhhb4ho06byf/platify_Setup_1.0.0.exe/file)
