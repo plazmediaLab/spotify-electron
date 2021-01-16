@@ -1,19 +1,19 @@
-import firebase from 'utils/Firebase';
+import firebase from './utils/Firebase';
 import 'firebase/auth';
 import { useContext, useEffect } from 'react';
-import SplashScreen from 'components/resources/splash-screen';
-import AuthContext from 'reducer/Auth/AuthContext';
+import SplashScreen from './components/resources/splash-screen';
+import AuthContext from './reducer/Auth/AuthContext';
 import 'react-toastify/dist/ReactToastify.css';
-import 'style/style.css';
+import './style/style.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { Router } from '@reach/router';
-import Home from 'pages/home';
-import Dashboard from 'pages/dashboard';
-import LayoutToast from 'components/layout/layout-toast';
-import Login from 'pages/login';
-import SignUp from 'pages/signup';
-import HomeMainNav from 'components/home/home-main-nav';
+import { Router, createMemorySource, createHistory, LocationProvider } from '@reach/router';
+import Home from './pages/home';
+import Dashboard from './pages/dashboard';
+import LayoutToast from './components/layout/layout-toast';
+import Login from './pages/login';
+import SignUp from './pages/signup';
+import HomeMainNav from './components/home/home-main-nav';
 
 function App() {
   const authContext = useContext(AuthContext);

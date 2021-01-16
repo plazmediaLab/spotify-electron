@@ -16,8 +16,10 @@ function useLogin() {
 
   const formik = useFormik({
     initialValues: {
-      email: 'adriangd.1337@gmail.com',
-      pass: '12345678'
+      // email: 'adriangd.1337@gmail.com',
+      // pass: '12345678'
+      email: '',
+      pass: ''
     },
     validationSchema: Yup.object({
       email: Yup.string()

@@ -18,7 +18,7 @@ function createWindow() {
     center: true,
     backgroundColor: '#181719',
     webPreferences: {
-      preload: __dirname + '/preload.js',
+      // preload: __dirname + '/preload.js',
       contextIsolation: true,
       // webSecurity: false,
       nodeIntegrationInWorker: true,
@@ -30,6 +30,7 @@ function createWindow() {
   mainWindow.loadURL(
     isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`
   );
+  isDev ? console.log('DEV mode...') : console.log('PROD mode...');
   if (isDev) {
     // Open the DevTools.
     //BrowserWindow.addDevToolsExtension('<location to your react chrome extension>');

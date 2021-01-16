@@ -4,16 +4,22 @@ import './index.css';
 import 'react-toastify/dist/ReactToastify.min.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import AuthState from 'reducer/Auth/AuthState';
-import AppState from 'reducer/App/AppState';
-import PlayerState from 'reducer/Player/PlayerState';
+import AuthState from './reducer/Auth/AuthState';
+import AppState from './reducer/App/AppState';
+import PlayerState from './reducer/Player/PlayerState';
+import { createMemorySource, createHistory, LocationProvider } from '@reach/router';
+
+let source = createMemorySource('/');
+let history = createHistory(source);
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthState>
       <AppState>
         <PlayerState>
-          <App />
+          <LocationProvider history={history}>
+            <App />
+          </LocationProvider>
         </PlayerState>
       </AppState>
     </AuthState>
